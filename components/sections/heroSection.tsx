@@ -7,7 +7,7 @@ export default function HeroSection() {
         {/* LEFT: TEXT */}
         <div className="max-w-xl">
           <p className="text-xs tracking-[0.2em] uppercase text-[#6b7c7b] mb-6">
-            Applications open March – June 2026
+            Program runs Monday, July 6 – Friday, August 7, 2026
           </p>
 
           <h1 className="font-display text-5xl md:text-7xl leading-[1.05] mb-6">
@@ -49,7 +49,7 @@ export default function HeroSection() {
 
           {/* Floating card (subtle, not loud) */}
           <div className="absolute top-4 right-4 bg-white border border-[#e6eceb] px-4 py-2 text-xs text-[#3e4d4c] shadow-sm">
-            July – September 2026
+            Monday, July 6 – Friday, August 7, 2026
           </div>
         </div>
       </div>

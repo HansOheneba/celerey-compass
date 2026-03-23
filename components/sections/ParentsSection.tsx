@@ -18,7 +18,7 @@ const parentFAQs = [
   },
   {
     q: "What's the time commitment?",
-    a: "The program runs Monday through Friday for five weeks. Mondays are workshop days, Tuesdays through Thursdays are internship days (from Week 2), and Fridays are reflection days. Typical hours are 9am–4pm.",
+    a: "The program runs Monday through Friday from Monday, July 6 to Friday, August 7, 2026. Mondays are workshop days, Tuesdays through Thursdays are internship days (from Week 2), and Fridays are reflection days. Typical hours are 9am–4pm.",
   },
   {
     q: "What happens at the end?",
@@ -106,8 +106,12 @@ export default function ParentsSection() {
               <div className="w-10 h-10 rounded-xl bg-[#1a7f7a]/10 flex items-center justify-center mb-4">
                 <item.icon className="w-5 h-5 text-[#1a7f7a]" />
               </div>
-              <h4 className="font-semibold text-[#0f1f1e] mb-2">{item.title}</h4>
-              <p className="text-[#2d4a47]/60 text-sm leading-relaxed">{item.desc}</p>
+              <h4 className="font-semibold text-[#0f1f1e] mb-2">
+                {item.title}
+              </h4>
+              <p className="text-[#2d4a47]/60 text-sm leading-relaxed">
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>

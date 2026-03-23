@@ -47,9 +47,7 @@ export default function Footer() {
 
           {/* Dates */}
           <div className="mt-6 text-xs text-white/40 flex flex-wrap justify-center gap-4">
-            <span>July 27 – Sept 28, 2026</span>
-            <span>•</span>
-            <span>Applications: March – June 2026</span>
+            <span>Program runs Monday, July 6 – Friday, August 7, 2026</span>
           </div>
         </div>
       </div>
