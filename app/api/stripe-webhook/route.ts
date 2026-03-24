@@ -24,7 +24,7 @@ async function markAsPaid(email: string) {
 
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId: sheetId,
-    range: "Sheet1!A1:Z1000",
+    range: "Applications!A1:Z1000",
   });
 
   const rows = response.data.values;
@@ -45,7 +45,7 @@ async function markAsPaid(email: string) {
     const statusColLetter = columnToLetter(statusColIndex + 1);
     await sheets.spreadsheets.values.update({
       spreadsheetId: sheetId,
-      range: `Sheet1!${statusColLetter}1`,
+      range: `Applications!${statusColLetter}1`,
       valueInputOption: "RAW",
       requestBody: { values: [["Payment Status"]] },
     });
@@ -60,7 +60,7 @@ async function markAsPaid(email: string) {
       const rowNumber = i + 1;
       await sheets.spreadsheets.values.update({
         spreadsheetId: sheetId,
-        range: `Sheet1!${statusColLetter}${rowNumber}`,
+        range: `Applications!${statusColLetter}${rowNumber}`,
         valueInputOption: "RAW",
         requestBody: { values: [["Paid ✓"]] },
       });
