@@ -39,7 +39,7 @@ export default function Navbar() {
         <a href="#" className="flex items-center gap-2">
           <div className="flex justify-center items-center">
             <Image src="/logo.png" alt="Compass Logo" width={80} height={32} />
-            <span className="text-blue-900">Compass</span>
+            <span className="text-[#01124a] font-semibold">Compass</span>
           </div>
         </a>
         {/* Desktop nav */}
