@@ -1,6 +1,8 @@
 "use client";
 
 import { Compass } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   MotionInView,
   MotionStagger,
@@ -22,7 +24,12 @@ const footerLinks = {
   ],
 };
 
+const getSectionHref = (pathname: string, href: string) =>
+  pathname === "/" ? href : `/${href}`;
+
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="bg-[#0f1f1e]">
       {/* Compact CTA */}
@@ -36,18 +43,18 @@ export default function Footer() {
           </h2>
 
           <div className="flex flex-wrap gap-3 justify-center mt-6">
-            <a
-              href="#apply"
+            <Link
+              href={getSectionHref(pathname, "#apply")}
               className="px-6 py-3 rounded-full bg-[#c9a84c] text-[#0f1f1e] text-sm font-semibold hover:bg-[#b8943e] transition-all"
             >
               Apply Now
-            </a>
-            <a
-              href="#partners"
+            </Link>
+            <Link
+              href={getSectionHref(pathname, "#partners")}
               className="px-6 py-3 rounded-full border border-white/20 text-white text-sm hover:bg-white/10 transition-all"
             >
               Register Interest
-            </a>
+            </Link>
           </div>
 
           {/* Dates */}
@@ -62,14 +69,14 @@ export default function Footer() {
         <MotionStagger className="grid md:grid-cols-3 gap-10">
           {/* Brand */}
           <MotionStaggerItem>
-            <a href="#" className="flex items-center gap-2 mb-3">
+            <Link href="/" className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 rounded-full bg-[#c9a84c] flex items-center justify-center">
                 <Compass className="w-4 h-4 text-[#0f1f1e]" />
               </div>
               <span className="font-display text-white text-lg">
                 Compass Experience
               </span>
-            </a>
+            </Link>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs">
               A discovery and apprenticeship program helping young people find
               direction through learning, experience, and reflection.
@@ -85,12 +92,12 @@ export default function Footer() {
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
+                    <Link
+                      href={getSectionHref(pathname, link.href)}
                       className="text-white/60 hover:text-white text-sm transition-colors"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

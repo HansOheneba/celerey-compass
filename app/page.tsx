@@ -1,4 +1,4 @@
-import Navbar from "@/components/sections/navbar";
+import Navbar from "@/components/navbar";
 import HeroSection from "@/components/sections/heroSection";
 import ComparisonSection from "@/components/sections/comparisonSection";
 import TracksSection from "@/components/sections/tracksSection";
@@ -10,12 +10,11 @@ import {
   SchoolsSection,
 } from "@/components/sections/StudentSchoolSection";
 import PartnersSection from "@/components/sections/PartnersSection";
-import Footer from "@/components/sections/Footer";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <main className="overflow-x-hidden bg-white">
-      <Navbar />
       <HeroSection />
       <ComparisonSection />
       <TracksSection />
@@ -25,7 +24,6 @@ export default function Home() {
       <StudentsSection />
       <SchoolsSection />
       <PartnersSection />
-      <Footer />
     </main>
   );
 }

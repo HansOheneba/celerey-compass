@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Compass } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { label: "The Program", href: "#program" },
@@ -15,9 +16,13 @@ const navLinks = [
   { label: "Partners", href: "#partners" },
 ];
 
+const getSectionHref = (pathname: string, href: string) =>
+  pathname === "/" ? href : `/${href}`;
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -34,30 +39,30 @@ export default function Navbar() {
           : "bg-transparent",
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className=" mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <div className="flex justify-center items-center">
             <Image src="/logo.png" alt="Compass Logo" width={80} height={32} />
             <span className="text-[#01124a] font-semibold">Compass</span>
           </div>
-        </a>
+        </Link>
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
-              href={link.href}
+              href={getSectionHref(pathname, link.href)}
               className="text-sm text-[#5c6c6b] hover:text-[#0f1f1e] transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <Link href="#apply">
+          <Link href={getSectionHref(pathname, "#apply")}>
             <Button
               variant="outline"
               size="sm"
@@ -82,24 +87,24 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-white border-t border-[#e6eceb] px-6 py-6 space-y-4">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
-              href={link.href}
+              href={getSectionHref(pathname, link.href)}
               onClick={() => setOpen(false)}
               className="block text-[#5c6c6b] hover:text-[#0f1f1e] py-2 transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
 
           <div className="pt-4 flex flex-col gap-3">
-            <a
-              href="#apply"
+            <Link
+              href={getSectionHref(pathname, "#apply")}
               onClick={() => setOpen(false)}
               className="text-center py-2.5 border border-[#d6dede] text-[#3e4d4c] hover:border-[#0f1f1e] transition"
             >
               Register Interest
-            </a>
+            </Link>
           </div>
         </div>
       )}
