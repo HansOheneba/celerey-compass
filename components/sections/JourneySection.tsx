@@ -1,7 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
+import {
+  MotionInView,
+  MotionStagger,
+  MotionStaggerItem,
+} from "@/components/sections/scrollAnimator";
 
 const weeks = [
   {
@@ -60,7 +64,7 @@ export default function JourneySection() {
     <section id="journey" className="py-24 bg-[#f5f0e8]">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-20">
+        <MotionInView className="text-center mb-20">
           <p className="text-[#1a7f7a] text-sm font-semibold uppercase tracking-widest mb-4">
             The Journey
           </p>
@@ -71,16 +75,19 @@ export default function JourneySection() {
             Each week builds on the last, combining learning, real-world
             experience, and reflection.
           </p>
-        </div>
+        </MotionInView>
 
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
           <div className="absolute left-4 top-0 bottom-0 w-[2px] bg-[#0f1f1e]/10" />
 
-          <div className="space-y-16">
+          <MotionStagger className="space-y-16">
             {weeks.map((week, index) => (
-              <div key={index} className="relative flex items-start gap-6">
+              <MotionStaggerItem
+                key={index}
+                className="relative flex items-start gap-6"
+              >
                 {/* Dot */}
                 <div className="relative z-10 mt-2 w-8 h-8 rounded-full bg-[#1a7f7a] flex items-center justify-center text-white text-xs font-bold">
                   {index + 1}
@@ -128,9 +135,9 @@ export default function JourneySection() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </MotionStaggerItem>
             ))}
-          </div>
+          </MotionStagger>
         </div>
       </div>
     </section>

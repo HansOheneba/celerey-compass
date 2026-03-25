@@ -1,18 +1,22 @@
 "use client";
 
 import { ArrowDown } from "lucide-react";
+import { MotionInView } from "@/components/sections/scrollAnimator";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
     <section className="bg-white pt-20 pb-10">
       {/* CONTAINER (this creates the spacing from navbar) */}
       <div className="max-w-full mx-auto px-6">
-        <div className="relative rounded-3xl overflow-hidden h-[85vh] min-h-[650px]">
+        <div className="relative rounded-xl overflow-hidden h-[85vh] min-h-[650px]">
           {/* BACKGROUND IMAGE */}
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2942&auto=format&fit=crop"
             alt="Students learning"
             className="absolute inset-0 w-full h-full object-cover"
+            height={1000}
+            width={2942}
           />
 
           {/* SOFT OVERLAY (less aggressive) */}
@@ -20,7 +24,7 @@ export default function HeroSection() {
 
           {/* CONTENT */}
           <div className="relative z-10 h-full flex items-center px-8 md:px-16">
-            <div className="max-w-xl text-white">
+            <MotionInView className="max-w-xl text-white" distance={30}>
               {/* Small label */}
               <p className="text-xs tracking-[0.25em] uppercase text-white/70 mb-6">
                 July 6 – August 7, 2026
@@ -55,7 +59,7 @@ export default function HeroSection() {
                   For Parents
                 </a>
               </div>
-            </div>
+            </MotionInView>
           </div>
 
           {/* SCROLL INDICATOR */}

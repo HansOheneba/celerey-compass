@@ -1,6 +1,11 @@
 "use client";
 
 import { Compass } from "lucide-react";
+import {
+  MotionInView,
+  MotionStagger,
+  MotionStaggerItem,
+} from "@/components/sections/scrollAnimator";
 
 const footerLinks = {
   "Quick Links": [
@@ -22,7 +27,7 @@ export default function Footer() {
     <footer className="bg-[#0f1f1e]">
       {/* Compact CTA */}
       <div className="border-b border-white/10">
-        <div className="max-w-5xl mx-auto px-6 py-12 text-center">
+        <MotionInView className="max-w-5xl mx-auto px-6 py-12 text-center">
           <h2 className="font-display text-white text-3xl md:text-4xl mb-3 leading-tight">
             Find your direction.
             <span className="block italic text-[#c9a84c] text-lg md:text-xl mt-1">
@@ -49,14 +54,14 @@ export default function Footer() {
           <div className="mt-6 text-xs text-white/40 flex flex-wrap justify-center gap-4">
             <span>Program runs Monday, July 6 – Friday, August 7, 2026</span>
           </div>
-        </div>
+        </MotionInView>
       </div>
 
       {/* Footer grid */}
       <div className="max-w-7xl mx-auto px-6 py-10">
-        <div className="grid md:grid-cols-3 gap-10">
+        <MotionStagger className="grid md:grid-cols-3 gap-10">
           {/* Brand */}
-          <div>
+          <MotionStaggerItem>
             <a href="#" className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 rounded-full bg-[#c9a84c] flex items-center justify-center">
                 <Compass className="w-4 h-4 text-[#0f1f1e]" />
@@ -69,11 +74,11 @@ export default function Footer() {
               A discovery and apprenticeship program helping young people find
               direction through learning, experience, and reflection.
             </p>
-          </div>
+          </MotionStaggerItem>
 
           {/* Links */}
           {Object.entries(footerLinks).map(([group, links]) => (
-            <div key={group}>
+            <MotionStaggerItem key={group}>
               <p className="text-white/30 text-xs uppercase tracking-widest mb-3">
                 {group}
               </p>
@@ -89,12 +94,12 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </MotionStaggerItem>
           ))}
-        </div>
+        </MotionStagger>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3 text-white/30 text-xs">
+        <MotionInView className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3 text-white/30 text-xs">
           <p>
             © {new Date().getFullYear()} Compass Experience. All rights
             reserved.
@@ -107,7 +112,7 @@ export default function Footer() {
               Terms of Use
             </a>
           </div>
-        </div>
+        </MotionInView>
       </div>
     </footer>
   );

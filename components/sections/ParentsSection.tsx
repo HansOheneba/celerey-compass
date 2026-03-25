@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 import { ChevronDown, Shield, MessageSquare, Clock, Users } from "lucide-react";
+import {
+  MotionInView,
+  MotionStagger,
+  MotionStaggerItem,
+} from "@/components/sections/scrollAnimator";
 
 const parentFAQs = [
   {
@@ -62,7 +67,7 @@ export default function ParentsSection() {
   return (
     <section id="parents" className="py-24 bg-[#f5f0e8]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <MotionInView className="text-center mb-16">
           <p className="text-[#1a7f7a] text-sm font-semibold uppercase tracking-widest mb-4">
             For Parents
           </p>
@@ -74,9 +79,9 @@ export default function ParentsSection() {
             a big decision. Compass is designed with structure, supervision, and
             safety at its core—while giving young people room to grow.
           </p>
-        </div>
+        </MotionInView>
 
-        <div className="grid md:grid-cols-4 gap-6 mb-16">
+        <MotionStagger className="grid md:grid-cols-4 gap-6 mb-16">
           {[
             {
               icon: Shield,
@@ -99,7 +104,7 @@ export default function ParentsSection() {
               desc: "Peers, coaches, and mentors walking alongside your child every step",
             },
           ].map((item) => (
-            <div
+            <MotionStaggerItem
               key={item.title}
               className="bg-white border border-[#0f1f1e]/8 rounded-2xl p-6"
             >
@@ -112,13 +117,13 @@ export default function ParentsSection() {
               <p className="text-[#2d4a47]/60 text-sm leading-relaxed">
                 {item.desc}
               </p>
-            </div>
+            </MotionStaggerItem>
           ))}
-        </div>
+        </MotionStagger>
 
         {/* FAQ */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div>
+        <MotionStagger className="grid lg:grid-cols-2 gap-12 items-start">
+          <MotionStaggerItem>
             <h3 className="font-display text-[#0f1f1e] text-3xl mb-4">
               Common Questions from Parents
             </h3>
@@ -126,13 +131,13 @@ export default function ParentsSection() {
               Everything you need to know before trusting us with your young
               person&apos;s development.
             </p>
-          </div>
-          <div className="bg-[#0f1f1e] rounded-2xl px-8 py-2">
+          </MotionStaggerItem>
+          <MotionStaggerItem className="bg-[#0f1f1e] rounded-2xl px-8 py-2">
             {parentFAQs.map((faq) => (
               <AccordionItem key={faq.q} question={faq.q} answer={faq.a} />
             ))}
-          </div>
-        </div>
+          </MotionStaggerItem>
+        </MotionStagger>
       </div>
     </section>
   );

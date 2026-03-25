@@ -1,11 +1,18 @@
+"use client";
+
 import { X, Check } from "lucide-react";
+import {
+  MotionInView,
+  MotionStagger,
+  MotionStaggerItem,
+} from "@/components/sections/scrollAnimator";
 
 export default function ComparisonSection() {
   return (
-    <section id="program" className="py-24 bg-[#f5f0e8]">
+    <section id="program" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="max-w-2xl mb-20">
+        <MotionInView className="max-w-2xl mb-20">
           <p className="text-xs tracking-[0.2em] uppercase text-[#1a7f7a] mb-4">
             Important to Know
           </p>
@@ -19,12 +26,12 @@ export default function ComparisonSection() {
             themselves first, then explore career paths through a balance of
             learning, reflection, and structured work experience.
           </p>
-        </div>
+        </MotionInView>
 
         {/* Comparison */}
-        <div className="grid md:grid-cols-2 gap-8 mb-24">
+        <MotionStagger className="grid md:grid-cols-2 gap-8 mb-24">
           {/* Traditional */}
-          <div className="bg-white/70 border border-[#0f1f1e]/10 rounded-2xl p-8">
+          <MotionStaggerItem className="bg-gray-100 border border-[#0f1f1e]/10 rounded-2xl p-8">
             <h3 className="font-display text-[#0f1f1e] text-2xl mb-6">
               Traditional Internships
             </h3>
@@ -44,10 +51,10 @@ export default function ComparisonSection() {
                 </li>
               ))}
             </ul>
-          </div>
+          </MotionStaggerItem>
 
           {/* Compass */}
-          <div className="bg-[#0f1f1e] rounded-2xl p-8">
+          <MotionStaggerItem className="bg-[#0f1f1e] rounded-2xl p-8">
             <h3 className="font-display text-white text-2xl mb-6">
               Compass Experience
             </h3>
@@ -67,12 +74,12 @@ export default function ComparisonSection() {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
+          </MotionStaggerItem>
+        </MotionStagger>
 
         {/* Pillars */}
         <div className="mb-24">
-          <div className="max-w-2xl mb-12">
+          <MotionInView className="max-w-2xl mb-12">
             <h3 className="font-display text-[#0f1f1e] text-3xl md:text-4xl mb-4">
               Why self-discovery comes before career choice
             </h3>
@@ -83,9 +90,9 @@ export default function ComparisonSection() {
               strengths, values, and interests first, then explore where those
               might lead.
             </p>
-          </div>
+          </MotionInView>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <MotionStagger className="grid md:grid-cols-3 gap-6">
             {[
               {
                 number: "01",
@@ -109,9 +116,9 @@ export default function ComparisonSection() {
                   "Coaching sessions that turn experiences into real personal insight.",
               },
             ].map((pillar) => (
-              <div
+              <MotionStaggerItem
                 key={pillar.number}
-                className="bg-white border border-[#0f1f1e]/10 rounded-2xl p-8 hover:shadow-md transition"
+                className="bg-gray-100 border border-[#0f1f1e]/10 rounded-2xl p-8"
               >
                 <p className="text-sm text-[#8a9a99] mb-3">{pillar.number}</p>
 
@@ -122,13 +129,13 @@ export default function ComparisonSection() {
                 <p className="text-[#2d4a47]/80 leading-relaxed">
                   {pillar.description}
                 </p>
-              </div>
+              </MotionStaggerItem>
             ))}
-          </div>
+          </MotionStagger>
         </div>
 
         {/* Outcomes */}
-        <div className="mt-20 bg-[#0f1f1e] rounded-3xl p-10 md:p-14">
+        <MotionInView className="mt-20 bg-[#0f1f1e] rounded-3xl p-10 md:p-14">
           <h3 className="font-display text-white text-3xl md:text-4xl mb-10 text-center">
             What You Will Walk Away With
           </h3>
@@ -166,7 +173,7 @@ export default function ComparisonSection() {
               </div>
             ))}
           </div>
-        </div>
+        </MotionInView>
       </div>
     </section>
   );

@@ -1,13 +1,18 @@
 "use client";
 
 import Script from "next/script";
+import {
+  MotionInView,
+  MotionStagger,
+  MotionStaggerItem,
+} from "@/components/sections/scrollAnimator";
 
 export default function PartnersSection() {
   return (
     <section id="partners" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
+        <MotionInView className="text-center mb-16">
           <p className="text-[#1a7f7a] text-sm font-semibold uppercase tracking-widest mb-4">
             For Partners
           </p>
@@ -19,12 +24,12 @@ export default function PartnersSection() {
             people while developing your mentorship culture and connecting with
             emerging talent.
           </p>
-        </div>
+        </MotionInView>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
+        <MotionStagger className="grid md:grid-cols-2 gap-8 mb-20">
           {/* Company Partners */}
-          <div className="bg-[#f5f0e8] rounded-3xl p-8">
+          <MotionStaggerItem className="bg-[#f5f0e8] rounded-3xl p-8">
             <div className="w-12 h-12 rounded-2xl bg-[#1a7f7a]/10 flex items-center justify-center mb-6 text-2xl">
               🏢
             </div>
@@ -56,10 +61,10 @@ export default function PartnersSection() {
             >
               Become a Partner
             </a>
-          </div>
+          </MotionStaggerItem>
 
           {/* Facilitators */}
-          <div className="bg-[#0f1f1e] rounded-3xl p-8 relative overflow-hidden">
+          <MotionStaggerItem className="bg-[#0f1f1e] rounded-3xl p-8 relative overflow-hidden">
             <div className="absolute bottom-0 right-0 w-48 h-48 bg-[#c9a84c]/10 rounded-full blur-3xl" />
             <div className="relative z-10">
               <div className="w-12 h-12 rounded-2xl bg-[#c9a84c]/15 flex items-center justify-center mb-6 text-2xl">
@@ -94,11 +99,11 @@ export default function PartnersSection() {
                 Join Our Team
               </a>
             </div>
-          </div>
-        </div>
+          </MotionStaggerItem>
+        </MotionStagger>
 
         {/* Typeform Section */}
-        <div id="contact" className="text-center">
+        <MotionInView id="contact" className="text-center" delay={0.08}>
           <h3 className="font-display text-[#0f1f1e] text-3xl mb-4">
             Get in Touch
           </h3>
@@ -112,7 +117,7 @@ export default function PartnersSection() {
           </div>
 
           <Script src="//embed.typeform.com/next/embed.js" />
-        </div>
+        </MotionInView>
       </div>
     </section>
   );

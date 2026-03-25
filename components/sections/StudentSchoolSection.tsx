@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import {
+  MotionInView,
+  MotionStagger,
+  MotionStaggerItem,
+} from "@/components/sections/scrollAnimator";
 
 const studentFAQs = [
   {
@@ -48,10 +53,10 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export function StudentsSection() {
   return (
-    <section className="py-24 bg-white">
+    <section id="students" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
+        <MotionStagger className="grid lg:grid-cols-2 gap-16 items-center">
+          <MotionStaggerItem>
             <p className="text-[#1a7f7a] text-sm font-semibold uppercase tracking-widest mb-4">
               For Students
             </p>
@@ -64,7 +69,7 @@ export function StudentsSection() {
               need to be curious enough to explore.
             </p>
 
-            <div className="space-y-6">
+            <MotionStagger className="space-y-6">
               {[
                 {
                   emoji: "🙌",
@@ -87,15 +92,21 @@ export function StudentsSection() {
                   desc: "You'll leave with a Personal Compass Profile, real experience, new skills, and most importantly—clarity about your next steps.",
                 },
               ].map((item) => (
-                <div key={item.title} className="flex gap-4">
-                  <span className="text-2xl flex-shrink-0 mt-0.5">{item.emoji}</span>
+                <MotionStaggerItem key={item.title} className="flex gap-4">
+                  <span className="text-2xl flex-shrink-0 mt-0.5">
+                    {item.emoji}
+                  </span>
                   <div>
-                    <p className="font-semibold text-[#0f1f1e] mb-1">{item.title}</p>
-                    <p className="text-[#2d4a47]/60 text-sm leading-relaxed">{item.desc}</p>
+                    <p className="font-semibold text-[#0f1f1e] mb-1">
+                      {item.title}
+                    </p>
+                    <p className="text-[#2d4a47]/60 text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
-                </div>
+                </MotionStaggerItem>
               ))}
-            </div>
+            </MotionStagger>
 
             <a
               href="#apply"
@@ -103,9 +114,9 @@ export function StudentsSection() {
             >
               Start Your Application
             </a>
-          </div>
+          </MotionStaggerItem>
 
-          <div>
+          <MotionStaggerItem>
             <h3 className="font-display text-[#0f1f1e] text-2xl mb-6">
               Your Questions Answered
             </h3>
@@ -114,8 +125,8 @@ export function StudentsSection() {
                 <FAQItem key={faq.q} q={faq.q} a={faq.a} />
               ))}
             </div>
-          </div>
-        </div>
+          </MotionStaggerItem>
+        </MotionStagger>
       </div>
     </section>
   );
@@ -139,9 +150,9 @@ export function SchoolsSection() {
   ];
 
   return (
-    <section className="py-24 bg-[#f5f0e8]">
+    <section id="schools" className="py-24 bg-[#f5f0e8]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <MotionInView className="text-center mb-16">
           <p className="text-[#1a7f7a] text-sm font-semibold uppercase tracking-widest mb-4">
             For Schools
           </p>
@@ -153,29 +164,57 @@ export function SchoolsSection() {
             application. We help students develop skills that complement their
             formal education while exploring future pathways.
           </p>
-        </div>
+        </MotionInView>
 
-        <div className="grid md:grid-cols-4 gap-6 mb-16">
+        <MotionStagger className="grid md:grid-cols-4 gap-6 mb-16">
           {[
-            { icon: "🎯", title: "Career Readiness", desc: "Students return with clearer goals and practical workplace skills" },
-            { icon: "🌱", title: "Personal Development", desc: "Self-awareness and confidence that enhances classroom engagement" },
-            { icon: "📐", title: "Subject Alignment", desc: "Workshops cover design thinking, communication, and technology" },
-            { icon: "🤝", title: "Partnership Options", desc: "Custom programs and referral partnerships available" },
+            {
+              icon: "🎯",
+              title: "Career Readiness",
+              desc: "Students return with clearer goals and practical workplace skills",
+            },
+            {
+              icon: "🌱",
+              title: "Personal Development",
+              desc: "Self-awareness and confidence that enhances classroom engagement",
+            },
+            {
+              icon: "📐",
+              title: "Subject Alignment",
+              desc: "Workshops cover design thinking, communication, and technology",
+            },
+            {
+              icon: "🤝",
+              title: "Partnership Options",
+              desc: "Custom programs and referral partnerships available",
+            },
           ].map((item) => (
-            <div key={item.title} className="bg-white border border-[#0f1f1e]/8 rounded-2xl p-6 text-center">
+            <MotionStaggerItem
+              key={item.title}
+              className="bg-white border border-[#0f1f1e]/8 rounded-2xl p-6 text-center"
+            >
               <div className="text-3xl mb-3">{item.icon}</div>
-              <h4 className="font-semibold text-[#0f1f1e] mb-2">{item.title}</h4>
-              <p className="text-[#2d4a47]/60 text-sm leading-relaxed">{item.desc}</p>
-            </div>
+              <h4 className="font-semibold text-[#0f1f1e] mb-2">
+                {item.title}
+              </h4>
+              <p className="text-[#2d4a47]/60 text-sm leading-relaxed">
+                {item.desc}
+              </p>
+            </MotionStaggerItem>
           ))}
-        </div>
+        </MotionStagger>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          <div>
-            <h3 className="font-display text-[#0f1f1e] text-2xl mb-2">School FAQ</h3>
+        <MotionStagger className="grid lg:grid-cols-2 gap-12">
+          <MotionStaggerItem>
+            <h3 className="font-display text-[#0f1f1e] text-2xl mb-2">
+              School FAQ
+            </h3>
             <div>
               {schoolFAQs.map((faq, i) => (
-                <div key={i} className="border-b border-[#0f1f1e]/10 last:border-0">
+                <div
+                  key={i}
+                  className="border-b border-[#0f1f1e]/10 last:border-0"
+                >
                   <button
                     onClick={() => setOpenIdx(openIdx === i ? null : i)}
                     className="w-full flex justify-between items-center py-5 text-left group"
@@ -189,20 +228,22 @@ export function SchoolsSection() {
                   </button>
                   {openIdx === i && (
                     <div className="pb-5">
-                      <p className="text-[#2d4a47]/70 leading-relaxed">{faq.a}</p>
+                      <p className="text-[#2d4a47]/70 leading-relaxed">
+                        {faq.a}
+                      </p>
                     </div>
                   )}
                 </div>
               ))}
             </div>
-          </div>
-          <div className="bg-[#0f1f1e] rounded-2xl p-8 self-start">
+          </MotionStaggerItem>
+          <MotionStaggerItem className="bg-[#0f1f1e] rounded-2xl p-8 self-start">
             <h4 className="font-display text-white text-2xl mb-3">
               Interested in a school partnership?
             </h4>
             <p className="text-white/60 mb-6">
-              We offer custom cohorts, referral arrangements, and career guidance
-              integration.
+              We offer custom cohorts, referral arrangements, and career
+              guidance integration.
             </p>
             <a
               href="#contact"
@@ -210,8 +251,8 @@ export function SchoolsSection() {
             >
               Contact our partnerships team
             </a>
-          </div>
-        </div>
+          </MotionStaggerItem>
+        </MotionStagger>
       </div>
     </section>
   );

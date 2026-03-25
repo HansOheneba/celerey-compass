@@ -11,12 +11,10 @@ import {
 } from "@/components/sections/StudentSchoolSection";
 import PartnersSection from "@/components/sections/PartnersSection";
 import Footer from "@/components/sections/Footer";
-import ScrollAnimator from "@/components/sections/scrollAnimator";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
-      <ScrollAnimator />
+    <main className="overflow-x-hidden bg-white">
       <Navbar />
       <HeroSection />
       <ComparisonSection />

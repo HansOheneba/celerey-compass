@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { label: "The Program", href: "#program" },
@@ -31,17 +34,14 @@ export default function Navbar() {
           : "bg-transparent",
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full border border-[#0f1f1e] flex items-center justify-center">
-            <Compass className="w-4 h-4 text-[#0f1f1e]" />
+          <div className="flex justify-center items-center">
+            <Image src="/logo.png" alt="Compass Logo" width={80} height={32} />
+            <span className="text-blue-900">Compass</span>
           </div>
-          <span className="font-display text-[#0f1f1e] text-lg tracking-tight">
-            Compass
-          </span>
         </a>
-
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
@@ -57,13 +57,15 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <a
-            href="#apply"
-            className="text-sm px-4 py-2 border border-[#d6dede] text-[#3e4d4c] hover:border-[#0f1f1e] hover:text-[#0f1f1e] transition"
-          >
-            Register Interest
-          </a>
-         
+          <Link href="#apply">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-sm border-[#d6dede] text-[#3e4d4c] hover:border-[#0f1f1e] hover:text-[#0f1f1e] transition"
+            >
+              Apply Now
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -98,7 +100,6 @@ export default function Navbar() {
             >
               Register Interest
             </a>
-          
           </div>
         </div>
       )}

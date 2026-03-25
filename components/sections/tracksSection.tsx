@@ -1,10 +1,17 @@
+"use client";
+
 import { Check } from "lucide-react";
+import {
+  MotionInView,
+  MotionStagger,
+  MotionStaggerItem,
+} from "@/components/sections/scrollAnimator";
 
 export default function TracksSection() {
   return (
     <section id="tracks" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <MotionInView className="text-center mb-16">
           <p className="text-[#1a7f7a] text-sm font-semibold uppercase tracking-widest mb-4">
             Two Tracks, One Cohort
           </p>
@@ -16,11 +23,11 @@ export default function TracksSection() {
             sessions but age-appropriate expectations, internship intensity, and
             capstone outcomes.
           </p>
-        </div>
+        </MotionInView>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <MotionStagger className="grid md:grid-cols-2 gap-8">
           {/* High School Track */}
-          <div className="relative rounded-3xl overflow-hidden border border-[#1a7f7a]/20 bg-gradient-to-br from-[#1a7f7a]/5 to-transparent p-8 md:p-10">
+          <MotionStaggerItem className="relative rounded-3xl overflow-hidden border border-[#1a7f7a]/20 bg-gradient-to-br from-[#1a7f7a]/5 to-transparent p-8 md:p-10">
             <div className="absolute top-6 right-6 px-3 py-1 rounded-full bg-[#1a7f7a]/10 text-[#1a7f7a] text-xs font-semibold">
               Years 10–12
             </div>
@@ -87,10 +94,10 @@ export default function TracksSection() {
                 ))}
               </div>
             </div>
-          </div>
+          </MotionStaggerItem>
 
           {/* University Track */}
-          <div className="relative rounded-3xl overflow-hidden bg-[#0f1f1e] p-8 md:p-10">
+          <MotionStaggerItem className="relative rounded-3xl overflow-hidden bg-[#0f1f1e] p-8 md:p-10">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#c9a84c]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="absolute top-6 right-6 px-3 py-1 rounded-full bg-[#c9a84c]/20 text-[#c9a84c] text-xs font-semibold z-10">
               University Students
@@ -159,8 +166,8 @@ export default function TracksSection() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </MotionStaggerItem>
+        </MotionStagger>
       </div>
     </section>
   );

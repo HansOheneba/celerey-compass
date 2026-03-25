@@ -8,6 +8,11 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import {
+  MotionInView,
+  MotionStagger,
+  MotionStaggerItem,
+} from "@/components/sections/scrollAnimator";
 
 const TRACKS = ["High School (Years 10-12)", "University"];
 
@@ -22,13 +27,6 @@ type FormData = {
 };
 
 type FieldError = Partial<Record<keyof FormData, string>>;
-
-// Which fields belong to each step
-const STEP_FIELDS: (keyof FormData)[][] = [
-  ["firstName", "lastName", "email", "phone"],
-  ["track", "school"],
-  ["whyCompass"],
-];
 
 function validateStep(data: FormData, step: number): FieldError {
   const errors: FieldError = {};
@@ -161,10 +159,10 @@ export default function ApplySection() {
     });
   };
 
-const inputClass = (field: keyof FormData) =>
-  `w-full bg-white border ${
-    errors[field] ? "border-red-400" : "border-gray-300"
-  } rounded-lg px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 
+  const inputClass = (field: keyof FormData) =>
+    `w-full bg-white border ${
+      errors[field] ? "border-red-400" : "border-gray-300"
+    } rounded-lg px-4 py-3 text-gray-900 text-sm placeholder:text-gray-400 
   focus:outline-none focus:ring-2 focus:ring-[#c9a84c] focus:border-[#c9a84c] 
   transition-all duration-200`;
   const slideStyle: React.CSSProperties = animating
@@ -183,21 +181,23 @@ const inputClass = (field: keyof FormData) =>
   return (
     <section id="apply" className="py-24 bg-[#0f1f1e]">
       <div className="max-w-3xl mx-auto px-6 text-center">
-        {/* Heading */}
-        <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-4">
-          Apply & Registration
-        </p>
-        <h2 className="font-display text-white text-4xl md:text-5xl mb-6 leading-tight">
-          Your journey starts with a simple step
-        </h2>
-        <p className="text-white/60 text-lg leading-relaxed mb-12">
-          We&apos;re looking for curious, open-minded young people ready to
-          invest in themselves. No experience required—just willingness to
-          explore and grow.
-        </p>
+        <MotionInView>
+          {/* Heading */}
+          <p className="text-[#c9a84c] text-sm font-semibold uppercase tracking-widest mb-4">
+            Apply & Registration
+          </p>
+          <h2 className="font-display text-white text-4xl md:text-5xl mb-6 leading-tight">
+            Your journey starts with a simple step
+          </h2>
+          <p className="text-white/60 text-lg leading-relaxed mb-12">
+            We&apos;re looking for curious, open-minded young people ready to
+            invest in themselves. No experience required—just willingness to
+            explore and grow.
+          </p>
+        </MotionInView>
 
         {/* Steps */}
-        <div className="space-y-6 text-left mb-16">
+        <MotionStagger className="space-y-6 text-left mb-16">
           {[
             {
               n: "1",
@@ -220,7 +220,7 @@ const inputClass = (field: keyof FormData) =>
               desc: "Meet your cohort and get ready for an experience that could change your direction.",
             },
           ].map((s) => (
-            <div key={s.n} className="flex gap-4 items-start">
+            <MotionStaggerItem key={s.n} className="flex gap-4 items-start">
               <div className="w-8 h-8 rounded-full bg-[#c9a84c]/20 border border-[#c9a84c]/30 flex items-center justify-center text-[#c9a84c] text-sm font-semibold shrink-0">
                 {s.n}
               </div>
@@ -230,27 +230,31 @@ const inputClass = (field: keyof FormData) =>
                   {s.desc}
                 </p>
               </div>
-            </div>
+            </MotionStaggerItem>
           ))}
-        </div>
+        </MotionStagger>
 
         {/* CTA button */}
-        <button
-          onClick={handleOpen}
-          className="inline-flex items-center gap-3 bg-[#c9a84c] hover:bg-[#d4b560] active:bg-[#b8963e] text-[#0f1f1e] font-semibold text-base px-10 py-4 rounded-full transition-all duration-200 shadow-lg shadow-[#c9a84c]/20 hover:shadow-[#c9a84c]/30 hover:scale-[1.02]"
-        >
-          Start your application
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path
-              d="M3 8H13M13 8L9 4M13 8L9 12"
-              stroke="#0f1f1e"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-        <p className="text-white/30 text-xs mt-3">Takes less than 2 minutes</p>
+        <MotionInView delay={0.08}>
+          <button
+            onClick={handleOpen}
+            className="inline-flex items-center gap-3 bg-[#c9a84c] hover:bg-[#d4b560] active:bg-[#b8963e] text-[#0f1f1e] font-semibold text-base px-10 py-4 rounded-full transition-all duration-200 shadow-lg shadow-[#c9a84c]/20 hover:shadow-[#c9a84c]/30 hover:scale-[1.02]"
+          >
+            Start your application
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 8H13M13 8L9 4M13 8L9 12"
+                stroke="#0f1f1e"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+          <p className="text-white/30 text-xs mt-3">
+            Takes less than 2 minutes
+          </p>
+        </MotionInView>
       </div>
 
       {/* Dialog */}
