@@ -111,8 +111,8 @@ export default function ComparisonSection() {
                     <X className="w-3 h-3 text-red-400" />
                   </span>
                   <span
-                    className="leading-snug"
-                    style={{ color: "var(--lavender-grey)" }}
+                    className="leading-snug text-deep-navy"
+            
                   >
                     {item}
                   </span>
