@@ -56,7 +56,7 @@ export default function Step4({
 
   return (
     <section>
-      <h2 className="text-2xl font-semibold text-[#111827]">
+      <h2 className="text-2xl text-[#111827]">
         Career Exploration
       </h2>
       <p className="mt-2 text-sm text-[#6b7280]">

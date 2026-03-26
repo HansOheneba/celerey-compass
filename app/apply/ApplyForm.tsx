@@ -11,7 +11,7 @@ import {
   type UseFormSetValue,
   type UseFormWatch,
 } from "react-hook-form";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, CreditCard } from "lucide-react";
 import { Toaster } from "sonner";
 import {
   applyFormSchema,
@@ -49,21 +49,6 @@ const STEP_TITLES = [
   "The Big Thinking Questions",
   "Message to Your Future Self",
   "Commitment and Readiness",
-] as const;
-
-const STEP_DESCRIPTIONS = [
-  "Start with your personal details.",
-  "Tell us about your school context.",
-  "Help us understand your personality and interests.",
-  "Select career paths you want to explore.",
-  "Share your preferred work environment.",
-  "Describe what motivates and challenges you.",
-  "Tell us about your device and internet access.",
-  "Add a parent or guardian contact.",
-  "Confirm parent support for this experience.",
-  "Answer a few bigger vision questions.",
-  "Write a note to your future self.",
-  "Confirm your commitment and readiness.",
 ] as const;
 
 const STEP_COMPONENTS = [
@@ -108,6 +93,9 @@ export default function ApplyForm() {
   const [direction, setDirection] = useState<1 | -1>(1);
   const [submitError, setSubmitError] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
+  const [isPaying, setIsPaying] = useState(false);
+  const [payError, setPayError] = useState("");
 
   const {
     register,
@@ -187,6 +175,7 @@ export default function ApplyForm() {
       }
 
       window.localStorage.removeItem(STORAGE_KEY);
+      setSubmittedEmail(data.email);
       setSubmitted(true);
     } catch {
       setSubmitError(
@@ -195,17 +184,97 @@ export default function ApplyForm() {
     }
   };
 
+  const handlePay = async () => {
+    setIsPaying(true);
+    setPayError("");
+    try {
+      const res = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: submittedEmail }),
+      });
+      const payload = (await res.json()) as { url?: string; error?: string };
+      if (!res.ok || !payload.url) {
+        setPayError(
+          payload.error ?? "Failed to start payment. Please try again.",
+        );
+        return;
+      }
+      window.location.href = payload.url;
+    } catch {
+      setPayError("Network error. Please check your connection and try again.");
+    } finally {
+      setIsPaying(false);
+    }
+  };
+
   if (submitted) {
     return (
-      <div className="min-h-screen bg-[#f9fafb] px-4 py-10 sm:px-6 sm:py-16">
-        <div className="mx-auto flex min-h-[65vh] w-full max-w-5xl flex-col items-center justify-center rounded-3xl border border-gray-100 bg-white px-8 py-14 text-center shadow-xl sm:px-12">
-          <CheckCircle2 className="h-20 w-20 text-[#c9a84c]" />
-          <h1 className="mt-8 text-3xl font-semibold text-[#111827] sm:text-4xl">
-            You&apos;re in. Welcome to Compass.
-          </h1>
-          <p className="mt-4 max-w-xl text-lg text-[#6b7280]">
-            We&apos;ll be in touch soon. Check your email for next steps.
-          </p>
+      <div className="min-h-screen bg-[#f5f0e8] px-4 py-10 sm:px-6 sm:py-16">
+        <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-lg">
+          <div className="flex items-start gap-4 border-b border-gray-100 px-8 py-8 sm:px-10">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0b1e3d]/10">
+              <CheckCircle2 className="h-5 w-5 text-[#0b1e3d]" />
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#0b1e3d]">
+                Step 1 complete
+              </p>
+              <h2 className="mt-1 text-xl  text-[#0f1f1e]">
+                Application received
+              </h2>
+              <p className="mt-1 text-sm text-[#6b7280]">
+                Your application has been submitted. We&apos;ve recorded your
+                details.
+              </p>
+            </div>
+          </div>
+
+          <div className="px-8 py-8 sm:px-10">
+            <div className="flex items-start gap-4">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0f1f1e]/5">
+                <CreditCard className="h-5 w-5 text-[#0f1f1e]" />
+              </div>
+              <div className="flex-1">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#6b7280]">
+                  Step 2
+                </p>
+                <h2 className="mt-1 text-xl text-[#0f1f1e]">
+                  Secure your spot
+                </h2>
+                <p className="mt-1 text-sm text-[#6b7280]">
+                  Complete the enrollment fee to confirm your place in the
+                  Compass programme. Your spot is not guaranteed until payment
+                  is received.
+                </p>
+
+                {payError && (
+                  <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+                    {payError}
+                  </div>
+                )}
+
+                <button
+                  type="button"
+                  onClick={handlePay}
+                  disabled={isPaying}
+                  className="mt-5 inline-flex items-center gap-2 rounded-lg bg-[#0b1e3d] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-45"
+                >
+                  {isPaying ? (
+                    <>
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/50 border-t-white" />
+                      Redirecting...
+                    </>
+                  ) : (
+                    <>
+                      <CreditCard className="h-4 w-4" />
+                      Pay Now
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         <Toaster richColors position="top-right" />
       </div>
@@ -215,20 +284,10 @@ export default function ApplyForm() {
   const CurrentStep = STEP_COMPONENTS[step];
 
   return (
-    <div className="min-h-screen bg-[#f9fafb] px-4 py-10 sm:px-6 sm:py-16">
-      <div className="mx-auto flex w-full max-w-6xl flex-col overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-xl lg:flex-row">
+    <div className="min-h-screen bg-[#f5f0e8] px-4 py-10 sm:px-6 sm:py-16">
+      <div className="mx-auto flex w-full max-w-6xl flex-col overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-lg lg:flex-row">
         <aside className="border-b border-gray-100 bg-[#f8f7f3] px-6 py-7 sm:px-8 lg:w-[320px] lg:flex-none lg:border-b-0 lg:border-r lg:px-7 lg:py-8">
           <div className="lg:sticky lg:top-8">
-            {/* <p className="text-xs font-medium uppercase tracking-wider text-[#6b7280]">
-              Step {step + 1} of {TOTAL_STEPS}
-            </p>
-            <h2 className="mt-2 text-xl font-semibold text-[#111827]">
-              {STEP_TITLES[step]}
-            </h2>
-            <p className="mt-1 text-sm text-[#6b7280]">
-              {STEP_DESCRIPTIONS[step]}
-            </p> */}
-
             <div className="mt-7">
               {STEP_TITLES.map((title, index) => {
                 const isCompleted = index < step;
@@ -244,10 +303,10 @@ export default function ApplyForm() {
                       <div
                         className={`z-10 flex h-8 w-8 items-center justify-center rounded-full border text-xs font-semibold transition-colors ${
                           isCompleted
-                            ? "border-[#c9a84c] bg-[#c9a84c] text-white"
+                            ? "border-[#0b1e3d] bg-[#0b1e3d] text-white"
                             : isActive
-                              ? "border-[#c9a84c] bg-white text-[#c9a84c]"
-                              : "border-gray-300 bg-white text-[#9ca3af]"
+                              ? "border-[#0b1e3d] bg-white text-[#0b1e3d]"
+                              : "border-gray-300 bg-white text-[#6b7280]"
                         }`}
                       >
                         {isCompleted ? (
@@ -256,30 +315,20 @@ export default function ApplyForm() {
                           String(index + 1).padStart(2, "0")
                         )}
                       </div>
-                      {!isLast ? (
+                      {!isLast && (
                         <span
                           className={`absolute top-8 h-[calc(100%-0.5rem)] w-px ${
-                            index < step ? "bg-[#c9a84c]" : "bg-gray-300"
+                            index < step ? "bg-[#0b1e3d]" : "bg-gray-300"
                           }`}
                         />
-                      ) : null}
+                      )}
                     </div>
-
                     <div className="min-w-0 pt-0.5">
                       <p
-                        className={`text-sm font-medium leading-5 ${
-                          isActive ? "text-[#111827]" : "text-[#6b7280]"
-                        }`}
+                        className={`text-sm font-medium leading-5 ${isActive ? "text-[#0f1f1e]" : "text-[#6b7280]"}`}
                       >
                         {title}
                       </p>
-                      {/* <p
-                        className={`mt-0.5 text-xs leading-5 text-[#9ca3af] ${
-                          isActive ? "block" : "hidden sm:block"
-                        }`}
-                      >
-                        {STEP_DESCRIPTIONS[index]}
-                      </p> */}
                     </div>
                   </div>
                 );
@@ -289,15 +338,6 @@ export default function ApplyForm() {
         </aside>
 
         <div className="flex min-h-130 flex-1 flex-col">
-          {/* <div className="border-b border-gray-100 bg-white px-6 py-5 sm:px-10 lg:px-12">
-            <p className="text-xs font-medium uppercase tracking-wider text-[#6b7280]">
-              Step {step + 1} of {TOTAL_STEPS}
-            </p>
-            <h3 className="mt-1 text-lg font-semibold text-[#111827] sm:text-xl">
-              {STEP_TITLES[step]}
-            </h3> 
-          </div> */}
-
           <div className="flex-1 overflow-hidden px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-12">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
@@ -308,7 +348,7 @@ export default function ApplyForm() {
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.25, ease: "easeInOut" }}
-                className="text-[#111827] [&_input]:text-[#111827] [&_textarea]:text-[#111827] [&_select]:text-[#111827] [&_input]:placeholder:text-gray-400 [&_textarea]:placeholder:text-gray-400"
+                className="text-[#0f1f1e] [&_input]:text-[#0f1f1e] [&_textarea]:text-[#0f1f1e] [&_select]:text-[#0f1f1e] [&_input]:placeholder:text-[#2d4a47]/40 [&_textarea]:placeholder:text-[#2d4a47]/40"
               >
                 <CurrentStep
                   register={register}
@@ -321,11 +361,11 @@ export default function ApplyForm() {
           </div>
 
           <div className="sticky bottom-0 border-t border-gray-100 bg-white px-6 py-4 sm:px-10 lg:px-12">
-            {submitError ? (
+            {submitError && (
               <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
                 {submitError}
               </div>
-            ) : null}
+            )}
 
             <div className="flex items-center justify-between gap-3">
               <button
@@ -343,7 +383,7 @@ export default function ApplyForm() {
                   type="button"
                   onClick={handleNext}
                   disabled={!isCurrentStepValid}
-                  className="rounded-lg bg-[#c9a84c] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-45"
+                  className="rounded-lg bg-[#0b1e3d] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-45"
                 >
                   Next
                 </button>
@@ -352,7 +392,7 @@ export default function ApplyForm() {
                   type="button"
                   onClick={handleSubmit(onSubmit)}
                   disabled={isSubmitting || !isCurrentStepValid}
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#c9a84c] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-45"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#0b1e3d] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-45"
                 >
                   {isSubmitting ? (
                     <>

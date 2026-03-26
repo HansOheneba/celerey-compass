@@ -31,7 +31,7 @@ export default function Step7({
 
   return (
     <section>
-      <h2 className="text-2xl font-semibold text-[#111827]">
+      <h2 className="text-2xl text-[#111827]">
         Technology and Access
       </h2>
       <p className="mt-2 text-sm text-[#6b7280]">

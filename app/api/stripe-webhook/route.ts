@@ -62,7 +62,7 @@ async function markAsPaid(email: string) {
         spreadsheetId: sheetId,
         range: `Applications!${statusColLetter}${rowNumber}`,
         valueInputOption: "RAW",
-        requestBody: { values: [["Paid ✓"]] },
+        requestBody: { values: [["Paid"]] },
       });
       console.log(`Marked row ${rowNumber} as paid for ${email}`);
       return true;

@@ -19,7 +19,7 @@ export default function Step1({ register, errors }: StepComponentProps) {
         <p className="text-xs font-medium uppercase tracking-wider text-[#6b7280]">
           Section 1
         </p>
-        <h2 className="mt-2 text-2xl font-bold text-[#111827] sm:text-3xl">
+        <h2 className="mt-2 text-2xl  text-[#111827] sm:text-3xl">
           The Basics
         </h2>
       </div>

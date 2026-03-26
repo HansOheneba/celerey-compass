@@ -13,7 +13,7 @@ function errorText(message?: string) {
 export default function Step3({ register, errors }: StepComponentProps) {
   return (
     <section>
-      <h2 className="text-2xl font-semibold text-[#111827]">
+      <h2 className="text-2xl text-[#111827]">
         Tell Us About You
       </h2>
       <p className="mt-2 text-sm text-[#6b7280]">
@@ -22,7 +22,7 @@ export default function Step3({ register, errors }: StepComponentProps) {
 
       <div className="mt-6 grid gap-4">
         <label className="text-sm text-[#374151]">
-          If your personality were a movie genre *
+          If your personality were a movie genre, what movie would it be? *
           <select {...register("personality_genre")} className={inputClass}>
             <option value="">Select...</option>
             <option value="Action">Action</option>
@@ -67,7 +67,7 @@ export default function Step3({ register, errors }: StepComponentProps) {
             type="text"
             {...register("self_taught")}
             className={inputClass}
-            placeholder="e.g. I taught myself how to edit videos on YouTube"
+            placeholder="e.g. I taught myself how to edit videos"
           />
           {errorText(errors.self_taught?.message as string | undefined)}
         </label>
