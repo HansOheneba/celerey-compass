@@ -35,10 +35,8 @@ export default function ProgramDetailsSection() {
             </h2>
 
             <p
-              className="text-lg leading-relaxed"
-              style={{
-                color: "color-mix(in srgb, var(--pale-oak) 55%, transparent)",
-              }}
+              className="text-lg leading-relaxed text-pale-oak/70"
+         
             >
               A five-week experience designed for high school students to
               explore who they are, what they’re good at, and what paths they
