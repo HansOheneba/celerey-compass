@@ -1,6 +1,6 @@
 "use client";
 
-import { Compass } from "lucide-react";
+import { Compass, MessageCircle, Phone } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -83,6 +83,24 @@ export default function Footer() {
               A discovery and apprenticeship program helping young people find
               direction through learning, experience, and reflection.
             </p>
+            <div className="mt-4 flex flex-col gap-2">
+              <a
+                href="tel:+233535805227"
+                className="flex items-center gap-2 text-pale-oak/70 hover:text-pale-oak text-sm transition-colors"
+              >
+                <Phone className="w-4 h-4 text-accent flex-shrink-0" />
+                +233 (0)535 805 227
+              </a>
+              <a
+                href="https://wa.me/233535805227"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-pale-oak/70 hover:text-pale-oak text-sm transition-colors"
+              >
+                <MessageCircle className="w-4 h-4 text-accent flex-shrink-0" />
+                Chat on WhatsApp
+              </a>
+            </div>
           </MotionStaggerItem>
 
           {/* Footer Links */}

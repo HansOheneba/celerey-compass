@@ -88,8 +88,8 @@ export default function ComparisonSection() {
               ✗
             </div>
             <p
-              className="text-xs tracking-widest uppercase mb-3 font-medium"
-              style={{ color: "var(--khaki-beige)" }}
+              className="text-xs text-muted tracking-widest uppercase mb-3 font-medium"
+    
             >
               The old way
             </p>
