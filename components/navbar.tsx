@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 
 const navLinks = [
   { label: "The Program", href: "#program" },
-  { label: "Tracks", href: "#tracks" },
+  { label: "Tuition & Dates", href: "#tracks" },
   { label: "Journey", href: "#journey" },
   { label: "For Parents", href: "#parents" },
   { label: "Partners", href: "#partners" },
@@ -63,14 +63,13 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <Link href={getSectionHref(pathname, "#apply")}>
-            <Button
-              variant="outline"
-              size="sm"
-              className="text-sm border-[#bbada0] text-[#0b1d51] hover:border-[#0b1d51] hover:bg-[#0b1d51] hover:text-[#d1c6ad] transition-all duration-200"
-            >
-              Apply Now
-            </Button>
+          <Link
+            href="/apply"
+            className="px-8 py-4 text-base text-white font-bold rounded-2xl hover:-rotate-1 hover:scale-105 active:scale-95 transition-all duration-200 bg-deep-navy hover:text-pale-oak shadow-lg"
+     
+          
+          >
+            Apply now
           </Link>
         </div>
 

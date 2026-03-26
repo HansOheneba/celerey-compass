@@ -12,7 +12,6 @@ import {
 const footerLinks = {
   "Quick Links": [
     { label: "The Program", href: "#program" },
-    { label: "Track Structure", href: "#tracks" },
     { label: "Weekly Journey", href: "#journey" },
     { label: "Apply Now", href: "#apply" },
   ],
@@ -31,13 +30,17 @@ export default function Footer() {
   const pathname = usePathname();
 
   return (
-    <footer className="bg-[#0f1f1e]">
-      {/* Compact CTA */}
-      <div className="border-b border-white/10">
+    <footer className="bg-deep-navy relative overflow-hidden">
+      {/* subtle background shapes for playfulness */}
+      <div className="absolute -top-16 -left-16 w-40 h-40 bg-accent/10 rounded-full filter blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-20 -right-16 w-60 h-60 bg-pale-oak/10 rounded-full filter blur-3xl pointer-events-none" />
+
+      {/* CTA Section */}
+      <div className="border-b border-pale-oak/20 relative z-10">
         <MotionInView className="max-w-5xl mx-auto px-6 py-12 text-center">
-          <h2 className="font-display text-white text-3xl md:text-4xl mb-3 leading-tight">
+          <h2 className="font-display text-pale-oak text-3xl md:text-4xl mb-3 leading-tight">
             Find your direction.
-            <span className="block italic text-[#c9a84c] text-lg md:text-xl mt-1">
+            <span className="block italic text-accent text-lg md:text-xl mt-1">
               Before pressure makes the choice for you
             </span>
           </h2>
@@ -45,48 +48,47 @@ export default function Footer() {
           <div className="flex flex-wrap gap-3 justify-center mt-6">
             <Link
               href={getSectionHref(pathname, "#apply")}
-              className="px-6 py-3 rounded-full bg-[#c9a84c] text-[#0f1f1e] text-sm font-semibold hover:bg-[#b8943e] transition-all"
+              className="px-6 py-3 rounded-full bg-accent text-deep-navy text-sm font-semibold hover:bg-dusty-mauve transition-all shadow-md shadow-accent/30 hover:scale-105"
             >
               Apply Now
             </Link>
             <Link
               href={getSectionHref(pathname, "#partners")}
-              className="px-6 py-3 rounded-full border border-white/20 text-white text-sm hover:bg-white/10 transition-all"
+              className="px-6 py-3 rounded-full border border-pale-oak/30 text-pale-oak text-sm hover:bg-pale-oak/10 transition-all"
             >
               Register Interest
             </Link>
           </div>
 
-          {/* Dates */}
-          <div className="mt-6 text-xs text-white/40 flex flex-wrap justify-center gap-4">
+          <div className="mt-6 text-xs text-pale-oak/40 flex flex-wrap justify-center gap-4">
             <span>Program runs Monday, July 6 – Friday, August 7, 2026</span>
           </div>
         </MotionInView>
       </div>
 
-      {/* Footer grid */}
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      {/* Footer Grid */}
+      <div className="max-w-7xl mx-auto px-6 py-10 relative z-10">
         <MotionStagger className="grid md:grid-cols-3 gap-10">
           {/* Brand */}
           <MotionStaggerItem>
             <Link href="/" className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-full bg-[#c9a84c] flex items-center justify-center">
-                <Compass className="w-4 h-4 text-[#0f1f1e]" />
+              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center shadow-md shadow-accent/30">
+                <Compass className="w-5 h-5 text-deep-navy" />
               </div>
-              <span className="font-display text-white text-lg">
+              <span className="font-display text-pale-oak text-lg">
                 Compass Experience
               </span>
             </Link>
-            <p className="text-white/40 text-sm leading-relaxed max-w-xs">
+            <p className="text-pale-oak/60 text-sm leading-relaxed max-w-xs">
               A discovery and apprenticeship program helping young people find
               direction through learning, experience, and reflection.
             </p>
           </MotionStaggerItem>
 
-          {/* Links */}
+          {/* Footer Links */}
           {Object.entries(footerLinks).map(([group, links]) => (
             <MotionStaggerItem key={group}>
-              <p className="text-white/30 text-xs uppercase tracking-widest mb-3">
+              <p className="text-accent text-xs uppercase tracking-widest mb-3">
                 {group}
               </p>
               <ul className="space-y-2">
@@ -94,7 +96,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={getSectionHref(pathname, link.href)}
-                      className="text-white/60 hover:text-white text-sm transition-colors"
+                      className="text-pale-oak/70 hover:text-pale-oak text-sm transition-colors hover:underline"
                     >
                       {link.label}
                     </Link>
@@ -105,17 +107,17 @@ export default function Footer() {
           ))}
         </MotionStagger>
 
-        {/* Bottom bar */}
-        <MotionInView className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3 text-white/30 text-xs">
+        {/* Bottom Bar */}
+        <MotionInView className="mt-10 pt-6 border-t border-pale-oak/20 flex flex-col md:flex-row justify-between items-center gap-3 text-pale-oak/40 text-xs">
           <p>
             © {new Date().getFullYear()} Compass Experience. All rights
             reserved.
           </p>
           <div className="flex gap-4">
-            <a href="#" className="hover:text-white/60 transition-colors">
+            <a href="#" className="hover:text-pale-oak/70 transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-white/60 transition-colors">
+            <a href="#" className="hover:text-pale-oak/70 transition-colors">
               Terms of Use
             </a>
           </div>

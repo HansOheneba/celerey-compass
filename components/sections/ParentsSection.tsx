@@ -45,18 +45,18 @@ function AccordionItem({
         onClick={() => setOpen(!open)}
         className="w-full flex justify-between items-center py-5 text-left group"
       >
-        <span className="text-white font-medium pr-8 group-hover:text-[#c9a84c] transition-colors">
+        <span className="text-pale-oak font-medium pr-8 group-hover:text-accent transition-colors">
           {question}
         </span>
         <ChevronDown
-          className={`flex-shrink-0 w-5 h-5 text-white/40 transition-transform ${
+          className={`flex-shrink-0 w-5 h-5 text-pale-oak/50 transition-transform ${
             open ? "rotate-180" : ""
           }`}
         />
       </button>
       {open && (
         <div className="pb-5">
-          <p className="text-white/60 leading-relaxed">{answer}</p>
+          <p className="text-pale-oak/60 leading-relaxed">{answer}</p>
         </div>
       )}
     </div>
@@ -68,16 +68,16 @@ export default function ParentsSection() {
     <section id="parents" className="py-24 bg-[#f5f0e8]">
       <div className="max-w-7xl mx-auto px-6">
         <MotionInView className="text-center mb-16">
-          <p className="text-[#1a7f7a] text-sm font-semibold uppercase tracking-widest mb-4">
+          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
             For Parents
           </p>
-          <h2 className="font-display text-[#0f1f1e] text-4xl md:text-5xl mb-4">
+          <h2 className="font-display text-deep-navy text-4xl md:text-5xl mb-4">
             We take care of them like you would
           </h2>
-          <p className="text-[#2d4a47]/60 max-w-xl mx-auto">
+          <p className="text-deep-navy/60 max-w-xl mx-auto">
             We understand trusting someone with your child&apos;s development is
             a big decision. Compass is designed with structure, supervision, and
-            safety at its core—while giving young people room to grow.
+            safety at its core while giving young people room to grow.
           </p>
         </MotionInView>
 
@@ -108,13 +108,13 @@ export default function ParentsSection() {
               key={item.title}
               className="bg-white border border-[#0f1f1e]/8 rounded-2xl p-6"
             >
-              <div className="w-10 h-10 rounded-xl bg-[#1a7f7a]/10 flex items-center justify-center mb-4">
-                <item.icon className="w-5 h-5 text-[#1a7f7a]" />
+              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+                <item.icon className="w-5 h-5 text-accent" />
               </div>
-              <h4 className="font-semibold text-[#0f1f1e] mb-2">
+              <h4 className="font-semibold text-deep-navy mb-2">
                 {item.title}
               </h4>
-              <p className="text-[#2d4a47]/60 text-sm leading-relaxed">
+              <p className="text-deep-navy/60 text-sm leading-relaxed">
                 {item.desc}
               </p>
             </MotionStaggerItem>
@@ -124,15 +124,15 @@ export default function ParentsSection() {
         {/* FAQ */}
         <MotionStagger className="grid lg:grid-cols-2 gap-12 items-start">
           <MotionStaggerItem>
-            <h3 className="font-display text-[#0f1f1e] text-3xl mb-4">
+            <h3 className="font-display text-deep-navy text-3xl mb-4">
               Common Questions from Parents
             </h3>
-            <p className="text-[#2d4a47]/60">
+            <p className="text-deep-navy/60">
               Everything you need to know before trusting us with your young
               person&apos;s development.
             </p>
           </MotionStaggerItem>
-          <MotionStaggerItem className="bg-[#0f1f1e] rounded-2xl px-8 py-2">
+          <MotionStaggerItem className="bg-deep-navy rounded-2xl px-8 py-6">
             {parentFAQs.map((faq) => (
               <AccordionItem key={faq.q} question={faq.q} answer={faq.a} />
             ))}

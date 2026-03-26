@@ -9,15 +9,15 @@
   color-scheme: light;
 
   /* ── Palette ── */
-  --pale-oak:      #d1c6ad;
-  --khaki-beige:   #bbada0;
-  --dusty-mauve:   #a1869e;
+  --pale-oak: #d1c6ad;
+  --khaki-beige: #bbada0;
+  --dusty-mauve: #8a4582;
   --lavender-grey: #797596;
-  --deep-navy:     #0b1d51;
+  --deep-navy: #0b1d51;
 
   /* ── Semantic tokens (HSL for Tailwind) ── */
-  --background: 42 28% 96%;          /* off-white warm tint */
-  --foreground: 225 76% 18%;         /* deep navy */
+  --background: 42 28% 96%; /* off-white warm tint */
+  --foreground: 225 76% 18%; /* deep navy */
 
   --card: 0 0% 100%;
   --card-foreground: 225 76% 18%;
@@ -25,23 +25,23 @@
   --popover: 0 0% 100%;
   --popover-foreground: 225 76% 18%;
 
-  --primary: 225 76% 18%;            /* deep navy */
-  --primary-foreground: 42 28% 96%;  /* pale oak */
+ --primary: 225 76% 18%;            /* deep navy */
+  --primary-foreground: 42 28% 96%; /* off-white warm tint */
 
-  --secondary: 42 17% 84%;           /* pale oak */
+  --secondary: 42 17% 84%; /* pale oak */
   --secondary-foreground: 225 76% 18%;
 
-  --muted: 29 17% 90%;               /* khaki beige lightened */
-  --muted-foreground: 247 14% 45%;   /* lavender grey darker */
+  --muted: 29 17% 90%; /* khaki beige lightened */
+  --muted-foreground: 247 14% 45%; /* lavender grey darker */
 
-  --accent: 307 13% 58%;             /* dusty mauve */
+  --accent: 307 13% 58%; /* dusty mauve */
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 60%;
 
   --border: 42 17% 82%;
   --input: 42 17% 82%;
-  --ring: 225 76% 18%;
+  --ring: 18 100% 60%;
 
   --radius: 0.75rem;
 }
@@ -80,13 +80,23 @@ body {
     @apply bg-background text-foreground;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
     letter-spacing: -0.02em;
   }
 
-  h1 { line-height: 1.05; }
-  h2, h3 { line-height: 1.1; }
+  h1 {
+    line-height: 1.05;
+  }
+  h2,
+  h3 {
+    line-height: 1.1;
+  }
 }
 
 .font-display {
@@ -100,7 +110,7 @@ body {
 
 /* Light warm — primary background */
 .section-light {
-  background-color: #faf8f4;   /* warm off-white */
+  background-color: #faf8f4; /* warm off-white */
 }
 
 /* Pale Oak — subtle warmth */
@@ -128,16 +138,28 @@ body {
 /* ------------------------------
    SCROLL ANIMATIONS
 ------------------------------ */
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
+}
 
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .animate-on-scroll.visible {
@@ -149,7 +171,7 @@ body {
    NOISE TEXTURE
 ------------------------------ */
 .noise::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
@@ -189,11 +211,11 @@ body {
   --color-ring: hsl(var(--ring));
 
   /* Palette direct tokens */
-  --color-pale-oak:      #d1c6ad;
-  --color-khaki-beige:   #bbada0;
-  --color-dusty-mauve:   #a1869e;
+  --color-pale-oak: #d1c6ad;
+  --color-khaki-beige: #bbada0;
+  --color-dusty-mauve: #a1869e;
   --color-lavender-grey: #797596;
-  --color-deep-navy:     #0b1d51;
+  --color-deep-navy: #0b1d51;
 
   --radius-sm: calc(var(--radius) * 0.75);
   --radius-md: var(--radius);

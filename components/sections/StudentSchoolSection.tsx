@@ -35,16 +35,16 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         onClick={() => setOpen(!open)}
         className="w-full flex justify-between items-center py-5 text-left group"
       >
-        <span className="font-medium text-[#0f1f1e] pr-6 group-hover:text-[#1a7f7a] transition-colors">
+        <span className="font-medium text-deep-navy pr-6 group-hover:text-accent transition-colors">
           {q}
         </span>
         <ChevronDown
-          className={`flex-shrink-0 w-5 h-5 text-[#2d4a47]/40 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`flex-shrink-0 w-5 h-5 text-deep-navy/50 transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
       {open && (
         <div className="pb-5">
-          <p className="text-[#2d4a47]/70 leading-relaxed">{a}</p>
+          <p className="text-deep-navy/60 leading-relaxed">{a}</p>
         </div>
       )}
     </div>
@@ -57,13 +57,13 @@ export function StudentsSection() {
       <div className="max-w-7xl mx-auto px-6">
         <MotionStagger className="grid lg:grid-cols-2 gap-16 items-center">
           <MotionStaggerItem>
-            <p className="text-[#1a7f7a] text-sm font-semibold uppercase tracking-widest mb-4">
+            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
               For Students
             </p>
-            <h2 className="font-display text-[#0f1f1e] text-4xl md:text-5xl mb-6 leading-tight">
+            <h2 className="font-display text-deep-navy text-4xl md:text-5xl mb-6 leading-tight">
               This is your moment
             </h2>
-            <p className="text-[#2d4a47]/70 text-lg mb-10 leading-relaxed">
+            <p className="text-deep-navy/60 text-lg mb-10 leading-relaxed">
               Feeling unsure about your future? That&apos;s exactly why Compass
               exists. You don&apos;t need to have it all figured out—you just
               need to be curious enough to explore.
@@ -93,14 +93,14 @@ export function StudentsSection() {
                 },
               ].map((item) => (
                 <MotionStaggerItem key={item.title} className="flex gap-4">
-                  <span className="text-2xl flex-shrink-0 mt-0.5">
+                  <span className="text-2xl flex-shrink-0 mt-0.5 text-accent">
                     {item.emoji}
                   </span>
                   <div>
-                    <p className="font-semibold text-[#0f1f1e] mb-1">
+                    <p className="font-semibold text-deep-navy mb-1">
                       {item.title}
                     </p>
-                    <p className="text-[#2d4a47]/60 text-sm leading-relaxed">
+                    <p className="text-deep-navy/60 text-sm leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
@@ -110,14 +110,14 @@ export function StudentsSection() {
 
             <a
               href="#apply"
-              className="inline-block mt-10 px-8 py-4 rounded-full bg-[#1a7f7a] text-white font-semibold hover:bg-[#0d5c58] transition-all hover:scale-105"
+              className="inline-block mt-10 px-8 py-4 rounded-full bg-accent text-white font-semibold hover:bg-dusty-mauve transition-all hover:scale-105"
             >
               Start Your Application
             </a>
           </MotionStaggerItem>
 
           <MotionStaggerItem>
-            <h3 className="font-display text-[#0f1f1e] text-2xl mb-6">
+            <h3 className="font-display text-deep-navy text-2xl mb-6">
               Your Questions Answered
             </h3>
             <div>
@@ -153,13 +153,13 @@ export function SchoolsSection() {
     <section id="schools" className="py-24 bg-[#f5f0e8]">
       <div className="max-w-7xl mx-auto px-6">
         <MotionInView className="text-center mb-16">
-          <p className="text-[#1a7f7a] text-sm font-semibold uppercase tracking-widest mb-4">
+          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
             For Schools
           </p>
-          <h2 className="font-display text-[#0f1f1e] text-4xl md:text-5xl mb-4">
+          <h2 className="font-display text-deep-navy text-4xl md:text-5xl mb-4">
             Complementing classroom learning
           </h2>
-          <p className="text-[#2d4a47]/60 max-w-xl mx-auto">
+          <p className="text-deep-navy/60 max-w-xl mx-auto">
             Compass bridges the gap between academic learning and real-world
             application. We help students develop skills that complement their
             formal education while exploring future pathways.
@@ -193,11 +193,11 @@ export function SchoolsSection() {
               key={item.title}
               className="bg-white border border-[#0f1f1e]/8 rounded-2xl p-6 text-center"
             >
-              <div className="text-3xl mb-3">{item.icon}</div>
-              <h4 className="font-semibold text-[#0f1f1e] mb-2">
+              <div className="text-3xl mb-3 text-accent">{item.icon}</div>
+              <h4 className="font-semibold text-deep-navy mb-2">
                 {item.title}
               </h4>
-              <p className="text-[#2d4a47]/60 text-sm leading-relaxed">
+              <p className="text-deep-navy/60 text-sm leading-relaxed">
                 {item.desc}
               </p>
             </MotionStaggerItem>
@@ -206,7 +206,7 @@ export function SchoolsSection() {
 
         <MotionStagger className="grid lg:grid-cols-2 gap-12">
           <MotionStaggerItem>
-            <h3 className="font-display text-[#0f1f1e] text-2xl mb-2">
+            <h3 className="font-display text-deep-navy text-2xl mb-2">
               School FAQ
             </h3>
             <div>
@@ -219,16 +219,18 @@ export function SchoolsSection() {
                     onClick={() => setOpenIdx(openIdx === i ? null : i)}
                     className="w-full flex justify-between items-center py-5 text-left group"
                   >
-                    <span className="font-medium text-[#0f1f1e] pr-6 group-hover:text-[#1a7f7a] transition-colors">
+                    <span className="font-medium text-deep-navy pr-6 group-hover:text-accent transition-colors">
                       {faq.q}
                     </span>
                     <ChevronDown
-                      className={`flex-shrink-0 w-5 h-5 text-[#2d4a47]/40 transition-transform ${openIdx === i ? "rotate-180" : ""}`}
+                      className={`flex-shrink-0 w-5 h-5 text-deep-navy/50 transition-transform ${
+                        openIdx === i ? "rotate-180" : ""
+                      }`}
                     />
                   </button>
                   {openIdx === i && (
                     <div className="pb-5">
-                      <p className="text-[#2d4a47]/70 leading-relaxed">
+                      <p className="text-deep-navy/60 leading-relaxed">
                         {faq.a}
                       </p>
                     </div>
@@ -237,17 +239,17 @@ export function SchoolsSection() {
               ))}
             </div>
           </MotionStaggerItem>
-          <MotionStaggerItem className="bg-[#0f1f1e] rounded-2xl p-8 self-start">
-            <h4 className="font-display text-white text-2xl mb-3">
+          <MotionStaggerItem className="bg-deep-navy rounded-2xl p-8 self-start">
+            <h4 className="font-display text-pale-oak text-2xl mb-3">
               Interested in a school partnership?
             </h4>
-            <p className="text-white/60 mb-6">
+            <p className="text-pale-oak/60 mb-6">
               We offer custom cohorts, referral arrangements, and career
               guidance integration.
             </p>
             <a
               href="#contact"
-              className="inline-block px-6 py-3 rounded-full bg-[#c9a84c] text-[#0f1f1e] font-semibold hover:bg-[#b8943e] transition-colors"
+              className="inline-block px-6 py-3 rounded-full bg-accent text-deep-navy font-semibold hover:bg-dusty-mauve transition-colors"
             >
               Contact our partnerships team
             </a>

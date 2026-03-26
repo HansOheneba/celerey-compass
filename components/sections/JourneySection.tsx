@@ -65,13 +65,13 @@ export default function JourneySection() {
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <MotionInView className="text-center mb-20">
-          <p className="text-[#1a7f7a] text-sm font-semibold uppercase tracking-widest mb-4">
+          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
             The Journey
           </p>
-          <h2 className="font-display text-[#0f1f1e] text-4xl md:text-5xl mb-4">
+          <h2 className="font-display text-deep-navy text-4xl md:text-5xl mb-4">
             Five Weeks That Change Everything
           </h2>
-          <p className="text-[#2d4a47]/60 max-w-xl mx-auto">
+          <p className="text-muted text-base max-w-xl mx-auto">
             Each week builds on the last, combining learning, real-world
             experience, and reflection.
           </p>
@@ -80,7 +80,7 @@ export default function JourneySection() {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-4 top-0 bottom-0 w-[2px] bg-[#0f1f1e]/10" />
+          <div className="absolute left-4 top-0 bottom-0 w-[2px] bg-deep-navy/10" />
 
           <MotionStagger className="space-y-16">
             {weeks.map((week, index) => (
@@ -89,7 +89,7 @@ export default function JourneySection() {
                 className="relative flex items-start gap-6"
               >
                 {/* Dot */}
-                <div className="relative z-10 mt-2 w-8 h-8 rounded-full bg-[#1a7f7a] flex items-center justify-center text-white text-xs font-bold">
+                <div className="relative z-10 mt-2 w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white text-xs font-bold">
                   {index + 1}
                 </div>
 
@@ -107,19 +107,19 @@ export default function JourneySection() {
 
                   {/* Content */}
                   <div className="p-6">
-                    <p className="text-xs uppercase tracking-widest text-[#1a7f7a] font-semibold mb-2">
+                    <p className="text-xs uppercase tracking-widest text-accent font-semibold mb-2">
                       {week.week}
                     </p>
 
-                    <h4 className="text-xl font-semibold text-[#0f1f1e] mb-1">
+                    <h4 className="text-xl font-semibold text-deep-navy mb-1">
                       {week.title}
                     </h4>
 
-                    <p className="text-sm italic text-[#2d4a47]/60 mb-3">
+                    <p className="text-sm italic mb-3 text-blue-900">
                       {week.subtitle}
                     </p>
 
-                    <p className="text-sm text-[#2d4a47]/70 leading-relaxed mb-4">
+                    <p className="text-sm text-blue-900/70 leading-relaxed mb-4">
                       {week.desc}
                     </p>
 
@@ -127,7 +127,7 @@ export default function JourneySection() {
                       {week.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-3 py-1 rounded-full bg-[#1a7f7a]/10 text-[#1a7f7a] text-xs font-medium"
+                          className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium"
                         >
                           {tag}
                         </span>
