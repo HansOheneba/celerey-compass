@@ -27,26 +27,34 @@ export default function Step8({ register, errors }: StepComponentProps) {
             type="text"
             {...register("parent_name")}
             className={inputClass}
+            placeholder="e.g. Abena Mensah"
           />
           {errorText(errors.parent_name?.message as string | undefined)}
         </label>
 
         <label className="text-sm text-[#374151]">
-          Parent phone number *
+          Parent or guardian phone number *
           <input
-            type="text"
+            type="tel"
             {...register("parent_phone")}
             className={inputClass}
+            placeholder="e.g. +233 24 000 0000"
+            onKeyDown={(e) => {
+              if (e.ctrlKey || e.metaKey || e.altKey) return;
+              if (e.key.length > 1) return;
+              if (!/[0-9+ ()-]/.test(e.key)) e.preventDefault();
+            }}
           />
           {errorText(errors.parent_phone?.message as string | undefined)}
         </label>
 
         <label className="text-sm text-[#374151]">
-          Parent email *
+          Parent or guardian email address *
           <input
             type="email"
             {...register("parent_email")}
             className={inputClass}
+            placeholder="e.g. parent@example.com"
           />
           {errorText(errors.parent_email?.message as string | undefined)}
         </label>
@@ -64,23 +72,25 @@ export default function Step8({ register, errors }: StepComponentProps) {
         </label>
 
         <label className="text-sm text-[#374151]">
-          Occupation *
+          What is their occupation? *
           <input
             type="text"
             {...register("occupation")}
             className={inputClass}
+            placeholder="e.g. Nurse, Teacher, Business owner, Engineer"
           />
           {errorText(errors.occupation?.message as string | undefined)}
         </label>
 
         <label className="text-sm text-[#374151]">
-          Preferred contact method
+          How would they prefer to be contacted? *
           <select {...register("preferred_contact")} className={inputClass}>
             <option value="">Select...</option>
             <option value="Phone">Phone</option>
             <option value="Email">Email</option>
             <option value="WhatsApp">WhatsApp</option>
           </select>
+          {errorText(errors.preferred_contact?.message as string | undefined)}
         </label>
       </div>
     </section>

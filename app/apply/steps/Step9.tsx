@@ -20,7 +20,7 @@ export default function Step9({ register, errors }: StepComponentProps) {
       <div className="mt-6 grid gap-5">
         <fieldset>
           <legend className="text-sm text-[#374151]">
-            Parent permission granted? *
+            Has your parent or guardian agreed to let you join Compass? *
           </legend>
           <div className="mt-3 flex gap-5">
             {["Yes", "No"].map((value) => (
@@ -43,7 +43,7 @@ export default function Step9({ register, errors }: StepComponentProps) {
 
         <fieldset>
           <legend className="text-sm text-[#374151]">
-            Parent commits to supporting the journey? *
+            Does your parent or guardian commit to supporting you throughout the programme? *
           </legend>
           <div className="mt-3 flex gap-5">
             {["Yes", "No"].map((value) => (
@@ -65,7 +65,7 @@ export default function Step9({ register, errors }: StepComponentProps) {
         </fieldset>
 
         <label className="text-sm text-[#374151]">
-          Parent top priority
+          What is your parent or guardian&apos;s top priority for you in this programme? *
           <select
             {...register("parent_priority")}
             className="mt-2 w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#c9a84c] focus:ring-2 focus:ring-[#c9a84c]/30"
@@ -77,6 +77,7 @@ export default function Step9({ register, errors }: StepComponentProps) {
             <option value="Confidence building">Confidence building</option>
             <option value="Mentorship">Mentorship</option>
           </select>
+          {errorText(errors.parent_priority?.message as string | undefined)}
         </label>
       </div>
     </section>

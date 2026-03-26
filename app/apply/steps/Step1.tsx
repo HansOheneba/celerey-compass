@@ -63,7 +63,7 @@ export default function Step1({ register, errors }: StepComponentProps) {
         </label>
 
         <label className={fieldClass}>
-          <span className={labelClass}>Gender</span>
+          <span className={labelClass}>Gender *</span>
           <select {...register("gender")} className={inputClass}>
             <option value="">Select gender</option>
             <option value="Male">Male</option>
@@ -71,6 +71,7 @@ export default function Step1({ register, errors }: StepComponentProps) {
             <option value="Non-binary">Non-binary</option>
             <option value="Prefer not to say">Prefer not to say</option>
           </select>
+          {errorText(errors.gender?.message as string | undefined)}
         </label>
 
         <label className={`${fieldClass} md:col-span-2`}>
@@ -87,10 +88,15 @@ export default function Step1({ register, errors }: StepComponentProps) {
         <label className={fieldClass}>
           <span className={labelClass}>Contact (WhatsApp preferred) *</span>
           <input
-            type="text"
+            type="tel"
             {...register("phone")}
             className={inputClass}
             placeholder="e.g. +233 24 000 0000"
+            onKeyDown={(e) => {
+              if (e.ctrlKey || e.metaKey || e.altKey) return;
+              if (e.key.length > 1) return;
+              if (!/[0-9+ ()-]/.test(e.key)) e.preventDefault();
+            }}
           />
           {errorText(errors.phone?.message as string | undefined)}
         </label>

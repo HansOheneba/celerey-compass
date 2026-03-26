@@ -98,11 +98,12 @@ export default function Step4({
         </fieldset>
 
         <label className="text-sm text-[#374151]">
-          Why do these career areas interest you *
+          Why do these career areas interest you? *
           <textarea
             rows={4}
             {...register("reason")}
             className={`${inputClass} resize-y`}
+            placeholder="e.g. I've always been curious about technology and I'd love to see how it actually works in real life"
           />
           {errorText(errors.reason?.message as string | undefined)}
         </label>
@@ -132,11 +133,12 @@ export default function Step4({
 
         {prior === "Yes" ? (
           <label className="text-sm text-[#374151]">
-            If yes, tell us what you did
+            Briefly describe what you did
             <textarea
               rows={4}
               {...register("experience_details")}
               className={`${inputClass} resize-y`}
+              placeholder="e.g. I helped manage social media for a school event, or I did an attachment at a family business for two weeks"
             />
           </label>
         ) : null}

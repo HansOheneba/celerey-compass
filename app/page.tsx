@@ -1,7 +1,7 @@
-import Navbar from "@/components/navbar";
+
 import HeroSection from "@/components/sections/heroSection";
 import ComparisonSection from "@/components/sections/comparisonSection";
-import TracksSection from "@/components/sections/tracksSection";
+import TracksSection from "@/components/sections/tuitionSection";
 import JourneySection from "@/components/sections/JourneySection";
 import ApplySection from "@/components/sections/ApplySection";
 import ParentsSection from "@/components/sections/ParentsSection";
@@ -10,7 +10,6 @@ import {
   SchoolsSection,
 } from "@/components/sections/StudentSchoolSection";
 import PartnersSection from "@/components/sections/PartnersSection";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (

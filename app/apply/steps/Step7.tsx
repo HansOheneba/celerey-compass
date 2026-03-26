@@ -41,7 +41,7 @@ export default function Step7({
       <div className="mt-6 grid gap-5">
         <fieldset>
           <legend className="text-sm text-[#374151]">
-            Devices you can access *
+            Which devices do you have access to? *
           </legend>
           <div className="mt-3 flex flex-wrap gap-3">
             {["Laptop", "Tablet", "Smartphone"].map((device) => {
@@ -72,7 +72,7 @@ export default function Step7({
 
         <fieldset>
           <legend className="text-sm text-[#374151]">
-            Reliable internet access
+            Do you have reliable internet access at home? *
           </legend>
           <div className="mt-3 flex flex-wrap gap-4">
             {["Yes", "Sometimes", "No"].map((value) => (
@@ -90,6 +90,7 @@ export default function Step7({
               </label>
             ))}
           </div>
+          {errorText(errors.internet_access?.message as string | undefined)}
         </fieldset>
       </div>
     </section>

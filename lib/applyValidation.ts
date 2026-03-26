@@ -4,7 +4,7 @@ export const applyFormSchema = z.object({
   full_name: z.string().min(1, "This field is required"),
   preferred_name: z.string().min(1, "This field is required"),
   date_of_birth: z.string().min(1, "This field is required"),
-  gender: z.string().optional(),
+  gender: z.string().min(1, "This field is required"),
   email: z
     .string()
     .min(1, "This field is required")
@@ -17,29 +17,29 @@ export const applyFormSchema = z.object({
   current_year: z.string().min(1, "This field is required"),
   subjects: z.string().min(1, "This field is required"),
 
-  personality_genre: z.string().optional(),
-  description_type: z.string().optional(),
-  hobbies: z.string().optional(),
-  self_taught: z.string().optional(),
-  strengths: z.string().optional(),
-  improvement_area: z.string().optional(),
+  personality_genre: z.string().min(1, "This field is required"),
+  description_type: z.string().min(1, "This field is required"),
+  hobbies: z.string().min(1, "This field is required"),
+  self_taught: z.string().min(1, "This field is required"),
+  strengths: z.string().min(1, "This field is required"),
+  improvement_area: z.string().min(1, "This field is required"),
 
   career_interests: z.array(z.string()).min(1).max(3),
   reason: z.string().min(1, "This field is required"),
   prior_experience: z.string().min(1, "This field is required"),
   experience_details: z.string().optional(),
 
-  workplace_type: z.string().optional(),
-  work_style: z.string().optional(),
-  productive_time: z.string().optional(),
+  workplace_type: z.string().min(1, "This field is required"),
+  work_style: z.string().min(1, "This field is required"),
+  productive_time: z.string().min(1, "This field is required"),
 
-  excitement: z.string().optional(),
-  self_discovery_goal: z.string().optional(),
-  current_challenge: z.string().optional(),
-  reaction_to_difficulty: z.string().optional(),
+  excitement: z.string().min(1, "This field is required"),
+  self_discovery_goal: z.string().min(1, "This field is required"),
+  current_challenge: z.string().min(1, "This field is required"),
+  reaction_to_difficulty: z.string().min(1, "This field is required"),
 
   devices: z.array(z.string()).min(1),
-  internet_access: z.string().optional(),
+  internet_access: z.string().min(1, "This field is required"),
 
   parent_name: z.string().min(1, "This field is required"),
   parent_phone: z.string().min(1, "This field is required"),
@@ -49,16 +49,16 @@ export const applyFormSchema = z.object({
     .email("Enter a valid email"),
   relationship: z.string().min(1, "This field is required"),
   occupation: z.string().min(1, "This field is required"),
-  preferred_contact: z.string().optional(),
+  preferred_contact: z.string().min(1, "This field is required"),
 
   permission: z.string().min(1, "This field is required"),
   support_commitment: z.string().min(1, "This field is required"),
-  parent_priority: z.string().optional(),
+  parent_priority: z.string().min(1, "This field is required"),
 
-  dream_workplace: z.string().optional(),
-  world_problem: z.string().optional(),
-  five_years: z.string().optional(),
-  expected_change: z.string().optional(),
+  dream_workplace: z.string().min(1, "This field is required"),
+  world_problem: z.string().min(1, "This field is required"),
+  five_years: z.string().min(1, "This field is required"),
+  expected_change: z.string().min(1, "This field is required"),
 
   future_message: z.string().min(1, "This field is required"),
 
@@ -202,23 +202,16 @@ export const stepSchemas = [
 ] as const;
 
 export const stepFieldNames: Array<Array<keyof ApplyFormData>> = [
-  [
-    "full_name",
-    "preferred_name",
-    "date_of_birth",
-    "email",
-    "phone",
-    "location",
-  ],
+  ["full_name", "preferred_name", "date_of_birth", "gender", "email", "phone", "location"],
   ["school_name", "school_type", "current_year", "subjects"],
-  [],
+  ["personality_genre", "description_type", "hobbies", "self_taught", "strengths", "improvement_area"],
   ["career_interests", "reason", "prior_experience"],
-  [],
-  [],
-  ["devices"],
-  ["parent_name", "parent_phone", "parent_email", "relationship", "occupation"],
-  ["permission", "support_commitment"],
-  [],
+  ["workplace_type", "work_style", "productive_time"],
+  ["excitement", "self_discovery_goal", "current_challenge", "reaction_to_difficulty"],
+  ["devices", "internet_access"],
+  ["parent_name", "parent_phone", "parent_email", "relationship", "occupation", "preferred_contact"],
+  ["permission", "support_commitment", "parent_priority"],
+  ["dream_workplace", "world_problem", "five_years", "expected_change"],
   ["future_message"],
   ["commitment_agree", "schedule_acknowledgement"],
 ];

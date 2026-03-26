@@ -19,11 +19,12 @@ export default function Step11({ register, errors }: StepComponentProps) {
 
       <div className="mt-6 grid gap-4">
         <label className="text-sm text-[#374151]">
-          What advice would you send to yourself five years from now *
+          Write a message to yourself five years from now. What do you want to say? *
           <textarea
             rows={8}
             {...register("future_message")}
             className="mt-2 w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#c9a84c] focus:ring-2 focus:ring-[#c9a84c]/30"
+            placeholder="e.g. Hey, I hope you stayed true to yourself. I hope you went after that big dream even when it scared you. Be proud of how far you've come..."
           />
           {errorText(errors.future_message?.message as string | undefined)}
         </label>

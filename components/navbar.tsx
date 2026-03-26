@@ -35,25 +35,26 @@ export default function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-[#e6eceb]"
-          : "bg-transparent",
+          ? "bg-[#faf8f4]/95 backdrop-blur-md shadow-sm shadow-pale-oak/30"
+          : "bg-[#faf8f4]/90 backdrop-blur-md",
       )}
     >
-      <div className=" mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="mx-auto md:px-20 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="flex justify-center items-center">
             <Image src="/logo.png" alt="Compass Logo" width={80} height={32} />
-            <span className="text-[#01124a] font-semibold">Compass</span>
+            <span className="text-[#0b1d51] font-semibold">Compass</span>
           </div>
         </Link>
+
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={getSectionHref(pathname, link.href)}
-              className="text-sm text-[#5c6c6b] hover:text-[#0f1f1e] transition-colors"
+              className="text-sm text-[#797596] hover:text-[#0b1d51] transition-colors"
             >
               {link.label}
             </Link>
@@ -66,7 +67,7 @@ export default function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              className="text-sm border-[#d6dede] text-[#3e4d4c] hover:border-[#0f1f1e] hover:text-[#0f1f1e] transition"
+              className="text-sm border-[#bbada0] text-[#0b1d51] hover:border-[#0b1d51] hover:bg-[#0b1d51] hover:text-[#d1c6ad] transition-all duration-200"
             >
               Apply Now
             </Button>
@@ -75,7 +76,7 @@ export default function Navbar() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-[#0f1f1e]"
+          className="md:hidden text-[#0b1d51]"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -85,13 +86,13 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-white border-t border-[#e6eceb] px-6 py-6 space-y-4">
+        <div className="md:hidden bg-[#faf8f4] border-t border-[#d1c6ad]/50 px-6 py-6 space-y-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={getSectionHref(pathname, link.href)}
               onClick={() => setOpen(false)}
-              className="block text-[#5c6c6b] hover:text-[#0f1f1e] py-2 transition-colors"
+              className="block text-[#797596] hover:text-[#0b1d51] py-2 transition-colors"
             >
               {link.label}
             </Link>
@@ -101,9 +102,9 @@ export default function Navbar() {
             <Link
               href={getSectionHref(pathname, "#apply")}
               onClick={() => setOpen(false)}
-              className="text-center py-2.5 border border-[#d6dede] text-[#3e4d4c] hover:border-[#0f1f1e] transition"
+              className="text-center py-2.5 border border-[#bbada0] text-[#0b1d51] hover:border-[#0b1d51] hover:bg-[#0b1d51] hover:text-[#d1c6ad] transition-all duration-200 rounded-lg"
             >
-              Register Interest
+              Apply Now
             </Link>
           </div>
         </div>

@@ -5,7 +5,12 @@ import type { StepComponentProps } from "@/app/apply/ApplyForm";
 const inputClass =
   "mt-2 w-full rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-[#111827] outline-none transition focus:border-[#c9a84c] focus:ring-2 focus:ring-[#c9a84c]/30";
 
-export default function Step3({ register }: StepComponentProps) {
+function errorText(message?: string) {
+  if (!message) return null;
+  return <p className="mt-1 text-xs text-red-600">{message}</p>;
+}
+
+export default function Step3({ register, errors }: StepComponentProps) {
   return (
     <section>
       <h2 className="text-2xl font-semibold text-[#111827]">
@@ -17,7 +22,7 @@ export default function Step3({ register }: StepComponentProps) {
 
       <div className="mt-6 grid gap-4">
         <label className="text-sm text-[#374151]">
-          If your personality were a movie genre
+          If your personality were a movie genre *
           <select {...register("personality_genre")} className={inputClass}>
             <option value="">Select...</option>
             <option value="Action">Action</option>
@@ -28,10 +33,11 @@ export default function Step3({ register }: StepComponentProps) {
             <option value="Documentary">Documentary</option>
             <option value="Something else">Something else</option>
           </select>
+          {errorText(errors.personality_genre?.message as string | undefined)}
         </label>
 
         <label className="text-sm text-[#374151]">
-          Which best describes you
+          Which best describes you *
           <select {...register("description_type")} className={inputClass}>
             <option value="">Select...</option>
             <option value="Curious explorer">Curious explorer</option>
@@ -41,42 +47,51 @@ export default function Step3({ register }: StepComponentProps) {
             <option value="Future leader">Future leader</option>
             <option value="Still figuring it out">Still figuring it out</option>
           </select>
+          {errorText(errors.description_type?.message as string | undefined)}
         </label>
 
         <label className="text-sm text-[#374151]">
-          What do you enjoy doing most when nobody is forcing you
+          What do you love doing in your free time? *
           <textarea
             rows={4}
             {...register("hobbies")}
             className={`${inputClass} resize-y`}
+            placeholder="e.g. I love drawing, playing football, making music, and watching documentaries"
           />
+          {errorText(errors.hobbies?.message as string | undefined)}
         </label>
 
         <label className="text-sm text-[#374151]">
-          Something you have taught yourself without being told
+          Name something you taught yourself — without anyone telling you to *
           <input
             type="text"
             {...register("self_taught")}
             className={inputClass}
+            placeholder="e.g. I taught myself how to edit videos on YouTube"
           />
+          {errorText(errors.self_taught?.message as string | undefined)}
         </label>
 
         <label className="text-sm text-[#374151]">
-          One thing people often say you are good at
+          What is one thing people often say you are good at? *
           <input
             type="text"
             {...register("strengths")}
             className={inputClass}
+            placeholder="e.g. I'm good at organising things and leading group work"
           />
+          {errorText(errors.strengths?.message as string | undefined)}
         </label>
 
         <label className="text-sm text-[#374151]">
-          One thing you want to get better at
+          What is one area you would like to improve in? *
           <input
             type="text"
             {...register("improvement_area")}
             className={inputClass}
+            placeholder="e.g. I want to get better at speaking in front of people"
           />
+          {errorText(errors.improvement_area?.message as string | undefined)}
         </label>
       </div>
     </section>

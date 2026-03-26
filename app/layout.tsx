@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Geist } from "next/font/google";
+import { Fredoka, Lilita_One } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+// BODY FONT (default)
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+// HEADING FONT
+const lilita = Lilita_One({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-heading",
+});
 
 export const metadata: Metadata = {
   title: "Compass Experience — Find Your Direction",
@@ -32,8 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body className="antialiased bg-white">
+    <html lang="en" className={cn(fredoka.variable, lilita.variable)}>
+      <body className="antialiased bg-white font-sans">
         <Navbar />
         {children}
         <Footer />

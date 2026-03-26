@@ -22,19 +22,20 @@ export default function Step2({ register, errors }: StepComponentProps) {
 
       <div className="mt-6 grid gap-4">
         <label className="text-sm text-[#374151]">
-          School name *
+          What school do you attend? *
           <input
             type="text"
             {...register("school_name")}
             className={inputClass}
+            placeholder="e.g. Accra Academy, Achimota School"
           />
           {errorText(errors.school_name?.message as string | undefined)}
         </label>
 
         <label className="text-sm text-[#374151]">
-          School type *
+          What type of school is it? *
           <select {...register("school_type")} className={inputClass}>
-            <option value="">Select...</option>
+            <option value="">Select school type...</option>
             <option value="IB">IB</option>
             <option value="A Level">A Level</option>
             <option value="WASSCE">WASSCE</option>
@@ -45,21 +46,23 @@ export default function Step2({ register, errors }: StepComponentProps) {
         </label>
 
         <label className="text-sm text-[#374151]">
-          Current class or year *
+          What class or year are you in? *
           <input
             type="text"
             {...register("current_year")}
             className={inputClass}
+            placeholder="e.g. Year 2, Form 3, 100 Level"
           />
           {errorText(errors.current_year?.message as string | undefined)}
         </label>
 
         <label className="text-sm text-[#374151]">
-          What subjects are you currently studying *
+          List the subjects you are currently studying *
           <textarea
             rows={5}
             {...register("subjects")}
             className={`${inputClass} resize-y`}
+            placeholder="e.g. Maths, English, Physics, Economics, Business"
           />
           {errorText(errors.subjects?.message as string | undefined)}
         </label>

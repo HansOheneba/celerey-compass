@@ -20,8 +20,7 @@ export default function Step12({ register, errors }: StepComponentProps) {
       <div className="mt-6 grid gap-6">
         <fieldset>
           <legend className="text-sm text-[#374151]">
-            I understand that Compass is a learning experience and I agree to
-            show up fully *
+            I understand that Compass is a real learning experience and I commit to showing up fully *
           </legend>
           <div className="mt-3 flex gap-5">
             {["Yes", "No"].map((value) => (
@@ -44,8 +43,7 @@ export default function Step12({ register, errors }: StepComponentProps) {
 
         <fieldset>
           <legend className="text-sm text-[#374151]">
-            I understand the schedule includes Monday learning sessions,
-            internship work Tuesday to Thursday, and Friday reflections *
+            I understand the weekly schedule: Monday learning sessions, Tuesday to Thursday internship work, and Friday reflections *
           </legend>
           <div className="mt-3 flex gap-5">
             {["Yes", "No"].map((value) => (
