@@ -40,7 +40,9 @@ export default function Step5({ register, errors }: StepComponentProps) {
         </label>
 
         <fieldset>
-          <legend className="text-sm text-[#374151]">How would you prefer to work during your internship? *</legend>
+          <legend className="text-sm text-[#374151]">
+            How would you prefer to work during your internship? *
+          </legend>
           <div className="mt-3 flex flex-wrap gap-4">
             {["Mostly in-person", "Mostly virtual", "A mix of both"].map(
               (value) => (

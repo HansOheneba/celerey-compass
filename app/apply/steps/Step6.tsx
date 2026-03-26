@@ -65,7 +65,9 @@ export default function Step6({ register, errors }: StepComponentProps) {
             <option value="Avoid it">Avoid it</option>
             <option value="Something else">Something else</option>
           </select>
-          {errorText(errors.reaction_to_difficulty?.message as string | undefined)}
+          {errorText(
+            errors.reaction_to_difficulty?.message as string | undefined,
+          )}
         </label>
       </div>
     </section>

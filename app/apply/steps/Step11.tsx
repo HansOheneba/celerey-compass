@@ -19,7 +19,8 @@ export default function Step11({ register, errors }: StepComponentProps) {
 
       <div className="mt-6 grid gap-4">
         <label className="text-sm text-[#374151]">
-          Write a message to yourself five years from now. What do you want to say? *
+          Write a message to yourself five years from now. What do you want to
+          say? *
           <textarea
             rows={8}
             {...register("future_message")}

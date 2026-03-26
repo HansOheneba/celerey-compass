@@ -22,7 +22,8 @@ export default function Step10({ register, errors }: StepComponentProps) {
 
       <div className="mt-6 grid gap-4">
         <label className="text-sm text-[#374151]">
-          If you could spend one day working anywhere in the world, where would it be and why? *
+          If you could spend one day working anywhere in the world, where would
+          it be and why? *
           <textarea
             rows={4}
             {...register("dream_workplace")}
