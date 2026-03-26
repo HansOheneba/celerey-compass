@@ -44,7 +44,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2">
           <div className="flex justify-center items-center">
             <Image src="/logo.png" alt="Compass Logo" width={80} height={32} />
-            <span className="text-[#0b1d51] font-semibold">Compass</span>
+            <span className="text-[#0b1d51] font-semibold -ml-2">Compass</span>
           </div>
         </Link>
 
