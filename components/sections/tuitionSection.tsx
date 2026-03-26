@@ -111,10 +111,8 @@ export default function ProgramDetailsSection() {
           </h3>
 
           <p
-            className="mb-10"
-            style={{
-              color: "color-mix(in srgb, var(--pale-oak) 50%, transparent)",
-            }}
+            className="mb-10 text-pale-oak/70 leading-relaxed max-w-2xl"
+        
           >
             A consistent structure that balances learning, real-world exposure,
             and reflection.
