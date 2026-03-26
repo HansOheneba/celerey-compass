@@ -41,7 +41,7 @@ export default function Footer() {
           <h2 className="font-display text-pale-oak text-3xl md:text-4xl mb-3 leading-tight">
             Find your direction.
             <span className="block italic text-accent text-lg md:text-xl mt-1">
-              Before pressure makes the choice for you
+              Before life decides for you.
             </span>
           </h2>
 

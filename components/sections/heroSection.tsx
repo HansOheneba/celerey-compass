@@ -14,7 +14,7 @@ export default function HeroSection() {
         <div className="relative rounded-3xl overflow-hidden h-[80vh]">
           {/* BACKGROUND IMAGE */}
           <Image
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2942&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1511576661531-b34d7da5d0bb?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Students learning"
             className="absolute inset-0 w-full h-full object-cover"
             height={1000}
@@ -26,7 +26,7 @@ export default function HeroSection() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to bottom, color-mix(in srgb, black 60%, transparent), color-mix(in srgb, black 55%, transparent), color-mix(in srgb, var(--deep-navy) 75%, transparent))",
+                "linear-gradient(to bottom, color-mix(in srgb, black 60%, transparent), color-mix(in srgb, black 55%, transparent), color-mix(in srgb, black 75%, transparent))",
             }}
           />
 
