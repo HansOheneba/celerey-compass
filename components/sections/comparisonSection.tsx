@@ -183,7 +183,7 @@ export default function ComparisonSection() {
             <div className="relative">
               <div className="relative rounded-3xl overflow-hidden h-[420px] md:h-[520px] shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1694175271713-a6e2cc378980?q=80&w=1530&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1655720348616-184ae7fad7e3?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt=""
                   fill
                   className="object-cover"

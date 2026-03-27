@@ -28,7 +28,7 @@ export default function HeroSection() {
   return (
     <section
       className="pt-30 pb-10"
-      style={{ backgroundColor: "var(--background)" }}
+
     >
       <div className="max-w-full mx-auto px-6 md:px-20">
         <div className="relative rounded-3xl overflow-hidden h-[70vh]">
@@ -77,8 +77,8 @@ export default function HeroSection() {
               >
                 {/* HEADLINE */}
                 <h1
-                  className="text-6xl md:text-8xl lg:text-9xl leading-none mb-8"
-                  style={{ color: "var(--bright-sky-100)" }}
+                  className="text-6xl text-white md:text-8xl lg:text-9xl leading-none mb-8"
+              
                 >
                   Find Your Direction.
                 </h1>

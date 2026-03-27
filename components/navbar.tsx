@@ -35,7 +35,7 @@ export default function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
           ? "bg-[#faf8f4]/95 backdrop-blur-md shadow-sm shadow-pale-oak/30"
-          : "bg-[#faf8f4]/90 backdrop-blur-md",
+          : "bg-white",
       )}
     >
       <div className="mx-auto md:px-20 h-20 flex items-center justify-between">
