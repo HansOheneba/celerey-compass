@@ -20,7 +20,7 @@ export default function ProgramDetailsSection() {
         <MotionInView className="mb-20">
           <div className="max-w-3xl">
             <h2
-              className="font-display text-4xl md:text-6xl font-extrabold leading-tight mb-5"
+              className="font-display text-4xl md:text-6xl leading-tight mb-5"
               style={{ color: "var(--deep-navy-900)" }}
             >
               Everything you need <br />
@@ -80,14 +80,14 @@ export default function ProgramDetailsSection() {
           >
             <div className="flex items-center gap-3 mb-6">
               <Tag className="w-5 h-5" />
-              <p className="text-xs tracking-widest uppercase font-semibold">
+              <p className="text-xs tracking-widest uppercase ">
                 Program Fees
               </p>
             </div>
 
             <div className="mb-4">
               <p className="text-sm line-through opacity-60">USD 700</p>
-              <p className="font-display text-3xl font-bold">USD 500</p>
+              <p className="font-display text-3xl">USD 500</p>
               <p className="text-sm opacity-80">Early bird pricing</p>
             </div>
 
@@ -100,7 +100,7 @@ export default function ProgramDetailsSection() {
         {/* Weekly Rhythm */}
         <MotionInView className="mb-20">
           <h3
-            className="font-display text-3xl md:text-4xl font-extrabold mb-3"
+            className="font-display text-3xl md:text-4xl mb-3"
             style={{ color: "var(--deep-navy-900)" }}
           >
             Your weekly rhythm
@@ -144,7 +144,7 @@ export default function ProgramDetailsSection() {
                 <p className="text-xs uppercase tracking-widest mb-2 opacity-60">
                   {item.day}
                 </p>
-                <h4 className="font-display text-xl font-bold mb-2">
+                <h4 className="font-display text-xl mb-2">
                   {item.title}
                 </h4>
                 <p className="text-sm opacity-70">{item.desc}</p>
@@ -166,7 +166,7 @@ export default function ProgramDetailsSection() {
               For High School Students
             </p>
 
-            <h3 className="font-display text-3xl md:text-4xl font-bold mb-4">
+            <h3 className="font-display text-3xl md:text-4xl mb-4">
               A focused experience for Years 10–12
             </h3>
 

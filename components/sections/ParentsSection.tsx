@@ -111,7 +111,7 @@ export default function ParentsSection() {
               <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
                 <item.icon className="w-5 h-5 text-accent" />
               </div>
-              <h4 className="font-semibold text-deep-navy mb-2">
+              <h4 className=" text-deep-navy mb-2">
                 {item.title}
               </h4>
               <p className="text-deep-navy/60 text-sm leading-relaxed">

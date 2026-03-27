@@ -55,7 +55,7 @@ export function StudentsSection() {
           </h2>
           <p className="text-deep-navy/60 text-lg max-w-2xl mx-auto leading-relaxed">
             Feeling unsure about your future? That&apos;s exactly why Compass
-            exists. You don&apos;t need to have it all figured out—you just need
+            exists. You don&apos;t need to have it all figured out, you just need
             to be curious enough to explore.
           </p>
         </MotionInView>
@@ -88,7 +88,7 @@ export function StudentsSection() {
               className="bg-[#f5f0e8] rounded-2xl p-6"
             >
               <span className="text-3xl mb-4 block">{item.emoji}</span>
-              <p className="font-semibold text-deep-navy mb-2">{item.title}</p>
+              <p className=" text-deep-navy mb-2">{item.title}</p>
               <p className="text-deep-navy/60 text-sm leading-relaxed">
                 {item.desc}
               </p>
@@ -170,7 +170,7 @@ export function SchoolsSection() {
               className="bg-white border border-[#0f1f1e]/8 rounded-2xl p-6 text-center"
             >
               <div className="text-3xl mb-3 text-accent">{item.icon}</div>
-              <h4 className="font-semibold text-deep-navy mb-2">
+              <h4 className=" text-deep-navy mb-2">
                 {item.title}
               </h4>
               <p className="text-deep-navy/60 text-sm leading-relaxed">

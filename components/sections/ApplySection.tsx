@@ -127,7 +127,7 @@ function StepCard({
 
       {/* Text */}
       <div className="p-6 flex flex-col gap-2 flex-1">
-        <h3 className="text-pale-oak font-display text-xl font-semibold">
+        <h3 className="text-pale-oak font-display text-xl">
           {step.title}
         </h3>
         <p className="text-pale-oak/55 text-sm leading-relaxed">{step.desc}</p>
@@ -213,7 +213,7 @@ export default function ApplySection() {
             {/* Right CTA */}
             <Link
               href="/apply"
-              className="group relative inline-flex items-center gap-3 px-9 py-4 rounded-full font-semibold text-sm text-white overflow-hidden transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] shadow-xl shadow-accent/25 shrink-0"
+              className="group relative inline-flex items-center gap-3 px-9 py-4 rounded-full text-sm text-white overflow-hidden transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] shadow-xl shadow-accent/25 shrink-0"
               style={{ backgroundColor: "var(--accent, #f97316)" }}
             >
               {/* Shine sweep */}

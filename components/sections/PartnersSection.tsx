@@ -23,7 +23,7 @@ export default function PartnersSection() {
               alt="Partners collaborating in a modern workspace"
               className="absolute inset-0 w-full h-full object-cover"
             />
-            {/* Subtle dark vignette on the right edge so it bleeds nicely into the text side */}
+       
             <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-black/20" />
             {/* Bottom label */}
             <div className="absolute bottom-6 left-6">

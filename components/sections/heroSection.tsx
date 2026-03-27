@@ -77,7 +77,7 @@ export default function HeroSection() {
               >
                 {/* HEADLINE */}
                 <h1
-                  className="text-6xl text-white md:text-8xl lg:text-9xl leading-none mb-8"
+                  className="text-6xl text-white md:text-8xl leading-none mb-8"
               
                 >
                   Find Your Direction.

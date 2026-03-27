@@ -35,7 +35,7 @@ export default function ComparisonSection() {
             />
             <div>
               <h2
-                className="font-display text-4xl md:text-6xl font-extrabold leading-tight mb-5"
+                className="font-display text-4xl md:text-6xl  leading-tight mb-5"
                 style={{ color: "var(--color-deep-navy-900)" }}
               >
                 This is{" "}
@@ -86,7 +86,7 @@ export default function ComparisonSection() {
               The old way
             </p>
             <h3
-              className="font-display text-2xl font-bold mb-6"
+              className="font-display text-2xl mb-6"
               style={{ color: "var(--color-atomic-tangerine-700)" }}
             >
               Traditional Internships
@@ -125,7 +125,7 @@ export default function ComparisonSection() {
             <p className="text-xs uppercase mb-3 font-medium text-bright-sky-300">
               The Compass way
             </p>
-            <h3 className="font-display text-2xl font-bold mb-6 text-white">
+            <h3 className="font-display text-2xl  mb-6 text-white">
               Compass Experience
             </h3>
             <ul className="space-y-4">
@@ -154,7 +154,7 @@ export default function ComparisonSection() {
                 Why it matters
               </p>
 
-              <h3 className="text-3xl md:text-5xl font-extrabold mb-6 text-deep-navy-900">
+              <h3 className="text-3xl md:text-5xl mb-6 text-deep-navy-900">
                 Know yourself first.
                 <br />
                 <span className="italic text-deep-navy-500">
@@ -192,7 +192,7 @@ export default function ComparisonSection() {
               </div>
 
               <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-lg p-4 hidden md:block">
-                <p className="text-sm font-semibold text-deep-navy-900">
+                <p className="text-sm text-deep-navy-900">
                   Real-world exposure
                 </p>
                 <p className="text-xs text-deep-navy-600">Not just theory</p>
@@ -210,7 +210,7 @@ export default function ComparisonSection() {
           }}
         >
           <MotionInView className="mb-12">
-            <h3 className="text-4xl font-extrabold text-deep-navy-900 mb-2">
+            <h3 className="text-4xl text-deep-navy-900 mb-2">
               How the program works
             </h3>
             <p className="text-deep-navy-700">Three pillars, one big shift.</p>
@@ -267,7 +267,7 @@ export default function ComparisonSection() {
                 </div>
                 <div className="p-6">
                   <p className="text-xs text-deep-navy-500">{pillar.number}</p>
-                  <h4 className="font-bold text-deep-navy-900 text-lg mb-2">
+                  <h4 className="text-deep-navy-900 text-lg mb-2">
                     {pillar.title}
                   </h4>
                   <p className="text-deep-navy-700 text-sm">
@@ -291,7 +291,7 @@ export default function ComparisonSection() {
             <div className="absolute -top-10 -right-10 w-72 h-72 bg-bright-sky-500/20 blur-3xl" />
             <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-atomic-tangerine-500/20 blur-3xl" />
 
-            <h3 className="text-4xl font-extrabold text-white text-center mb-4">
+            <h3 className="text-4xl text-white text-center mb-4">
               What you walk away with
             </h3>
             <p className="text-center text-bright-sky-200 mb-10">
@@ -310,7 +310,7 @@ export default function ComparisonSection() {
                   <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-br from-bright-sky-500 to-ghost-white-400 flex items-center justify-center">
                     <item.icon className="text-white w-5 h-5" />
                   </div>
-                  <p className="text-white text-sm font-semibold">
+                  <p className="text-white text-sm ">
                     {item.title}
                   </p>
                 </div>

@@ -68,7 +68,7 @@ export default function JourneySection() {
           <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
             The Journey
           </p>
-          <h2 className="font-display text-deep-navy text-4xl md:text-5xl mb-4">
+          <h2 className=" text-deep-navy text-4xl md:text-5xl mb-4">
             Five Weeks That Change Everything
           </h2>
           <p className="text-muted text-base max-w-xl mx-auto">
@@ -80,7 +80,7 @@ export default function JourneySection() {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-4 top-0 bottom-0 w-[2px] bg-deep-navy/10" />
+          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-deep-navy/10" />
 
           <MotionStagger className="space-y-16">
             {weeks.map((week, index) => (
