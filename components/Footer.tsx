@@ -37,11 +37,9 @@ export default function Footer() {
           {/* Primary CTA */}
           <Link
             href="/apply"
-            className="flex items-center bg-pale-oak gap-1.5 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-95 shadow-lg shadow-pale-oak/80/30"
-
+            className="px-8 py-4 text-base font-bold bg-pale-oak rounded-2xl hover:-rotate-1 hover:scale-105 active:scale-95 transition-all duration-200 text-deep-navy hover:text-deep-navy/70 shadow-lg"
           >
-            Apply Now
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            Apply now
           </Link>
         </div>
       </div>
@@ -109,9 +107,6 @@ export default function Footer() {
                 </div>
               </a>
             </div>
-
-          
-          
           </MotionInView>
 
           {/* Col 2 — Nav links (like "Solutions / Locations / etc." cols) */}

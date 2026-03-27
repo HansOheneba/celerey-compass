@@ -248,8 +248,8 @@ export function SchoolsSection() {
               guidance integration.
             </p>
             <a
-              href="#contact"
-              className="inline-block px-6 py-3 rounded-full bg-accent text-deep-navy font-semibold hover:bg-dusty-mauve transition-colors"
+              href="#partners"
+              className="inline-block px-6 py-3 rounded-full text-white bg-accent font-semibold hover:bg-dusty-mauve transition-colors"
             >
               Contact our partnerships team
             </a>
