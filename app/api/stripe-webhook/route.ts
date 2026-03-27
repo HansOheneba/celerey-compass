@@ -2,6 +2,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { google } from "googleapis";
+import { Resend } from "resend";
+import { PaymentReceivedEmail } from "@/emails/PaymentReceived";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -131,9 +135,26 @@ export async function POST(req: NextRequest) {
     }
 
     const email = session.customer_details?.email || session.customer_email;
+    const fullName = session.customer_details?.name ?? "";
 
     if (email) {
       await markAsPaid(email);
+
+      // Send payment confirmation email — non-blocking
+      const preferredName = fullName.split(" ")[0] || "there";
+      resend.emails
+        .send({
+          from: "Compass by Celerey <compass@no-reply.celerey.co>",
+          to: email,
+          subject: "Payment received — we'll be in touch very shortly 🎉",
+          react: PaymentReceivedEmail({ preferredName, email }),
+        })
+        .then(({ error }) => {
+          if (error) console.error("⚠️ Resend error (payment email):", error);
+        })
+        .catch((err) => {
+          console.error("⚠️ Failed to send payment confirmation email:", err);
+        });
     } else {
       console.warn("No email found on session:", session.id);
     }

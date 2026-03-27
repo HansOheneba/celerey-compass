@@ -10,12 +10,14 @@ import {
   SchoolsSection,
 } from "@/components/sections/StudentSchoolSection";
 import PartnersSection from "@/components/sections/PartnersSection";
+import OutcomesSection from "@/components/sections/vpSection";
 
 export default function Home() {
   return (
     <main className="overflow-x-hidden bg-white">
       <HeroSection />
       <ComparisonSection />
+      <OutcomesSection />
       <TracksSection />
       <JourneySection />
       <ApplySection />

@@ -94,8 +94,6 @@ export default function ApplyForm() {
   const [submitError, setSubmitError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
-  const [isPaying, setIsPaying] = useState(false);
-  const [payError, setPayError] = useState("");
 
   const {
     register,
@@ -184,28 +182,11 @@ export default function ApplyForm() {
     }
   };
 
-  const handlePay = async () => {
-    setIsPaying(true);
-    setPayError("");
-    try {
-      const res = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: submittedEmail }),
-      });
-      const payload = (await res.json()) as { url?: string; error?: string };
-      if (!res.ok || !payload.url) {
-        setPayError(
-          payload.error ?? "Failed to start payment. Please try again.",
-        );
-        return;
-      }
-      window.location.href = payload.url;
-    } catch {
-      setPayError("Network error. Please check your connection and try again.");
-    } finally {
-      setIsPaying(false);
-    }
+  const handlePay = () => {
+    const stripeUrl = new URL("https://buy.stripe.com/3cI3cv6ng9MB4yffeV9Ve07");
+    if (submittedEmail)
+      stripeUrl.searchParams.set("prefilled_email", submittedEmail);
+    window.location.href = stripeUrl.toString();
   };
 
   if (submitted) {
@@ -248,29 +229,13 @@ export default function ApplyForm() {
                   is received.
                 </p>
 
-                {payError && (
-                  <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
-                    {payError}
-                  </div>
-                )}
-
                 <button
                   type="button"
                   onClick={handlePay}
-                  disabled={isPaying}
-                  className="mt-5 inline-flex items-center gap-2 rounded-lg bg-[#0b1e3d] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-45"
+                  className="mt-5 inline-flex items-center gap-2 rounded-lg bg-[#0b1e3d] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-105"
                 >
-                  {isPaying ? (
-                    <>
-                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/50 border-t-white" />
-                      Redirecting...
-                    </>
-                  ) : (
-                    <>
-                      <CreditCard className="h-4 w-4" />
-                      Pay Now
-                    </>
-                  )}
+                  <CreditCard className="h-4 w-4" />
+                  Pay Now
                 </button>
               </div>
             </div>
