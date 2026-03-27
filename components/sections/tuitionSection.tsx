@@ -276,7 +276,7 @@ export default function ProgramDetailsSection() {
                 desc: "Interactive sessions on communication, design thinking, and storytelling.",
               },
               {
-                day: "Tue – Thu",
+                day: "Tuesdays – Thursdays",
                 title: "Internship",
                 desc: "Hands-on experience in real workplaces with guided support.",
               },
