@@ -1,198 +1,242 @@
 "use client";
 
 import Link from "next/link";
-import {
-  MotionInView,
-  MotionStagger,
-  MotionStaggerItem,
-} from "@/components/sections/scrollAnimator";
+import Image from "next/image";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
-const ApplyIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-    <path
-      d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"
-      stroke="#60a5fa"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M14 2v6h6M16 13H8M16 17H8M10 9H8"
-      stroke="#60a5fa"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+/* ─────────────────────────────────────────────
+   Step data — real Unsplash images, no icons
+───────────────────────────────────────────── */
+const steps = [
+  {
+    n: "01",
+    title: "Apply",
+    desc: "Complete our short online application. Tell us about yourself, your interests, and what draws you to Compass.",
+    img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80",
+    alt: "Student writing an application",
+   
+    accent: "#60a5fa",
+  },
+  {
+    n: "02",
+    title: "Payment",
+    desc: "Secure your spot instantly. After submitting you're taken straight to our safe payment page.",
+    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80",
+    alt: "Secure online payment",
+  
+    accent: "#a78bfa",
+  },
+  {
+    n: "03",
+    title: "Confirmation",
+    desc: "Receive your receipt and a welcome pack with everything you need to prepare for the programme.",
+    img: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=600&q=80",
+    alt: "Email confirmation on phone",
+   
+    accent: "#34d399",
+  },
+  {
+    n: "04",
+    title: "Onboarding",
+    desc: "Meet your cohort, discover your track, and get ready for an experience that could change your direction.",
+    img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80",
+    alt: "Young people meeting in a group",
 
-const PaymentIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-    <rect
-      x="2"
-      y="5"
-      width="20"
-      height="14"
-      rx="2"
-      stroke="#a78bfa"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M2 10h20"
-      stroke="#a78bfa"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-    />
-    <path
-      d="M6 15h2M10 15h4"
-      stroke="#a78bfa"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-    />
-  </svg>
-);
+    accent: "#fb923c",
+  },
+];
 
-const ConfirmationIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-    <circle cx="12" cy="12" r="10" stroke="#34d399" strokeWidth="1.8" />
-    <path
-      d="M8 12l3 3 5-5"
-      stroke="#34d399"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const OnboardingIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-    <path
-      d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
-      stroke="#fb923c"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <circle
-      cx="9"
-      cy="7"
-      r="4"
-      stroke="#fb923c"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
-      stroke="#fb923c"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-export default function ApplySection() {
-  const steps = [
-    {
-      n: "1",
-      title: "Apply",
-      desc: "Complete our online application. Tell us about yourself, your interests, and why you're curious about Compass.",
-      icon: <ApplyIcon />,
-      color: "bg-blue-500/15 border-blue-400/40",
-    },
-    {
-      n: "2",
-      title: "Payment",
-      desc: "After submitting, you'll go straight to our secure payment page to confirm your spot.",
-      icon: <PaymentIcon />,
-      color: "bg-violet-500/15 border-violet-400/40",
-    },
-    {
-      n: "3",
-      title: "Confirmation",
-      desc: "Once payment is complete you'll receive a receipt and everything you need to prepare.",
-      icon: <ConfirmationIcon />,
-      color: "bg-emerald-500/15 border-emerald-400/40",
-    },
-    {
-      n: "4",
-      title: "Onboarding",
-      desc: "Meet your cohort and get ready for an experience that could change your direction.",
-      icon: <OnboardingIcon />,
-      color: "bg-orange-500/15 border-orange-400/40",
-    },
-  ];
+/* ─────────────────────────────────────────────
+   Fade-up helper
+───────────────────────────────────────────── */
+function FadeUp({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="apply" className="py-24 bg-deep-navy relative overflow-hidden">
-      {/* subtle noise overlay */}
+    <motion.div
+      ref={ref}
+      className={className}
+      initial={{ opacity: 0, y: 32 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Step card
+───────────────────────────────────────────── */
+function StepCard({
+  step,
+  index,
+}: {
+  step: (typeof steps)[number];
+  index: number;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 48 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+        delay: index * 0.12,
+      }}
+      className="group relative flex flex-col rounded-2xl overflow-hidden border border-white/10 bg-white/[0.04] hover:bg-white/[0.07] transition-colors duration-300"
+      style={{ boxShadow: `0 0 0 1px ${step.accent}18` }}
+    >
+      {/* Image */}
+      <div className="relative h-44 overflow-hidden">
+        <Image
+          src={step.img}
+          alt={step.alt}
+          fill
+          className="object-cover transition-transform duration-700"
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0d1b2a] via-[#0d1b2a]/40 to-transparent" />
+
+        {/* Step number — bottom-left over image */}
+        <div className="absolute bottom-4 left-5 flex items-end gap-3">
+          <span
+            className="font-mono text-4xl font-bold leading-none"
+            style={{ color: step.accent }}
+          >
+            {step.n}
+          </span>
+        </div>
+
+  
+      </div>
+
+      {/* Text */}
+      <div className="p-6 flex flex-col gap-2 flex-1">
+        <h3 className="text-pale-oak font-display text-xl font-semibold">
+          {step.title}
+        </h3>
+        <p className="text-pale-oak/55 text-sm leading-relaxed">{step.desc}</p>
+
+    
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Main section
+───────────────────────────────────────────── */
+export default function ApplySection() {
+  return (
+    <section id="apply" className="relative py-28 bg-deep-navy overflow-hidden">
+      {/* ── Background atmosphere ── */}
+      {/* Large radial glow — top left */}
       <div
-        className="absolute inset-0 opacity-20 pointer-events-none bg-no-repeat bg-center bg-contain"
-        style={{ backgroundImage: "url('/images/noise.png')" }}
+        className="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%)",
+        }}
+      />
+      {/* Smaller glow — bottom right */}
+      <div
+        className="absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(96,165,250,0.09) 0%, transparent 70%)",
+        }}
+      />
+      {/* Horizontal rule lines texture */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(0deg, #fff 0px, #fff 1px, transparent 1px, transparent 48px)",
+        }}
       />
 
-      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-        <MotionInView>
-          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
-            Apply & Registration
-          </p>
-          <h2 className="font-display text-pale-oak text-4xl md:text-5xl mb-6 leading-tight">
-            Your journey starts with a simple step
-          </h2>
-          <p className="text-pale-oak/70 text-lg leading-relaxed mb-12">
-            We&apos;re looking for curious, open-minded young people ready to
-            invest in themselves. No experience required—just willingness to
-            explore and grow.
-          </p>
-        </MotionInView>
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        {/* ── Header ── */}
+        <div className="grid md:grid-cols-2 gap-10 items-end mb-16">
+          <FadeUp>
+           
+            <h2 className="font-display text-pale-oak text-4xl md:text-5xl leading-[1.1]">
+              Your journey
+              <span className="italic text-accent">starts here.</span>
+            </h2>
+          </FadeUp>
 
-        <MotionStagger className="grid gap-10 md:grid-cols-2 mb-16">
-          {steps.map((s) => (
-            <MotionStaggerItem
-              key={s.n}
-              className="flex flex-col md:flex-row gap-4 items-center bg-pale-oak/5 rounded-xl p-6 border border-pale-oak/20 transition-all duration-300"
-            >
-              <div
-                className={`flex-shrink-0 w-16 h-16 flex items-center justify-center rounded-full border ${s.color}`}
-              >
-                {s.icon}
-              </div>
-              <div className="text-left">
-                <p className="text-pale-oak font-semibold mb-1 text-lg">
-                  {s.title}
-                </p>
-                <p className="text-pale-oak/60 text-sm leading-relaxed">
-                  {s.desc}
-                </p>
-              </div>
-            </MotionStaggerItem>
+          <FadeUp delay={0.15} className="md:text-right">
+            <p className="text-pale-oak/60 text-base leading-relaxed max-w-md md:ml-auto">
+              This experience is designed to help young people build confidence,
+              gain real-world exposure, and better understand their strengths
+              and direction.
+            </p>
+          </FadeUp>
+        </div>
+
+        {/* ── Step cards ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+          {steps.map((s, i) => (
+            <StepCard key={s.n} step={s} index={i} />
           ))}
-        </MotionStagger>
+        </div>
 
-        <MotionInView delay={0.08}>
-          <Link
-            href="/apply"
-            className="inline-flex items-center gap-3 bg-accent text-deep-navy hover:bg-dusty-mauve active:bg-lavender-grey font-semibold text-base px-10 py-4 rounded-full transition-all duration-200 shadow-lg shadow-accent/20 hover:shadow-accent/30 hover:scale-[1.02]"
-          >
-            Start your application
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M3 8H13M13 8L9 4M13 8L9 12"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </Link>
-          <p className="text-pale-oak/30 text-xs mt-3">
-            Takes less than 10 minutes
-          </p>
-        </MotionInView>
+        {/* ── CTA strip ── */}
+        <FadeUp delay={0.1}>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl border border-white/10 bg-white/[0.04] px-8 py-7">
+            {/* Left copy */}
+            <div>
+              <p className="text-pale-oak font-display text-xl mb-1">
+                Ready to find your direction?
+              </p>
+              <p className="text-pale-oak/45 text-sm">
+                Applications open · Programme runs July 6 – August 7, 2026
+              </p>
+            </div>
+
+            {/* Right CTA */}
+            <Link
+              href="/apply"
+              className="group relative inline-flex items-center gap-3 px-9 py-4 rounded-full font-semibold text-sm text-white overflow-hidden transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] shadow-xl shadow-accent/25 shrink-0"
+              style={{ backgroundColor: "var(--accent, #f97316)" }}
+            >
+              {/* Shine sweep */}
+              <span className="absolute text-white inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              Start your application
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 15 15"
+                fill="none"
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              >
+                <path
+                  d="M2.5 7.5H12.5M12.5 7.5L8.5 3.5M12.5 7.5L8.5 11.5"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
+          </div>
+        </FadeUp>
       </div>
     </section>
   );
