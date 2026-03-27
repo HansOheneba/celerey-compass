@@ -77,7 +77,7 @@ export default function HeroSection() {
               >
                 {/* HEADLINE */}
                 <h1
-                  className="text-6xl text-white md:text-8xl leading-none mb-8"
+                  className="text-6xl text-white md:text-7xl leading-none mb-8"
               
                 >
                   Find Your Direction.
@@ -85,7 +85,7 @@ export default function HeroSection() {
 
                 {/* SUBTEXT */}
                 <p
-                  className="text-lg md:text-xl leading-relaxed mb-10 max-w-xl mx-auto"
+                  className="text-lg  leading-relaxed mb-10 max-w-xl mx-auto"
                   style={{
                     color: "var(--bright-sky-300)",
                     opacity: textVisible ? 1 : 0,
