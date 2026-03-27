@@ -1,32 +1,57 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ArrowDown } from "lucide-react";
 import { MotionInView } from "@/components/sections/scrollAnimator";
-import Image from "next/image";
 
 export default function HeroSection() {
+  const [overlayVisible, setOverlayVisible] = useState(false);
+  const [textVisible, setTextVisible] = useState(false);
+
+  useEffect(() => {
+    // Let video breathe first, then slowly bring in the overlay
+    const overlayTimer = setTimeout(() => {
+      setOverlayVisible(true);
+    }, 1000);
+
+    // Text arrives after overlay has had time to settle
+    const textTimer = setTimeout(() => {
+      setTextVisible(true);
+    }, 1500);
+
+    return () => {
+      clearTimeout(overlayTimer);
+      clearTimeout(textTimer);
+    };
+  }, []);
+
   return (
     <section
-      className="bg-var(--pale-oak)/30 pt-30 pb-10"
+      className="pt-30 pb-10"
       style={{ backgroundColor: "var(--background)" }}
     >
       <div className="max-w-full mx-auto px-6 md:px-20">
-        <div className="relative rounded-3xl overflow-hidden h-[80vh]">
-          {/* BACKGROUND IMAGE */}
-          <Image
-            src="https://images.unsplash.com/photo-1511576661531-b34d7da5d0bb?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Students learning"
+        <div className="relative rounded-3xl overflow-hidden h-[70vh]">
+          {/* VIDEO BACKGROUND */}
+          <video
             className="absolute inset-0 w-full h-full object-cover"
-            height={1000}
-            width={2942}
-          />
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
+            <source src="/hero.mp4" type="video/mp4" />
+          </video>
 
-          {/* OVERLAY */}
+          {/* OVERLAY — fades in slowly like a curtain drawing */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "linear-gradient(to bottom, color-mix(in srgb, black 60%, transparent), color-mix(in srgb, black 55%, transparent), color-mix(in srgb, black 75%, transparent))",
+                "linear-gradient(to bottom, rgba(0,0,0,0.50), rgba(0,0,0,0.40), rgba(0,0,0,0.82))",
+              opacity: overlayVisible ? 1 : 0,
+              transition: "opacity 2200ms cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           />
 
@@ -39,74 +64,97 @@ export default function HeroSection() {
             }}
           />
 
-          {/* CONTENT */}
+          {/* CONTENT — drifts up after the overlay settles */}
           <div className="relative z-10 h-full flex items-center justify-center px-6 md:px-16">
-            <MotionInView
-              className="w-full max-w-4xl text-center"
-              distance={30}
-            >
-              {/* HEADLINE */}
-              <h1
-                className="text-6xl md:text-8xl lg:text-9xl leading-none mb-8"
-                style={{ color: "var(--pale-oak)" }}
-              >
-                Find Your Direction.
-              </h1>
-
-              {/* SUBTEXT */}
-              <p
-                className="text-lg md:text-xl leading-relaxed mb-10 max-w-xl mx-auto"
+            <div className="w-full max-w-4xl text-center">
+              <div
                 style={{
-                  color: "color-mix(in srgb, var(--pale-oak) 70%, transparent)",
+                  opacity: textVisible ? 1 : 0,
+                  transform: textVisible ? "translateY(0)" : "translateY(28px)",
+                  transition:
+                    "opacity 1400ms cubic-bezier(0.4, 0, 0.2, 1), transform 1400ms cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               >
-                Spend 5 weeks figuring out what you actually enjoy, what
-                you&apos;re good at, and where you could go next.
-              </p>
-
-              {/* CTA */}
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                {/* PRIMARY */}
-                <a
-                  href="/apply"
-                  className="px-8 py-4 text-base font-bold rounded-2xl hover:-rotate-1 hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg"
-                  style={{
-                    backgroundColor: "var(--pale-oak)",
-                    color: "var(--deep-navy)",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      "var(--khaki-beige)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = "var(--pale-oak)")
-                  }
+                {/* HEADLINE */}
+                <h1
+                  className="text-6xl md:text-8xl lg:text-9xl leading-none mb-8"
+                  style={{ color: "var(--bright-sky-100)" }}
                 >
-                  Apply now
-                </a>
+                  Find Your Direction.
+                </h1>
 
-                {/* SECONDARY */}
-                <a
-                  href="#parents"
-                  className="px-7 py-4 text-base font-medium rounded-2xl backdrop-blur-sm hover:rotate-1 hover:scale-105 active:scale-95 transition-all duration-200"
+                {/* SUBTEXT */}
+                <p
+                  className="text-lg md:text-xl leading-relaxed mb-10 max-w-xl mx-auto"
                   style={{
-                    backgroundColor: "rgba(255,255,255,0.05)",
-                    color: "var(--pale-oak)",
-                    border:
-                      "1px solid color-mix(in srgb, var(--lavender-grey) 50%, transparent)",
+                    color: "var(--bright-sky-300)",
+                    opacity: textVisible ? 1 : 0,
+                    transform: textVisible
+                      ? "translateY(0)"
+                      : "translateY(16px)",
+                    transition:
+                      "opacity 1400ms 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 1400ms 300ms cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
                 >
-                  For Parents
-                </a>
+                  Spend 5 weeks figuring out what you actually enjoy, what
+                  you&apos;re good at, and where you could go next.
+                </p>
+
+                {/* CTA */}
+                <div
+                  className="flex flex-wrap items-center justify-center gap-4"
+                  style={{
+                    opacity: textVisible ? 1 : 0,
+                    transform: textVisible
+                      ? "translateY(0)"
+                      : "translateY(12px)",
+                    transition:
+                      "opacity 1400ms 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 1400ms 600ms cubic-bezier(0.4, 0, 0.2, 1)",
+                  }}
+                >
+                  <a
+                    href="/apply"
+                    className="px-8 py-4 text-base font-bold rounded-2xl hover:-rotate-1 hover:scale-105 active:scale-95 transition-all duration-200 shadow-lg"
+                    style={{
+                      backgroundColor: "var(--atomic-tangerine-500)",
+                      color: "#ffffff",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.backgroundColor =
+                        "var(--atomic-tangerine-400)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.backgroundColor =
+                        "var(--atomic-tangerine-500)")
+                    }
+                  >
+                    Apply now
+                  </a>
+
+                  <a
+                    href="#parents"
+                    className="px-7 py-4 text-base font-medium rounded-2xl backdrop-blur-sm hover:rotate-1 hover:scale-105 active:scale-95 transition-all duration-200"
+                    style={{
+                      backgroundColor: "rgba(1, 199, 254, 0.08)",
+                      color: "var(--bright-sky-200)",
+                      border:
+                        "1px solid color-mix(in srgb, var(--bright-sky-500) 45%, transparent)",
+                    }}
+                  >
+                    For Parents
+                  </a>
+                </div>
               </div>
-            </MotionInView>
+            </div>
           </div>
 
-          {/* SCROLL INDICATOR */}
+          {/* SCROLL INDICATOR — fades in last alongside buttons */}
           <div
             className="absolute bottom-8 right-6 flex flex-col items-center gap-2"
             style={{
-              color: "color-mix(in srgb, var(--khaki-beige) 60%, transparent)",
+              color: "var(--bright-sky-600)",
+              opacity: textVisible ? 1 : 0,
+              transition: "opacity 1400ms 900ms cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           >
             <p
@@ -116,20 +164,6 @@ export default function HeroSection() {
               Scroll
             </p>
             <ArrowDown className="w-4 h-4 animate-bounce" />
-          </div>
-
-          {/* Date badge */}
-          <div
-            className="absolute top-6 left-6 px-3 py-1.5 rounded-full backdrop-blur-sm text-[11px] tracking-widest uppercase"
-            style={{
-              backgroundColor:
-                "color-mix(in srgb, var(--deep-navy) 40%, transparent)",
-              border:
-                "1px solid color-mix(in srgb, var(--lavender-grey) 30%, transparent)",
-              color: "color-mix(in srgb, var(--pale-oak) 70%, transparent)",
-            }}
-          >
-            July 6 to Aug 7, 2026
           </div>
         </div>
       </div>

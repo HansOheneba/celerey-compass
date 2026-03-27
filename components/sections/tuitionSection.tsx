@@ -13,30 +13,28 @@ export default function ProgramDetailsSection() {
     <section
       id="tracks"
       className="py-24"
-      style={{ backgroundColor: "var(--deep-navy)" }}
+      style={{ backgroundColor: "#ffffff" }}
     >
       <div className="mx-auto px-6 md:px-20">
         {/* Header */}
         <MotionInView className="mb-20">
           <div className="max-w-3xl">
-       
-
             <h2
               className="font-display text-4xl md:text-6xl font-extrabold leading-tight mb-5"
-              style={{ color: "var(--pale-oak)" }}
+              style={{ color: "var(--deep-navy-900)" }}
             >
               Everything you need <br />
               <span
                 className="italic"
-                style={{ color: "var(--lavender-grey)" }}
+                style={{ color: "var(--bright-sky-500)" }}
               >
                 to plan ahead.
               </span>
             </h2>
 
             <p
-              className="text-lg leading-relaxed text-pale-oak/70"
-         
+              className="text-lg leading-relaxed"
+              style={{ color: "var(--deep-navy-600)" }}
             >
               A five-week experience designed for high school students to
               explore who they are, what they’re good at, and what paths they
@@ -51,8 +49,8 @@ export default function ProgramDetailsSection() {
           <MotionStaggerItem
             className="rounded-3xl p-8"
             style={{
-              backgroundColor: "var(--pale-oak)",
-              color: "var(--deep-navy)",
+              backgroundColor: "var(--deep-navy-800)",
+              color: "var(--bright-sky-100)",
             }}
           >
             <div className="flex items-center gap-3 mb-6">
@@ -67,7 +65,7 @@ export default function ProgramDetailsSection() {
             </p>
             <p className="text-sm opacity-70">2026 · 5 weeks</p>
 
-            <div className="mt-6 pt-6 border-t border-black/10 text-sm opacity-70">
+            <div className="mt-6 pt-6 border-t border-white/10 text-sm opacity-70">
               Applications close June 29, 2026
             </div>
           </MotionStaggerItem>
@@ -76,23 +74,21 @@ export default function ProgramDetailsSection() {
           <MotionStaggerItem
             className="rounded-3xl p-8 relative overflow-hidden"
             style={{
-              backgroundColor: "var(--dusty-mauve)",
-              color: "var(--pale-oak)",
+              backgroundColor: "var(--atomic-tangerine-500)",
+              color: "#ffffff",
             }}
           >
             <div className="flex items-center gap-3 mb-6">
               <Tag className="w-5 h-5" />
               <p className="text-xs tracking-widest uppercase font-semibold">
-                Tuition
+                Program Fees
               </p>
             </div>
 
             <div className="mb-4">
-              <p className="text-sm line-through opacity-60">
-                GHS 7,679.99 · USD 700
-              </p>
-              <p className="font-display text-3xl font-bold">GHS 5,485.71</p>
-              <p className="text-sm opacity-80">USD 500 · Early bird pricing</p>
+              <p className="text-sm line-through opacity-60">USD 700</p>
+              <p className="font-display text-3xl font-bold">USD 500</p>
+              <p className="text-sm opacity-80">Early bird pricing</p>
             </div>
 
             <div className="text-xs opacity-70">
@@ -105,14 +101,14 @@ export default function ProgramDetailsSection() {
         <MotionInView className="mb-20">
           <h3
             className="font-display text-3xl md:text-4xl font-extrabold mb-3"
-            style={{ color: "var(--pale-oak)" }}
+            style={{ color: "var(--deep-navy-900)" }}
           >
             Your weekly rhythm
           </h3>
 
           <p
-            className="mb-10 text-pale-oak/70 leading-relaxed max-w-2xl"
-        
+            className="mb-10 leading-relaxed max-w-2xl"
+            style={{ color: "var(--deep-navy-600)" }}
           >
             A consistent structure that balances learning, real-world exposure,
             and reflection.
@@ -140,8 +136,9 @@ export default function ProgramDetailsSection() {
                 key={i}
                 className="rounded-3xl p-8"
                 style={{
-                  backgroundColor: "white",
-                  color: "var(--deep-navy)",
+                  backgroundColor: "var(--bright-sky-50)",
+                  color: "var(--deep-navy-900)",
+                  border: "1px solid var(--bright-sky-200)",
                 }}
               >
                 <p className="text-xs uppercase tracking-widest mb-2 opacity-60">
@@ -161,8 +158,8 @@ export default function ProgramDetailsSection() {
           <div
             className="rounded-3xl p-10 md:p-12"
             style={{
-              backgroundColor: "var(--pale-oak)",
-              color: "var(--deep-navy)",
+              backgroundColor: "var(--deep-navy-900)",
+              color: "var(--bright-sky-100)",
             }}
           >
             <p className="text-xs uppercase tracking-widest mb-4 opacity-60">
@@ -200,10 +197,10 @@ export default function ProgramDetailsSection() {
           <div className="text-center">
             <Link
               href="/apply"
-              className="inline-block px-8 py-4 rounded-full font-semibold text-sm tracking-wide transition"
+              className="inline-block px-8 py-4 rounded-full font-semibold text-sm tracking-wide transition hover:scale-105 active:scale-95"
               style={{
-                backgroundColor: "var(--pale-oak)",
-                color: "var(--deep-navy)",
+                backgroundColor: "var(--atomic-tangerine-500)",
+                color: "#ffffff",
               }}
             >
               Apply Now
@@ -211,9 +208,7 @@ export default function ProgramDetailsSection() {
 
             <p
               className="mt-4 text-sm"
-              style={{
-                color: "color-mix(in srgb, var(--pale-oak) 50%, transparent)",
-              }}
+              style={{ color: "var(--deep-navy-400)" }}
             >
               Limited cohort · Early applications encouraged
             </p>

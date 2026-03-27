@@ -8,40 +8,98 @@
 :root {
   color-scheme: light;
 
-  /* ── Palette ── */
-  --pale-oak: #e3d8bf;
-  --khaki-beige: #bbada0;
-  --dusty-mauve: #8a4582;
-  --lavender-grey: #797596;
-  --deep-navy: #0b1d51;
+  /* ── Bright Sky ── */
+  --bright-sky-50: #e6f9ff;
+  --bright-sky-100: #ccf4ff;
+  --bright-sky-200: #9ae9fe;
+  --bright-sky-300: #67ddfe;
+  --bright-sky-400: #34d2fe;
+  --bright-sky-500: #01c7fe;
+  --bright-sky-600: #019fcb;
+  --bright-sky-700: #017798;
+  --bright-sky-800: #015065;
+  --bright-sky-900: #002833;
+  --bright-sky-950: #001c24;
 
-  /* ── Semantic tokens (HSL for Tailwind) ── */
-  --background: 42 28% 96%; /* off-white warm tint */
-  --foreground: 225 76% 18%; /* deep navy */
+  /* ── Atomic Tangerine ── */
+  --atomic-tangerine-50: #ffece5;
+  --atomic-tangerine-100: #ffdacc;
+  --atomic-tangerine-200: #ffb499;
+  --atomic-tangerine-300: #ff8f66;
+  --atomic-tangerine-400: #ff6933;
+  --atomic-tangerine-500: #ff4400;
+  --atomic-tangerine-600: #cc3600;
+  --atomic-tangerine-700: #992900;
+  --atomic-tangerine-800: #661b00;
+  --atomic-tangerine-900: #330e00;
+  --atomic-tangerine-950: #240a00;
 
-  --card: 0 0% 100%;
-  --card-foreground: 225 76% 18%;
+  /* ── Ghost White ── */
+  --ghost-white-50: #e5e5ff;
+  --ghost-white-100: #ccccff;
+  --ghost-white-200: #9999ff;
+  --ghost-white-300: #6666ff;
+  --ghost-white-400: #3333ff;
+  --ghost-white-500: #0000ff;
+  --ghost-white-600: #0000cc;
+  --ghost-white-700: #000099;
+  --ghost-white-800: #000066;
+  --ghost-white-900: #000033;
+  --ghost-white-950: #000024;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 225 76% 18%;
+  /* ── Dry Sage ── */
+  --dry-sage-50: #f4f4f0;
+  --dry-sage-100: #e8eae1;
+  --dry-sage-200: #d2d4c4;
+  --dry-sage-300: #bbbfa6;
+  --dry-sage-400: #a5a989;
+  --dry-sage-500: #8e946b;
+  --dry-sage-600: #727656;
+  --dry-sage-700: #555940;
+  --dry-sage-800: #393b2b;
+  --dry-sage-900: #1c1e15;
+  --dry-sage-950: #14150f;
 
- --primary: 225 76% 18%;            /* deep navy */
-  --primary-foreground: 42 28% 96%; /* off-white warm tint */
+  /* ── Deep Navy ── */
+  --deep-navy-50: #e9edfc;
+  --deep-navy-100: #d2dcf9;
+  --deep-navy-200: #a5b9f3;
+  --deep-navy-300: #7895ed;
+  --deep-navy-400: #4b72e7;
+  --deep-navy-500: #1f4fe0;
+  --deep-navy-600: #183fb4;
+  --deep-navy-700: #122f87;
+  --deep-navy-800: #0c205a;
+  --deep-navy-900: #06102d;
+  --deep-navy-950: #040b1f;
 
-  --secondary: 42 17% 84%; /* pale oak */
-  --secondary-foreground: 225 76% 18%;
+  /* ── Semantic Tokens ── */
+  --background: #f4f4f0; /* dry-sage-50 — warm neutral canvas */
+  --foreground: #06102d; /* deep-navy-900 — richest dark */
 
-  --muted: #233462; /* khaki beige lightened */
-  --muted-foreground: 247 14% 45%; /* lavender grey darker */
+  --card: #ffffff;
+  --card-foreground: #06102d; /* deep-navy-900 */
 
-  --accent: 307 13% 58%; /* dusty mauve */
-  --accent-foreground: 0 0% 100%;
+  --popover: #ffffff;
+  --popover-foreground: #06102d; /* deep-navy-900 */
 
-  --destructive: 0 84% 60%;
+  --primary: #0c205a; /* deep-navy-800 */
+  --primary-foreground: #e6f9ff; /* bright-sky-50 — max contrast on navy */
 
-  --border: 42 17% 82%;
-  --input: 42 17% 82%;
-  --ring: 18 100% 60%;
+  --secondary: #e8eae1; /* dry-sage-100 */
+  --secondary-foreground: #0c205a; /* deep-navy-800 */
+
+  --muted: #122f87; /* deep-navy-700 */
+  --muted-foreground: #9ae9fe; /* bright-sky-200 — light on dark muted */
+
+  --accent: #ff4400; /* atomic-tangerine-500 — high-contrast pop */
+  --accent-foreground: #ffffff;
+
+  --destructive: #cc3600; /* atomic-tangerine-600 */
+
+  --border: #d2d4c4; /* dry-sage-200 */
+  --input: #d2d4c4; /* dry-sage-200 */
+  --ring: #01c7fe; /* bright-sky-500 */
 
   --radius: 0.75rem;
 }
@@ -50,7 +108,7 @@
    GLOBAL BASE
 ------------------------------ */
 * {
-  border-color: hsl(var(--border));
+  border-color: var(--border);
 }
 
 html {
@@ -58,8 +116,8 @@ html {
 }
 
 body {
-  background: hsl(var(--background));
-  color: hsl(var(--foreground));
+  background: var(--background);
+  color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
@@ -108,31 +166,31 @@ body {
    Use these classes on <section> tags
 ------------------------------ */
 
-/* Light warm — primary background */
+/* Bright Sky — airy light background */
 .section-light {
-  background-color: #faf8f4; /* warm off-white */
+  background-color: #e6f9ff; /* bright-sky-50 */
 }
 
-/* Pale Oak — subtle warmth */
+/* Dry Sage — soft neutral warmth */
 .section-oak {
-  background-color: #ede8de;
+  background-color: #e8eae1; /* dry-sage-100 */
 }
 
-/* Deep Navy — dark sections */
+/* Deep Navy — dark statement sections */
 .section-navy {
-  background-color: #0b1d51;
-  color: #d1c6ad;
+  background-color: #06102d; /* deep-navy-900 */
+  color: #9ae9fe; /* bright-sky-200 — high contrast on dark */
 }
 
-/* Dusty Mauve — accent sections */
+/* Atomic Tangerine — vibrant accent sections */
 .section-mauve {
-  background-color: #a1869e;
+  background-color: #ff4400; /* atomic-tangerine-500 */
   color: #ffffff;
 }
 
-/* Lavender Grey — mid-tone sections */
+/* Dry Sage — subtle neutral sections */
 .section-grey {
-  background-color: #f0eff5;
+  background-color: #f4f4f0; /* dry-sage-50 */
 }
 
 /* ------------------------------
@@ -183,39 +241,105 @@ body {
    TAILWIND THEME BRIDGE
 ------------------------------ */
 @theme inline {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+  /* ── Semantic token bridges ── */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
 
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
 
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
 
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
 
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
 
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
 
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
 
-  --color-destructive: hsl(var(--destructive));
+  --color-destructive: var(--destructive);
 
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
-  /* Palette direct tokens */
-  --color-pale-oak: #d1c6ad;
-  --color-khaki-beige: #bbada0;
-  --color-dusty-mauve: #a1869e;
-  --color-lavender-grey: #797596;
-  --color-deep-navy: #0b1d51;
+  /* ── Bright Sky palette (bg-bright-sky-*, text-bright-sky-*, etc.) ── */
+  --color-bright-sky-50: var(--bright-sky-50);
+  --color-bright-sky-100: var(--bright-sky-100);
+  --color-bright-sky-200: var(--bright-sky-200);
+  --color-bright-sky-300: var(--bright-sky-300);
+  --color-bright-sky-400: var(--bright-sky-400);
+  --color-bright-sky-500: var(--bright-sky-500);
+  --color-bright-sky-600: var(--bright-sky-600);
+  --color-bright-sky-700: var(--bright-sky-700);
+  --color-bright-sky-800: var(--bright-sky-800);
+  --color-bright-sky-900: var(--bright-sky-900);
+  --color-bright-sky-950: var(--bright-sky-950);
+
+  /* ── Atomic Tangerine palette ── */
+  --color-atomic-tangerine-50: var(--atomic-tangerine-50);
+  --color-atomic-tangerine-100: var(--atomic-tangerine-100);
+  --color-atomic-tangerine-200: var(--atomic-tangerine-200);
+  --color-atomic-tangerine-300: var(--atomic-tangerine-300);
+  --color-atomic-tangerine-400: var(--atomic-tangerine-400);
+  --color-atomic-tangerine-500: var(--atomic-tangerine-500);
+  --color-atomic-tangerine-600: var(--atomic-tangerine-600);
+  --color-atomic-tangerine-700: var(--atomic-tangerine-700);
+  --color-atomic-tangerine-800: var(--atomic-tangerine-800);
+  --color-atomic-tangerine-900: var(--atomic-tangerine-900);
+  --color-atomic-tangerine-950: var(--atomic-tangerine-950);
+
+  /* ── Ghost White palette ── */
+  --color-ghost-white-50: var(--ghost-white-50);
+  --color-ghost-white-100: var(--ghost-white-100);
+  --color-ghost-white-200: var(--ghost-white-200);
+  --color-ghost-white-300: var(--ghost-white-300);
+  --color-ghost-white-400: var(--ghost-white-400);
+  --color-ghost-white-500: var(--ghost-white-500);
+  --color-ghost-white-600: var(--ghost-white-600);
+  --color-ghost-white-700: var(--ghost-white-700);
+  --color-ghost-white-800: var(--ghost-white-800);
+  --color-ghost-white-900: var(--ghost-white-900);
+  --color-ghost-white-950: var(--ghost-white-950);
+
+  /* ── Dry Sage palette ── */
+  --color-dry-sage-50: var(--dry-sage-50);
+  --color-dry-sage-100: var(--dry-sage-100);
+  --color-dry-sage-200: var(--dry-sage-200);
+  --color-dry-sage-300: var(--dry-sage-300);
+  --color-dry-sage-400: var(--dry-sage-400);
+  --color-dry-sage-500: var(--dry-sage-500);
+  --color-dry-sage-600: var(--dry-sage-600);
+  --color-dry-sage-700: var(--dry-sage-700);
+  --color-dry-sage-800: var(--dry-sage-800);
+  --color-dry-sage-900: var(--dry-sage-900);
+  --color-dry-sage-950: var(--dry-sage-950);
+
+  /* ── Deep Navy palette ── */
+  --color-deep-navy-50: var(--deep-navy-50);
+  --color-deep-navy-100: var(--deep-navy-100);
+  --color-deep-navy-200: var(--deep-navy-200);
+  --color-deep-navy-300: var(--deep-navy-300);
+  --color-deep-navy-400: var(--deep-navy-400);
+  --color-deep-navy-500: var(--deep-navy-500);
+  --color-deep-navy-600: var(--deep-navy-600);
+  --color-deep-navy-700: var(--deep-navy-700);
+  --color-deep-navy-800: var(--deep-navy-800);
+  --color-deep-navy-900: var(--deep-navy-900);
+  --color-deep-navy-950: var(--deep-navy-950);
+
+  /* ── Legacy palette aliases (preserved for backward compat) ── */
+  --color-pale-oak: var(--dry-sage-200); /* #d2d4c4 */
+  --color-khaki-beige: var(--dry-sage-300); /* #bbbfa6 */
+  --color-dusty-mauve: var(--atomic-tangerine-500); /* #ff4400 */
+  --color-lavender-grey: var(--bright-sky-600); /* #019fcb */
+  --color-deep-navy: var(--deep-navy-900); /* #06102d */
 
   --radius-sm: calc(var(--radius) * 0.75);
   --radius-md: var(--radius);

@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 import { applyFormSchema } from "@/lib/applyValidation";
 import { appendToSheet } from "@/lib/sheets";
+import { ApplicationReceivedEmail } from "@/emails/ApplicationReceived";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
@@ -18,6 +22,26 @@ export async function POST(request: Request) {
     }
 
     await appendToSheet(parsed.data);
+
+    const { email, full_name, preferred_name } = parsed.data;
+
+    // Send confirmation email — non-blocking, don't fail submission if email fails
+    resend.emails
+      .send({
+        from: "Compass by Celerey <compass@no-reply.celerey.co>",
+        to: email,
+        subject: "We've received your Compass application 🎉",
+        react: ApplicationReceivedEmail({
+          preferredName: preferred_name || full_name.split(" ")[0],
+          email,
+        }),
+      })
+      .then(({ error }) => {
+        if (error) console.error("⚠️ Resend error:", error);
+      })
+      .catch((err) => {
+        console.error("⚠️ Failed to send confirmation email:", err);
+      });
 
     return NextResponse.json(
       { message: "Submission received" },

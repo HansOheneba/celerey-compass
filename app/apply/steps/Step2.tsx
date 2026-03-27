@@ -39,7 +39,6 @@ export default function Step2({ register, errors }: StepComponentProps) {
             <option value="IB">IB</option>
             <option value="A Level">A Level</option>
             <option value="WASSCE">WASSCE</option>
-            <option value="University">University</option>
             <option value="Other">Other</option>
           </select>
           {errorText(errors.school_type?.message as string | undefined)}

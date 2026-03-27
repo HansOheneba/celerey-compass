@@ -1,27 +1,23 @@
 "use client";
 
-import { Compass, MessageCircle, Phone } from "lucide-react";
+import {
+  Compass,
+  MessageCircle,
+  Phone,
+  Mail,
+  ArrowUpRight,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  MotionInView,
-  MotionStagger,
-  MotionStaggerItem,
-} from "@/components/sections/scrollAnimator";
+import { MotionInView } from "@/components/sections/scrollAnimator";
 
-const footerLinks = {
-  "Quick Links": [
-    { label: "The Program", href: "#program" },
-    { label: "Weekly Journey", href: "#journey" },
-    { label: "Apply Now", href: "#apply" },
-  ],
-  Information: [
-    { label: "For Parents", href: "#parents" },
-    { label: "For Schools", href: "#schools" },
-    { label: "For Students", href: "#students" },
-    { label: "Partner With Us", href: "#partners" },
-  ],
-};
+const navLinks = [
+  { label: "The Program", href: "#program" },
+  { label: "Tuition & Dates", href: "#tracks" },
+  { label: "Journey", href: "#journey" },
+  { label: "For Parents", href: "#parents" },
+  { label: "Partners", href: "#partners" },
+];
 
 const getSectionHref = (pathname: string, href: string) =>
   pathname === "/" ? href : `/${href}`;
@@ -31,115 +27,143 @@ export default function Footer() {
 
   return (
     <footer className="bg-deep-navy relative overflow-hidden">
-      {/* subtle background shapes for playfulness */}
-      <div className="absolute -top-16 -left-16 w-40 h-40 bg-accent/10 rounded-full filter blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 -right-16 w-60 h-60 bg-pale-oak/10 rounded-full filter blur-3xl pointer-events-none" />
+      {/* ── TOP BAR: Logo left · tagline right ── */}
+      <div className="border-b border-pale-oak/15 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between gap-4">
+          <p className="hidden md:block text-pale-oak/60 text-xs tracking-widest uppercase">
+            Find your direction before life decides for you
+          </p>
 
-      {/* CTA Section */}
-      <div className="border-b border-pale-oak/20 relative z-10">
-        <MotionInView className="max-w-5xl mx-auto px-6 py-12 text-center">
-          <h2 className="font-display text-pale-oak text-3xl md:text-4xl mb-3 leading-tight">
-            Find your direction.
-            <span className="block italic text-accent text-lg md:text-xl mt-1">
-              Before life decides for you.
-            </span>
-          </h2>
+          {/* Primary CTA */}
+          <Link
+            href="/apply"
+            className="flex items-center bg-pale-oak gap-1.5 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 active:scale-95 shadow-lg shadow-pale-oak/80/30"
 
-          <div className="flex flex-wrap gap-3 justify-center mt-6">
-            <Link
-              href={getSectionHref(pathname, "#apply")}
-              className="px-6 py-3 rounded-full bg-accent text-deep-navy text-sm font-semibold hover:bg-dusty-mauve transition-all shadow-md shadow-accent/30 hover:scale-105"
-            >
-              Apply Now
-            </Link>
-            <Link
-              href={getSectionHref(pathname, "#partners")}
-              className="px-6 py-3 rounded-full border border-pale-oak/30 text-pale-oak text-sm hover:bg-pale-oak/10 transition-all"
-            >
-              Register Interest
-            </Link>
-          </div>
-
-          <div className="mt-6 text-xs text-pale-oak/40 flex flex-wrap justify-center gap-4">
-            <span>Program runs Monday, July 6 – Friday, August 7, 2026</span>
-          </div>
-        </MotionInView>
+          >
+            Apply Now
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
       </div>
 
-      {/* Footer Grid */}
-      <div className="max-w-7xl mx-auto px-6 py-10 relative z-10">
-        <MotionStagger className="grid md:grid-cols-3 gap-10">
-          {/* Brand */}
-          <MotionStaggerItem>
-            <Link href="/" className="flex items-center gap-2 mb-3">
-              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center shadow-md shadow-accent/30">
-                <Compass className="w-5 h-5 text-deep-navy" />
-              </div>
-              <span className="font-display text-pale-oak text-lg">
-                Compass Experience
-              </span>
-            </Link>
-            <p className="text-pale-oak/60 text-sm leading-relaxed max-w-xs">
-              A discovery and apprenticeship program helping young people find
-              direction through learning, experience, and reflection.
-            </p>
-            <div className="mt-4 flex flex-col gap-2">
+      {/* ── MAIN GRID ── */}
+      <div className="max-w-7xl mx-auto px-6 py-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
+          {/* Col 1 — Contact block (like "The Blue Office A/S" col) */}
+          <MotionInView className="md:col-span-4" distance={20} delay={0}>
+            <h6 className="text-pale-oak/80 text-md font-thin uppercase tracking-[0.2em] mb-4">
+              Contact Us
+            </h6>
+
+            <div className="space-y-3">
+              <a
+                href="mailto:compass@celerey.co"
+                className="flex items-start gap-3 group"
+              >
+                <span className="mt-0.5 w-7 h-7 rounded-full bg-pale-oak/80/10 flex items-center justify-center flex-shrink-0 group-hover:bg-pale-oak/80/20 transition-colors">
+                  <Mail className="w-3.5 h-3.5 text-pale-oak/80" />
+                </span>
+                <div>
+                  <p className="text-pale-oak/60 text-[10px] uppercase tracking-widest mb-0.5">
+                    Email
+                  </p>
+                  <p className="text-pale-oak text-sm group-hover:text-pale-oak transition-colors">
+                    compass@celerey.co
+                  </p>
+                </div>
+              </a>
+
               <a
                 href="tel:+233535805227"
-                className="flex items-center gap-2 text-pale-oak/70 hover:text-pale-oak text-sm transition-colors"
+                className="flex items-start gap-3 group"
               >
-                <Phone className="w-4 h-4 text-accent flex-shrink-0" />
-                +233 (0)535 805 227
+                <span className="mt-0.5 w-7 h-7 rounded-full bg-pale-oak/80/10 flex items-center justify-center flex-shrink-0 group-hover:bg-pale-oak/80/20 transition-colors">
+                  <Phone className="w-3.5 h-3.5 text-pale-oak/80" />
+                </span>
+                <div>
+                  <p className="text-pale-oak/60 text-[10px] uppercase tracking-widest mb-0.5">
+                    Phone
+                  </p>
+                  <p className="text-pale-oak text-sm group-hover:text-pale-oak transition-colors">
+                    +233 (0)535 805 227
+                  </p>
+                </div>
               </a>
+
               <a
                 href="https://wa.me/233535805227"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-pale-oak/70 hover:text-pale-oak text-sm transition-colors"
+                className="flex items-start gap-3 group"
               >
-                <MessageCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                Chat on WhatsApp
+                <span className="mt-0.5 w-7 h-7 rounded-full bg-pale-oak/80/10 flex items-center justify-center flex-shrink-0 group-hover:bg-pale-oak/80/20 transition-colors">
+                  <MessageCircle className="w-3.5 h-3.5 text-pale-oak/80" />
+                </span>
+                <div>
+                  <p className="text-pale-oak/60 text-[10px] uppercase tracking-widest mb-0.5">
+                    WhatsApp
+                  </p>
+                  <p className="text-pale-oak text-sm group-hover:text-pale-oak transition-colors">
+                    Chat with us
+                  </p>
+                </div>
               </a>
             </div>
-          </MotionStaggerItem>
 
-          {/* Footer Links */}
-          {Object.entries(footerLinks).map(([group, links]) => (
-            <MotionStaggerItem key={group}>
-              <p className="text-accent text-xs uppercase tracking-widest mb-3">
-                {group}
-              </p>
-              <ul className="space-y-2">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={getSectionHref(pathname, link.href)}
-                      className="text-pale-oak/70 hover:text-pale-oak text-sm transition-colors hover:underline"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </MotionStaggerItem>
-          ))}
-        </MotionStagger>
+          
+          
+          </MotionInView>
 
-        {/* Bottom Bar */}
-        <MotionInView className="mt-10 pt-6 border-t border-pale-oak/20 flex flex-col md:flex-row justify-between items-center gap-3 text-pale-oak/40 text-xs">
+          {/* Col 2 — Nav links (like "Solutions / Locations / etc." cols) */}
+          <MotionInView className="md:col-span-4" distance={20} delay={0.1}>
+            <h6 className="text-pale-oak/80 text-md font-thin uppercase tracking-[0.2em] mb-4">
+              Explore
+            </h6>
+            <ul className="space-y-2.5">
+              {navLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={getSectionHref(pathname, link.href)}
+                    className="text-pale-oak/85 hover:text-pale-oak text-sm transition-colors hover:translate-x-0.5 inline-flex items-center gap-1.5 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-pale-oak/80/50 group-hover:bg-pale-oak/80 transition-colors shrink-0" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </MotionInView>
+
+          {/* Col 3 — About / CTA block */}
+          <MotionInView className="md:col-span-4" distance={20} delay={0.2}>
+            <h6 className="text-pale-oak/80 text-md font-thin uppercase tracking-[0.2em] mb-4">
+              About the Program
+            </h6>
+            <p className="text-pale-oak/75 text-sm leading-relaxed mb-6">
+              A discovery and apprenticeship program helping young people find
+              direction through learning, real-world experience, and reflection.
+            </p>
+          </MotionInView>
+        </div>
+      </div>
+
+      {/* ── BOTTOM BAR ── */}
+      <div className=" relative z-10">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-pale-oak/55 text-xs">
           <p>
             © {new Date().getFullYear()} Compass Experience. All rights
             reserved.
           </p>
-          <div className="flex gap-4">
-            <a href="#" className="hover:text-pale-oak/70 transition-colors">
+
+          <div className="flex gap-5">
+            <a href="#" className="hover:text-pale-oak/85 transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-pale-oak/70 transition-colors">
+            <a href="#" className="hover:text-pale-oak/85 transition-colors">
               Terms of Use
             </a>
           </div>
-        </MotionInView>
+        </div>
       </div>
     </footer>
   );
