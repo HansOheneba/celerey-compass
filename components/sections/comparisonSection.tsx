@@ -152,15 +152,15 @@ export default function ComparisonSection() {
         </MotionStagger>
 
         {/* Self-discovery block */}
-        <MotionInView className="mb-28">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-            {/* Text */}
+        <MotionInView>
+          <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+            {/* TEXT */}
             <div className="max-w-xl">
-              <p className="text-xs uppercase mb-4 font-semibold text-bright-sky-600">
+              <p className="text-xs uppercase mb-4 font-semibold text-bright-sky-600 tracking-wider">
                 Why it matters
               </p>
 
-              <h3 className="text-3xl md:text-5xl mb-6 text-deep-navy-900">
+              <h3 className="text-3xl md:text-5xl mb-6 text-deep-navy-900 leading-tight">
                 Know yourself first.
                 <br />
                 <span className="italic text-deep-navy-500">
@@ -169,61 +169,63 @@ export default function ComparisonSection() {
               </h3>
 
               <p className="text-lg text-deep-navy-700 mb-5">
-                Most students are asked to pick a direction before they even
-                know who they are. Compass flips that.
+                Most students are asked to choose a path before they understand
+                themselves. Compass flips that.
               </p>
 
               <p className="text-lg text-deep-navy-700 mb-5">
                 <strong className="text-deep-navy-900">
-                  You figure out your strengths, values, and interests first
-                </strong>
-                , then explore where those could take you.
+                  Start with your strengths, values, and interests
+                </strong>{" "}
+                — then explore where they can take you.
               </p>
 
               <p className="text-lg text-deep-navy-700">
-                You don’t just leave with experience. You leave with{" "}
-                <strong className="text-deep-navy-900">clarity.</strong>
+                You don’t just leave with experience.
+                <strong className="text-deep-navy-900">
+                  {" "}
+                  You leave with clarity.
+                </strong>
               </p>
             </div>
 
-            {/* Visual Stack */}
-            <div className="relative h-[500px] md:h-[600px]">
-              {/* Main Image */}
-              <div className="absolute top-0 right-0 w-[80%] h-[75%] rounded-3xl overflow-hidden shadow-2xl">
-                <Image
-                  src="https://images.unsplash.com/photo-1655720348616-184ae7fad7e3"
-                  alt=""
-                  fill
-                  className="object-cover"
+            {/* VIDEO SIDE */}
+            <div className="relative flex justify-center md:justify-end">
+              {/* Glow Background */}
+              <div className="absolute w-[300px] h-[300px] bg-bright-sky-400/20 blur-3xl rounded-full -z-10 top-1/2 -translate-y-1/2 right-10" />
+
+              {/* Video Container */}
+              <div className="relative w-[260px] md:w-[320px] h-[520px] md:h-[640px] rounded-[2rem] overflow-hidden shadow-2xl bg-black">
+                {/* Video */}
+                <video
+                  src="/claire.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover scale-[1.03]"
                 />
-              </div>
 
-              {/* Secondary Image */}
-              <div className="absolute bottom-0 left-0 w-[55%] h-[55%] rounded-2xl overflow-hidden shadow-xl border-4 border-white">
-                <Image
-                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-                  alt=""
-                  fill
-                  className="object-cover"
-                />
-              </div>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
-              {/* Floating Card 1 */}
-              <div className="absolute top-6 left-6 bg-white rounded-2xl shadow-lg p-4 max-w-[200px]">
-                <p className="text-sm text-deep-navy-900 font-medium">
-                  Guided self-discovery
-                </p>
-                <p className="text-xs text-deep-navy-600">
-                  Not just thrown into work
-                </p>
-              </div>
+                {/* Floating Card 1 */}
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-xl shadow-md px-3 py-2 max-w-[160px]">
+                  <p className="text-xs font-semibold text-deep-navy-900">
+                    Guided self-discovery
+                  </p>
+                  <p className="text-[10px] text-deep-navy-600">
+                    Not just thrown into work
+                  </p>
+                </div>
 
-              {/* Floating Card 2 */}
-              <div className="absolute bottom-10 right-6 bg-deep-navy-900 text-white rounded-2xl shadow-lg p-4 max-w-[200px]">
-                <p className="text-sm font-medium">Real-world experience</p>
-                <p className="text-xs text-white/70">
-                  With support at every step
-                </p>
+                {/* Floating Card 2 */}
+                <div className="absolute bottom-4 right-4 bg-deep-navy-900 text-white rounded-xl shadow-md px-3 py-2 max-w-[160px]">
+                  <p className="text-xs font-semibold">Real-world experience</p>
+                  <p className="text-[10px] text-white/70">
+                    With support at every step
+                  </p>
+                </div>
               </div>
             </div>
           </div>
