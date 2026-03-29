@@ -162,7 +162,9 @@ export default function ApplyForm() {
       });
       const data = (await res.json()) as { url?: string; error?: string };
       if (!res.ok || !data.url) {
-        setPayError(data.error ?? "Failed to start checkout. Please try again.");
+        setPayError(
+          data.error ?? "Failed to start checkout. Please try again.",
+        );
         return;
       }
       window.location.href = data.url;

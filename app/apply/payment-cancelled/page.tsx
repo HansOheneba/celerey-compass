@@ -49,7 +49,9 @@ export default function PaymentCancelledPage() {
       });
       const data = (await res.json()) as { url?: string; error?: string };
       if (!res.ok || !data.url) {
-        setPayError(data.error ?? "Failed to start checkout. Please try again.");
+        setPayError(
+          data.error ?? "Failed to start checkout. Please try again.",
+        );
         return;
       }
       window.location.href = data.url;
@@ -90,7 +92,10 @@ export default function PaymentCancelledPage() {
             >
               Skip for now
             </p>
-            <p className="text-sm mb-6" style={{ color: "var(--deep-navy-500)" }}>
+            <p
+              className="text-sm mb-6"
+              style={{ color: "var(--deep-navy-500)" }}
+            >
               Here&apos;s what you walk away from.
             </p>
 
@@ -204,7 +209,10 @@ export default function PaymentCancelledPage() {
               <p className="mt-3 text-sm text-red-300">{payError}</p>
             )}
             {!email && (
-              <p className="mt-3 text-xs" style={{ color: "var(--bright-sky-300)" }}>
+              <p
+                className="mt-3 text-xs"
+                style={{ color: "var(--bright-sky-300)" }}
+              >
                 <Link href="/apply" className="underline">
                   Go back to your application
                 </Link>{" "}
