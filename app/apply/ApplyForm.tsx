@@ -22,6 +22,7 @@ import { Section4 } from "./steps/Section4";
 import { Section5 } from "./steps/Section5";
 
 const STORAGE_KEY = "compass-apply-form-v2";
+const SUBMITTED_KEY = "compass-apply-submitted-v2";
 const TOTAL_STEPS = 5;
 
 const SECTION_TITLES = [
@@ -49,9 +50,11 @@ const slideVariants = {
 export default function ApplyForm() {
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
-  const [submitError, setSubmitError] = useState("");
+  const [isPaying, setIsPaying] = useState(false);
+  const [payError, setPayError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState("");
 
   const {
     register,
@@ -70,13 +73,26 @@ export default function ApplyForm() {
   const values = useWatch({ control }) ?? defaultApplyFormValues;
 
   useEffect(() => {
+    // Restore form field values
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
-    try {
-      const saved = JSON.parse(raw) as Partial<ApplyFormData>;
-      reset({ ...defaultApplyFormValues, ...saved });
-    } catch {
-      window.localStorage.removeItem(STORAGE_KEY);
+    if (raw) {
+      try {
+        const saved = JSON.parse(raw) as Partial<ApplyFormData>;
+        reset({ ...defaultApplyFormValues, ...saved });
+      } catch {
+        window.localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+    // Restore submitted state so returning from payment-cancelled resumes here
+    const submittedRaw = window.localStorage.getItem(SUBMITTED_KEY);
+    if (submittedRaw) {
+      try {
+        const { email } = JSON.parse(submittedRaw) as { email: string };
+        setSubmittedEmail(email);
+        setSubmitted(true);
+      } catch {
+        window.localStorage.removeItem(SUBMITTED_KEY);
+      }
     }
   }, [reset]);
 
@@ -122,6 +138,10 @@ export default function ApplyForm() {
         return;
       }
       window.localStorage.removeItem(STORAGE_KEY);
+      window.localStorage.setItem(
+        SUBMITTED_KEY,
+        JSON.stringify({ email: data.email }),
+      );
       setSubmittedEmail(data.email);
       setSubmitted(true);
     } catch {
@@ -131,11 +151,26 @@ export default function ApplyForm() {
     }
   };
 
-  const handlePay = () => {
-    const stripeUrl = new URL("https://buy.stripe.com/3cI3cv6ng9MB4yffeV9Ve07");
-    if (submittedEmail)
-      stripeUrl.searchParams.set("prefilled_email", submittedEmail);
-    window.location.href = stripeUrl.toString();
+  const handlePay = async () => {
+    setIsPaying(true);
+    setPayError("");
+    try {
+      const res = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: submittedEmail }),
+      });
+      const data = (await res.json()) as { url?: string; error?: string };
+      if (!res.ok || !data.url) {
+        setPayError(data.error ?? "Failed to start checkout. Please try again.");
+        return;
+      }
+      window.location.href = data.url;
+    } catch {
+      setPayError("Network error. Please check your connection and try again.");
+    } finally {
+      setIsPaying(false);
+    }
   };
 
   const industries = (values.industries ?? []) as string[];
@@ -208,13 +243,33 @@ export default function ApplyForm() {
                 <button
                   type="button"
                   onClick={handlePay}
-                  className="mt-5 inline-flex items-center gap-2 rounded-lg bg-teal-600 px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700"
+                  disabled={isPaying}
+                  className="mt-5 inline-flex items-center gap-2 rounded-lg bg-teal-600 px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <CreditCard className="h-4 w-4" />
-                  Pay Now
+                  {isPaying ? "Redirecting…" : "Pay Now"}
                 </button>
+                {payError && (
+                  <p className="mt-3 text-sm text-red-600">{payError}</p>
+                )}
               </div>
             </div>
+          </div>
+          <div className="border-t border-gray-100 px-8 py-4 sm:px-10">
+            <button
+              type="button"
+              onClick={() => {
+                window.localStorage.removeItem(SUBMITTED_KEY);
+                window.localStorage.removeItem(STORAGE_KEY);
+                setSubmitted(false);
+                setSubmittedEmail(null);
+                setStep(0);
+                reset(defaultApplyFormValues);
+              }}
+              className="text-xs text-gray-400 underline underline-offset-2 hover:text-gray-600 transition"
+            >
+              Clear application and start over
+            </button>
           </div>
         </div>
         <Toaster richColors position="top-right" />

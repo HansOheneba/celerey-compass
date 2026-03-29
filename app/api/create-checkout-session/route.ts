@@ -31,7 +31,8 @@ export async function POST(request: Request) {
       customer_email: email,
       line_items: [{ price: priceId, quantity: 1 }],
       metadata: { email },
-      success_url: `${origin}/apply/payment-success`,
+      allow_promotion_codes: true,
+      success_url: `${origin}/apply/payment-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/apply/payment-cancelled`,
     });
 
