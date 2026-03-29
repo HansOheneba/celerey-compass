@@ -1,4 +1,3 @@
-
 import HeroSection from "@/components/sections/heroSection";
 import ComparisonSection from "@/components/sections/comparisonSection";
 import TracksSection from "@/components/sections/tuitionSection";
@@ -11,13 +10,17 @@ import {
 } from "@/components/sections/StudentSchoolSection";
 import PartnersSection from "@/components/sections/PartnersSection";
 import OutcomesSection from "@/components/sections/vpSection";
+import ProgramHeaderSection from "@/components/sections/ProgramHeaderSection";
+import WhyItMattersSection from "@/components/sections/WhyItMattersSection";
 
 export default function Home() {
   return (
     <main className="overflow-x-hidden bg-white">
       <HeroSection />
+      <ProgramHeaderSection />
       <ComparisonSection />
       <OutcomesSection />
+      <WhyItMattersSection />
       <TracksSection />
       <JourneySection />
       <ApplySection />

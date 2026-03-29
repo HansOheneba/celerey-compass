@@ -106,15 +106,14 @@ export default function ProgramDetailsSection() {
                 {[
                   0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195,
                   210, 225, 240, 255, 270, 285, 300, 315, 330, 345,
-                ].map((deg) => (
-                  <line
-                    key={deg}
-                    x1={Math.sin((deg * Math.PI) / 180) * 110}
-                    y1={-Math.cos((deg * Math.PI) / 180) * 110}
-                    x2={Math.sin((deg * Math.PI) / 180) * 100}
-                    y2={-Math.cos((deg * Math.PI) / 180) * 100}
-                  />
-                ))}
+                ].map((deg) => {
+                  const rad = (deg * Math.PI) / 180;
+                  const x1 = parseFloat((Math.sin(rad) * 110).toFixed(4));
+                  const y1 = parseFloat((-Math.cos(rad) * 110).toFixed(4));
+                  const x2 = parseFloat((Math.sin(rad) * 100).toFixed(4));
+                  const y2 = parseFloat((-Math.cos(rad) * 100).toFixed(4));
+                  return <line key={deg} x1={x1} y1={y1} x2={x2} y2={y2} />;
+                })}
                 <polygon
                   points="0,-110 -7,-80 0,-50 7,-80"
                   fill="white"
