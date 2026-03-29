@@ -36,7 +36,13 @@ interface Props {
   errors: FieldErrors<ApplyFormData>;
 }
 
-export function Section2({ industries, workEnergisers, toggleIndustry, toggleWork, errors }: Props) {
+export function Section2({
+  industries,
+  workEnergisers,
+  toggleIndustry,
+  toggleWork,
+  errors,
+}: Props) {
   return (
     <div className="space-y-8">
       <div>

@@ -92,7 +92,9 @@ export default function ApplyForm() {
     const fields = stepFieldNames[step];
     const valid =
       fields.length > 0
-        ? await trigger(fields as Parameters<typeof trigger>[0], { shouldFocus: true })
+        ? await trigger(fields as Parameters<typeof trigger>[0], {
+            shouldFocus: true,
+          })
         : true;
     if (!valid) return;
     setDirection(1);
@@ -114,20 +116,25 @@ export default function ApplyForm() {
       });
       const payload = (await response.json()) as { error?: string };
       if (!response.ok) {
-        setSubmitError(payload.error ?? "Something went wrong. Please try again.");
+        setSubmitError(
+          payload.error ?? "Something went wrong. Please try again.",
+        );
         return;
       }
       window.localStorage.removeItem(STORAGE_KEY);
       setSubmittedEmail(data.email);
       setSubmitted(true);
     } catch {
-      setSubmitError("Network error. Please check your connection and try again.");
+      setSubmitError(
+        "Network error. Please check your connection and try again.",
+      );
     }
   };
 
   const handlePay = () => {
     const stripeUrl = new URL("https://buy.stripe.com/3cI3cv6ng9MB4yffeV9Ve07");
-    if (submittedEmail) stripeUrl.searchParams.set("prefilled_email", submittedEmail);
+    if (submittedEmail)
+      stripeUrl.searchParams.set("prefilled_email", submittedEmail);
     window.location.href = stripeUrl.toString();
   };
 
@@ -136,7 +143,11 @@ export default function ApplyForm() {
 
   const toggleIndustry = (item: string) => {
     if (industries.includes(item)) {
-      setValue("industries", industries.filter((i) => i !== item), { shouldValidate: true });
+      setValue(
+        "industries",
+        industries.filter((i) => i !== item),
+        { shouldValidate: true },
+      );
     } else if (industries.length < 3) {
       setValue("industries", [...industries, item], { shouldValidate: true });
     }
@@ -144,9 +155,15 @@ export default function ApplyForm() {
 
   const toggleWork = (item: string) => {
     if (workEnergisers.includes(item)) {
-      setValue("workEnergisers", workEnergisers.filter((i) => i !== item), { shouldValidate: true });
+      setValue(
+        "workEnergisers",
+        workEnergisers.filter((i) => i !== item),
+        { shouldValidate: true },
+      );
     } else {
-      setValue("workEnergisers", [...workEnergisers, item], { shouldValidate: true });
+      setValue("workEnergisers", [...workEnergisers, item], {
+        shouldValidate: true,
+      });
     }
   };
 
@@ -162,9 +179,12 @@ export default function ApplyForm() {
               <p className="text-xs font-semibold uppercase tracking-wider text-teal-600">
                 Step 1 complete
               </p>
-              <h2 className="mt-1 text-xl text-[#0f1f1e]">Application received</h2>
+              <h2 className="mt-1 text-xl text-[#0f1f1e]">
+                Application received
+              </h2>
               <p className="mt-1 text-sm text-[#6b7280]">
-                Your application has been submitted. We&apos;ve recorded your details.
+                Your application has been submitted. We&apos;ve recorded your
+                details.
               </p>
             </div>
           </div>
@@ -174,11 +194,16 @@ export default function ApplyForm() {
                 <CreditCard className="h-5 w-5 text-[#0f1f1e]" />
               </div>
               <div className="flex-1">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#6b7280]">Step 2</p>
-                <h2 className="mt-1 text-xl text-[#0f1f1e]">Secure your spot</h2>
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#6b7280]">
+                  Step 2
+                </p>
+                <h2 className="mt-1 text-xl text-[#0f1f1e]">
+                  Secure your spot
+                </h2>
                 <p className="mt-1 text-sm text-[#6b7280]">
-                  Complete the enrollment fee to confirm your place in the Compass programme. Your
-                  spot is not guaranteed until payment is received.
+                  Complete the enrollment fee to confirm your place in the
+                  Compass programme. Your spot is not guaranteed until payment
+                  is received.
                 </p>
                 <button
                   type="button"
@@ -232,7 +257,11 @@ export default function ApplyForm() {
 
                 {/* ── SECTION 01 ────────────────────────────────────── */}
                 {step === 0 && (
-                  <Section1 register={register} control={control} errors={errors} />
+                  <Section1
+                    register={register}
+                    control={control}
+                    errors={errors}
+                  />
                 )}
 
                 {/* ── SECTION 02 ────────────────────────────────────── */}
@@ -247,18 +276,18 @@ export default function ApplyForm() {
                 )}
 
                 {/* ── SECTION 03 ────────────────────────────────────── */}
-                {step === 2 && (
-                  <Section3 register={register} errors={errors} />
-                )}
+                {step === 2 && <Section3 register={register} errors={errors} />}
 
                 {/* ── SECTION 04 ────────────────────────────────────── */}
-                {step === 3 && (
-                  <Section4 control={control} errors={errors} />
-                )}
+                {step === 3 && <Section4 control={control} errors={errors} />}
 
                 {/* ── SECTION 05 ────────────────────────────────────── */}
                 {step === 4 && (
-                  <Section5 register={register} control={control} errors={errors} />
+                  <Section5
+                    register={register}
+                    control={control}
+                    errors={errors}
+                  />
                 )}
               </motion.div>
             </AnimatePresence>
@@ -276,9 +305,7 @@ export default function ApplyForm() {
                 type="button"
                 variant="ghost"
                 onClick={handleBack}
-                className={`text-[#6b7280] ${
-                  step === 0 ? "invisible" : ""
-                }`}
+                className={`text-[#6b7280] ${step === 0 ? "invisible" : ""}`}
               >
                 &#8592; Back
               </Button>
@@ -298,7 +325,9 @@ export default function ApplyForm() {
                 <Button
                   type="button"
                   onClick={() => void handleSubmit(onSubmit)()}
-                  disabled={!isCurrentStepValid || isSubmitting || !values.agreedToTerms}
+                  disabled={
+                    !isCurrentStepValid || isSubmitting || !values.agreedToTerms
+                  }
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
                   {isSubmitting ? "Submitting..." : "Submit application \u2192"}

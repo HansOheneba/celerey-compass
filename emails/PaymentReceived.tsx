@@ -38,7 +38,6 @@ export function PaymentReceivedEmail({
 
             {/* Hero */}
             <Section className="bg-slate-900 rounded-2xl px-8 py-10 text-center mt-2">
-              <Text className="text-4xl m-0">💳</Text>
               <Heading className="text-white text-2xl font-bold mt-4 mb-2 leading-snug">
                 Payment Received
               </Heading>
@@ -55,7 +54,7 @@ export function PaymentReceivedEmail({
 
               <Text className="text-slate-600 text-base leading-7 m-0 mb-4">
                 We&apos;ve received your payment for{" "}
-                <strong className="text-slate-800">Compass</strong> — thank you!
+                <strong className="text-slate-800">Compass</strong>...Thank you!
               </Text>
 
               <Text className="text-slate-600 text-base leading-7 m-0 mb-4">

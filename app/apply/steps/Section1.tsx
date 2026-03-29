@@ -99,7 +99,9 @@ export function Section1({ register, control, errors }: Props) {
               </SelectTrigger>
               <SelectContent>
                 {Y_GROUPS.map((y) => (
-                  <SelectItem key={y} value={y}>{y}</SelectItem>
+                  <SelectItem key={y} value={y}>
+                    {y}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>

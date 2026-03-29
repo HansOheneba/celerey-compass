@@ -20,7 +20,9 @@ export function Section5({ register, control, errors }: Props) {
     <div className="space-y-5">
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
-          <Label htmlFor="guardianFirstName">Parent / guardian first name</Label>
+          <Label htmlFor="guardianFirstName">
+            Parent / guardian first name
+          </Label>
           <Input
             id="guardianFirstName"
             placeholder="First name"
@@ -95,8 +97,12 @@ export function Section5({ register, control, errors }: Props) {
               htmlFor="agreedToTerms"
               className="cursor-pointer text-sm leading-relaxed text-[#374151]"
             >
-              I confirm I meet the eligibility criteria (Years 10&ndash;12) and agree to the{" "}
-              <a href="/terms" className="text-teal-600 underline underline-offset-2">
+              I confirm I meet the eligibility criteria (Years 10&ndash;12) and
+              agree to the{" "}
+              <a
+                href="/terms"
+                className="text-teal-600 underline underline-offset-2"
+              >
                 programme terms
               </a>
               .

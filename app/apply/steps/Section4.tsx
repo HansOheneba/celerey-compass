@@ -127,7 +127,9 @@ export function Section4({ control, errors }: Props) {
               </SelectTrigger>
               <SelectContent>
                 {HEARD_OPTIONS.map((o) => (
-                  <SelectItem key={o} value={o}>{o}</SelectItem>
+                  <SelectItem key={o} value={o}>
+                    {o}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>

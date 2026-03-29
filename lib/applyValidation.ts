@@ -4,7 +4,10 @@ export const applyFormSchema = z.object({
   // Section 1
   firstName: z.string().min(1, "This field is required"),
   lastName: z.string().min(1, "This field is required"),
-  email: z.string().min(1, "This field is required").email("Enter a valid email"),
+  email: z
+    .string()
+    .min(1, "This field is required")
+    .email("Enter a valid email"),
   whatsapp: z.string().min(1, "This field is required"),
   country: z.string().min(1, "This field is required"),
   yearGroup: z.string().min(1, "This field is required"),
@@ -12,7 +15,10 @@ export const applyFormSchema = z.object({
   birthday: z.string().min(1, "This field is required"),
 
   // Section 2
-  industries: z.array(z.string()).min(1, "Select at least one").max(3, "Pick up to three"),
+  industries: z
+    .array(z.string())
+    .min(1, "Select at least one")
+    .max(3, "Pick up to three"),
   workEnergisers: z.array(z.string()).min(1, "Select at least one"),
 
   // Section 3
@@ -29,10 +35,15 @@ export const applyFormSchema = z.object({
   // Section 5
   guardianFirstName: z.string().min(1, "This field is required"),
   guardianLastName: z.string().min(1, "This field is required"),
-  guardianEmail: z.string().min(1, "This field is required").email("Enter a valid email"),
+  guardianEmail: z
+    .string()
+    .min(1, "This field is required")
+    .email("Enter a valid email"),
   guardianWhatsapp: z.string().min(1, "This field is required"),
   additionalNotes: z.string().optional(),
-  agreedToTerms: z.boolean().refine((v) => v === true, "You must agree to the terms"),
+  agreedToTerms: z
+    .boolean()
+    .refine((v) => v === true, "You must agree to the terms"),
 });
 
 export type ApplyFormData = z.infer<typeof applyFormSchema>;
@@ -98,9 +109,24 @@ export const stepSchemas = [
 ] as const;
 
 export const stepFieldNames: Array<Array<keyof ApplyFormData>> = [
-  ["firstName", "lastName", "email", "whatsapp", "country", "yearGroup", "schoolName", "birthday"],
+  [
+    "firstName",
+    "lastName",
+    "email",
+    "whatsapp",
+    "country",
+    "yearGroup",
+    "schoolName",
+    "birthday",
+  ],
   ["industries", "workEnergisers"],
   ["curiosity", "compassGoal"],
   ["comfortInNewEnvs", "responseToSetbacks", "clarityOnFuture", "heardAbout"],
-  ["guardianFirstName", "guardianLastName", "guardianEmail", "guardianWhatsapp", "agreedToTerms"],
+  [
+    "guardianFirstName",
+    "guardianLastName",
+    "guardianEmail",
+    "guardianWhatsapp",
+    "agreedToTerms",
+  ],
 ];
