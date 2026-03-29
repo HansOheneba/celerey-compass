@@ -86,27 +86,28 @@ export function Section5({ register, control, errors }: Props) {
         control={control}
         name="agreedToTerms"
         render={({ field }) => (
-          <div className="flex items-start gap-3 rounded-xl border border-gray-200 p-4">
-            <Checkbox
-              id="agreedToTerms"
-              checked={field.value}
-              onCheckedChange={field.onChange}
-              className="mt-0.5 data-[state=checked]:border-teal-600 data-[state=checked]:bg-teal-600"
-            />
-            <Label
-              htmlFor="agreedToTerms"
-              className="cursor-pointer text-sm leading-relaxed text-[#374151]"
-            >
-              I confirm I meet the eligibility criteria (Years 10&ndash;12) and
-              agree to the{" "}
-              <a
-                href="/terms"
-                className="text-teal-600 underline underline-offset-2"
-              >
-                programme terms
-              </a>
-              .
-            </Label>
+          <div className="flex flex-col gap-2 rounded-xl border border-gray-200 p-4">
+            {/* Checkbox with its own label row */}
+            <div className="flex items-center gap-3">
+              <Checkbox
+                id="agreedToTerms"
+                checked={field.value}
+                onCheckedChange={field.onChange}
+                className="data-[state=checked]:border-teal-600 data-[state=checked]:bg-teal-600"
+              />
+              <span className="text-sm text-[#374151]">
+                I confirm I meet the eligibility criteria (Years 10&ndash;12)
+                and agree to the{" "}
+                <a
+                  href="/terms"
+                  className="text-teal-600 underline underline-offset-2"
+                  onClick={(e) => e.stopPropagation()} // ensures link works
+                >
+                  programme terms
+                </a>
+                .
+              </span>
+            </div>
           </div>
         )}
       />

@@ -13,7 +13,6 @@ import {
   stepSchemas,
   type ApplyFormData,
 } from "@/lib/applyValidation";
-import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Section1 } from "./steps/Section1";
 import { Section2 } from "./steps/Section2";
@@ -279,17 +278,24 @@ export default function ApplyForm() {
     );
   }
 
-  const progress = ((step + 1) / TOTAL_STEPS) * 100;
-
   return (
     <div className="min-h-screen bg-[#f5f0e8] px-4 py-10 sm:px-6 sm:py-16">
       <div className="mx-auto w-full max-w-2xl">
-        {/* Progress bar */}
+        {/* Segmented progress */}
         <div className="mb-8">
-          <p className="mb-2 text-xs font-bold uppercase tracking-widest text-teal-600">
+          <p className="mb-3 text-xs font-bold uppercase tracking-widest text-teal-600">
             Section {String(step + 1).padStart(2, "0")} of 05
           </p>
-          <Progress value={progress} className="h-1.5" />
+          <div className="flex gap-1.5">
+            {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+              <div
+                key={i}
+                className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${
+                  i <= step ? "bg-[#0c205a]" : "bg-[#d2d4c4]"
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-lg">
