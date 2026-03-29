@@ -110,8 +110,7 @@ export function PaymentReceivedEmail({
               <Hr className="border-slate-200 my-6" />
 
               <Text className="text-slate-600 text-base leading-7 m-0">
-                Have questions? Just reply to this email — we&apos;ll be happy
-                to help.
+                Have questions? Just shoot us an email at compass@celerey.co
               </Text>
 
               <Text className="text-slate-800 text-base leading-7 m-0 mt-4">

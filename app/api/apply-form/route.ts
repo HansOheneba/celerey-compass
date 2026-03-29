@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
     await appendToSheet(parsed.data);
 
-    const { email, full_name, preferred_name } = parsed.data;
+    const { email, firstName } = parsed.data;
 
     // Send confirmation email — non-blocking, don't fail submission if email fails
     resend.emails
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
         to: email,
         subject: "We've received your Compass application 🎉",
         react: ApplicationReceivedEmail({
-          preferredName: preferred_name || full_name.split(" ")[0],
+          preferredName: firstName,
           email,
         }),
       })
