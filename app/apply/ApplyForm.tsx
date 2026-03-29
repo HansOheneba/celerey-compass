@@ -311,7 +311,7 @@ export default function ApplyForm() {
                 transition={{ duration: 0.25, ease: "easeInOut" }}
               >
                 {/* Section header */}
-                <h2 className="mb-2 font-display text-3xl font-bold text-[#0f1f1e] sm:text-4xl">
+                <h2 className="mb-2 font-display text-3xl text-[#0f1f1e] sm:text-4xl">
                   {SECTION_TITLES[step]}
                 </h2>
                 <p className="mb-8 text-sm leading-relaxed text-[#6b7280]">
