@@ -12,10 +12,10 @@ export default function ProgramHeaderSection() {
           className="font-display text-4xl md:text-6xl leading-tight mb-4"
           style={{ color: "var(--deep-navy-900)", letterSpacing: "-0.02em" }}
         >
-          Your first real taste of
+          You don’t have to have it all
           <br />
           <span className="relative inline-block mt-1.5">
-            <span className="relative z-10">the field.</span>
+            <span className="relative z-10">figured out.</span>
             <span
               className="absolute inset-0 z-0"
               style={{
@@ -93,7 +93,9 @@ export default function ProgramHeaderSection() {
               className="text-base leading-relaxed"
               style={{ color: "var(--deep-navy-600)" }}
             >
-              A dedicated mentor, a clear path, and real work that ships. An opportunity to make real impact while you figure out what excites you.
+              A dedicated mentor, a clear path, and real work that ships. An
+              opportunity to make real impact while you figure out what excites
+              you.
             </p>
           </div>
 

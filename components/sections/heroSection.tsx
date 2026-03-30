@@ -26,10 +26,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section
-      className="pt-30 pb-10"
-
-    >
+    <section className="pt-30 pb-10">
       <div className="max-w-full mx-auto px-6 md:px-20">
         <div className="relative rounded-3xl overflow-hidden h-[70vh]">
           {/* VIDEO BACKGROUND */}
@@ -37,11 +34,10 @@ export default function HeroSection() {
             className="absolute inset-0 w-full h-full object-cover"
             autoPlay
             muted
-            loop
             playsInline
             preload="metadata"
           >
-            <source src="/hero.mp4" type="video/mp4" />
+            <source src="/hero1.mp4" type="video/mp4" />
           </video>
 
           {/* OVERLAY — fades in slowly like a curtain drawing */}
@@ -50,8 +46,7 @@ export default function HeroSection() {
             style={{
               background:
                 "linear-gradient(to bottom, rgba(0,0,0,0.50), rgba(0,0,0,0.40), rgba(0,0,0,0.82))",
-              opacity: overlayVisible ? 1 : 0,
-              transition: "opacity 2200ms cubic-bezier(0.4, 0, 0.2, 1)",
+              opacity: 1,
             }}
           />
 
@@ -76,10 +71,7 @@ export default function HeroSection() {
                 }}
               >
                 {/* HEADLINE */}
-                <h1
-                  className="text-6xl text-white md:text-7xl leading-none mb-8"
-              
-                >
+                <h1 className="text-6xl text-white md:text-7xl leading-none mb-8">
                   Find Your Direction.
                 </h1>
 
