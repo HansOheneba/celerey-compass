@@ -1,5 +1,14 @@
 import { z } from "zod";
 
+
+const whatsappSchema = z
+  .string()
+  .min(1, "This field is required")
+  .regex(
+    /^\+[1-9]\d{10,15}$/,
+    "Enter a valid number with country code (e.g. +233241234567)",
+  );
+
 export const applyFormSchema = z.object({
   // Section 1
   firstName: z.string().min(1, "This field is required"),
@@ -8,7 +17,7 @@ export const applyFormSchema = z.object({
     .string()
     .min(1, "This field is required")
     .email("Enter a valid email"),
-  whatsapp: z.string().min(1, "This field is required"),
+  whatsapp: whatsappSchema,
   country: z.string().min(1, "This field is required"),
   yearGroup: z.string().min(1, "This field is required"),
   schoolName: z.string().min(1, "This field is required"),
@@ -39,7 +48,7 @@ export const applyFormSchema = z.object({
     .string()
     .min(1, "This field is required")
     .email("Enter a valid email"),
-  guardianWhatsapp: z.string().min(1, "This field is required"),
+  guardianWhatsapp: whatsappSchema,
   additionalNotes: z.string().optional(),
   agreedToTerms: z
     .boolean()
@@ -52,7 +61,7 @@ export const defaultApplyFormValues: ApplyFormData = {
   firstName: "",
   lastName: "",
   email: "",
-  whatsapp: "",
+  whatsapp: "+",
   country: "",
   yearGroup: "",
   schoolName: "",
@@ -69,7 +78,7 @@ export const defaultApplyFormValues: ApplyFormData = {
   guardianFirstName: "",
   guardianLastName: "",
   guardianEmail: "",
-  guardianWhatsapp: "",
+  guardianWhatsapp: "+",
   additionalNotes: "",
   agreedToTerms: false,
 };

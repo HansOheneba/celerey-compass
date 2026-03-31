@@ -54,12 +54,27 @@ export function Section5({ register, control, errors }: Props) {
         </div>
         <div>
           <Label htmlFor="guardianWhatsapp">Their WhatsApp number</Label>
-          <Input
-            id="guardianWhatsapp"
-            type="tel"
-            placeholder="+1 234 567 8900"
-            className="mt-1"
-            {...register("guardianWhatsapp")}
+          <Controller
+            control={control}
+            name="guardianWhatsapp"
+            render={({ field }) => (
+              <Input
+                id="guardianWhatsapp"
+                type="tel"
+                placeholder="+233241234567"
+                className="mt-1"
+                value={field.value}
+                onChange={(e) => {
+                  const digits = e.target.value.replace(/[^\d]/g, "");
+                  field.onChange("+" + digits);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Backspace" && field.value === "+") {
+                    e.preventDefault();
+                  }
+                }}
+              />
+            )}
           />
           <FieldError message={errors.guardianWhatsapp?.message} />
         </div>
