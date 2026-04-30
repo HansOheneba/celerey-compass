@@ -11,10 +11,13 @@ const navLinks = [
   { label: "Journey", href: "#journey" },
   { label: "For Parents", href: "#parents" },
   { label: "Partners", href: "#partners" },
+  { label: "Register as a Host", href: "/register" },
 ];
 
-const getSectionHref = (pathname: string, href: string) =>
-  pathname === "/" ? href : `/${href}`;
+const getSectionHref = (pathname: string, href: string) => {
+  if (href.startsWith("/")) return href; // absolute path, use as-is
+  return pathname === "/" ? href : `/${href}`;
+};
 
 export default function Footer() {
   const pathname = usePathname();
