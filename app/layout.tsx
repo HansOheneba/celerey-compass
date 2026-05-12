@@ -4,6 +4,7 @@ import { Fredoka, Lilita_One } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 // BODY FONT (default)
 const fredoka = Fredoka({
@@ -49,6 +50,7 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
+      <GoogleAnalytics gaId="G-TC2EBJ6RP2" />
     </html>
   );
 }
