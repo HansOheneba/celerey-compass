@@ -99,6 +99,35 @@ export function Section5({ register, control, errors }: Props) {
 
       <Controller
         control={control}
+        name="seekingScholarship"
+        render={({ field }) => (
+          <div className="flex flex-col gap-2 rounded-xl border border-gray-200 p-4">
+            <div className="flex items-start gap-3">
+              <Checkbox
+                id="seekingScholarship"
+                checked={field.value}
+                onCheckedChange={field.onChange}
+                className="mt-0.5 data-[state=checked]:border-teal-600 data-[state=checked]:bg-teal-600"
+              />
+              <div className="space-y-1">
+                <Label
+                  htmlFor="seekingScholarship"
+                  className="text-sm font-medium text-[#374151]"
+                >
+                  I would like to be considered for a Compass scholarship.
+                </Label>
+                <p className="text-xs leading-relaxed text-[#6b7280]">
+                  If selected, we will reach out to schedule an interview. Scholarship decisions are made
+                  after the screening.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      />
+
+      <Controller
+        control={control}
         name="agreedToTerms"
         render={({ field }) => (
           <div className="flex flex-col gap-2 rounded-xl border border-gray-200 p-4">

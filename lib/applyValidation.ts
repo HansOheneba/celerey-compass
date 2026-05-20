@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-
 const whatsappSchema = z
   .string()
   .min(1, "This field is required")
@@ -50,6 +49,7 @@ export const applyFormSchema = z.object({
     .email("Enter a valid email"),
   guardianWhatsapp: whatsappSchema,
   additionalNotes: z.string().optional(),
+  seekingScholarship: z.boolean(),
   agreedToTerms: z
     .boolean()
     .refine((v) => v === true, "You must agree to the terms"),
@@ -80,6 +80,7 @@ export const defaultApplyFormValues: ApplyFormData = {
   guardianEmail: "",
   guardianWhatsapp: "+",
   additionalNotes: "",
+  seekingScholarship: false,
   agreedToTerms: false,
 };
 
@@ -113,6 +114,7 @@ export const stepSchemas = [
     guardianLastName: true,
     guardianEmail: true,
     guardianWhatsapp: true,
+    seekingScholarship: true,
     agreedToTerms: true,
   }),
 ] as const;
@@ -136,6 +138,7 @@ export const stepFieldNames: Array<Array<keyof ApplyFormData>> = [
     "guardianLastName",
     "guardianEmail",
     "guardianWhatsapp",
+    "seekingScholarship",
     "agreedToTerms",
   ],
 ];

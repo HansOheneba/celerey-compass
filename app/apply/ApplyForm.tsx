@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useWatch } from "react-hook-form";
-import { CheckCircle2, CreditCard } from "lucide-react";
+import { CheckCircle2, CreditCard, Mail } from "lucide-react";
 import { Toaster } from "sonner";
 import {
   applyFormSchema,
@@ -53,6 +53,7 @@ export default function ApplyForm() {
   const [payError, setPayError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState<string | null>(null);
+  const [submittedScholarship, setSubmittedScholarship] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
   const {
@@ -86,8 +87,12 @@ export default function ApplyForm() {
     const submittedRaw = window.localStorage.getItem(SUBMITTED_KEY);
     if (submittedRaw) {
       try {
-        const { email } = JSON.parse(submittedRaw) as { email: string };
+        const { email, seekingScholarship } = JSON.parse(submittedRaw) as {
+          email: string;
+          seekingScholarship?: boolean;
+        };
         setSubmittedEmail(email);
+        setSubmittedScholarship(Boolean(seekingScholarship));
         setSubmitted(true);
       } catch {
         window.localStorage.removeItem(SUBMITTED_KEY);
@@ -139,9 +144,13 @@ export default function ApplyForm() {
       window.localStorage.removeItem(STORAGE_KEY);
       window.localStorage.setItem(
         SUBMITTED_KEY,
-        JSON.stringify({ email: data.email }),
+        JSON.stringify({
+          email: data.email,
+          seekingScholarship: data.seekingScholarship,
+        }),
       );
       setSubmittedEmail(data.email);
+      setSubmittedScholarship(Boolean(data.seekingScholarship));
       setSubmitted(true);
     } catch {
       setSubmitError(
@@ -225,36 +234,62 @@ export default function ApplyForm() {
             </div>
           </div>
           <div className="px-8 py-8 sm:px-10">
-            <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0f1f1e]/5">
-                <CreditCard className="h-5 w-5 text-[#0f1f1e]" />
+            {submittedScholarship ? (
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0f1f1e]/5">
+                  <Mail className="h-5 w-5 text-[#0f1f1e]" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#6b7280]">
+                    Step 2
+                  </p>
+                  <h2 className="mt-1 text-xl text-[#0f1f1e]">
+                    Check your email for next steps
+                  </h2>
+                  <p className="mt-1 text-sm leading-relaxed text-[#6b7280]">
+                    You asked to be considered for a Compass scholarship. We&apos;ve sent the full
+                    details to your inbox. The Compass team will reach out to
+                    schedule a short screening interview, and your scholarship
+                    decision will follow after that conversation.
+                  </p>
+                  <p className="mt-3 text-xs text-[#9ca3af]">
+                    Tip: if you don&apos;t see our email within a few minutes,
+                    check your spam or promotions folder.
+                  </p>
+                </div>
               </div>
-              <div className="flex-1">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#6b7280]">
-                  Step 2
-                </p>
-                <h2 className="mt-1 text-xl text-[#0f1f1e]">
-                  Secure your spot
-                </h2>
-                <p className="mt-1 text-sm text-[#6b7280]">
-                  Complete the enrollment fee to confirm your place in the
-                  Compass programme. Your spot is not guaranteed until payment
-                  is received.
-                </p>
-                <button
-                  type="button"
-                  onClick={handlePay}
-                  disabled={isPaying}
-                  className="mt-5 inline-flex items-center gap-2 rounded-lg bg-teal-600 px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700 disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  <CreditCard className="h-4 w-4" />
-                  {isPaying ? "Redirecting…" : "Pay Now"}
-                </button>
-                {payError && (
-                  <p className="mt-3 text-sm text-red-600">{payError}</p>
-                )}
+            ) : (
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0f1f1e]/5">
+                  <CreditCard className="h-5 w-5 text-[#0f1f1e]" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#6b7280]">
+                    Step 2
+                  </p>
+                  <h2 className="mt-1 text-xl text-[#0f1f1e]">
+                    Secure your spot
+                  </h2>
+                  <p className="mt-1 text-sm text-[#6b7280]">
+                    Complete the enrollment fee to confirm your place in the
+                    Compass programme. Your spot is not guaranteed until payment
+                    is received.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handlePay}
+                    disabled={isPaying}
+                    className="mt-5 inline-flex items-center gap-2 rounded-lg bg-teal-600 px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    <CreditCard className="h-4 w-4" />
+                    {isPaying ? "Redirecting…" : "Pay Now"}
+                  </button>
+                  {payError && (
+                    <p className="mt-3 text-sm text-red-600">{payError}</p>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div className="border-t border-gray-100 px-8 py-4 sm:px-10">
             <button
@@ -264,6 +299,7 @@ export default function ApplyForm() {
                 window.localStorage.removeItem(STORAGE_KEY);
                 setSubmitted(false);
                 setSubmittedEmail(null);
+                setSubmittedScholarship(false);
                 setStep(0);
                 reset(defaultApplyFormValues);
               }}
@@ -373,7 +409,6 @@ export default function ApplyForm() {
                 &#8592; Back
               </Button>
 
-              <span className="text-sm text-[#9ca3af]">&#8595;</span>
 
               {step < TOTAL_STEPS - 1 ? (
                 <Button

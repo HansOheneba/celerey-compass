@@ -26,6 +26,7 @@ const FIELD_ORDER: Array<keyof ApplyFormData> = [
   "guardianEmail",
   "guardianWhatsapp",
   "additionalNotes",
+  "seekingScholarship",
   "agreedToTerms",
 ];
 
@@ -56,6 +57,7 @@ const HEADERS: Record<keyof ApplyFormData, string> = {
   guardianEmail: "Guardian Email",
   guardianWhatsapp: "Guardian WhatsApp",
   additionalNotes: "Additional Notes",
+  seekingScholarship: "Seeking Scholarship",
   agreedToTerms: "Agreed to Terms",
 };
 
