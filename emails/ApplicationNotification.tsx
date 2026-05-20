@@ -86,7 +86,9 @@ export function ApplicationNotificationEmail({
 
             {/* Hero */}
             <Section className="bg-slate-900 rounded-2xl px-8 py-10 text-center mt-2">
-              <Text className="text-4xl m-0">{isScholarship ? "🎓" : "📋"}</Text>
+              <Text className="text-4xl m-0">
+                {isScholarship ? "🎓" : "📋"}
+              </Text>
               <Text className="text-white text-2xl font-bold mt-4 mb-2 leading-snug m-0">
                 New Application Received
               </Text>
@@ -132,8 +134,7 @@ export function ApplicationNotificationEmail({
               <Text className="text-xs text-slate-400 leading-relaxed m-0">
                 This is an internal notification sent by the Compass application
                 system.
-                <br />
-                © {new Date().getFullYear()} Celerey. All rights reserved.
+                <br />© {new Date().getFullYear()} Celerey. All rights reserved.
               </Text>
             </Section>
           </Container>

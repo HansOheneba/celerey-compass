@@ -78,7 +78,8 @@ export async function POST(request: Request) {
           }),
         })
         .then(({ error }) => {
-          if (error) console.error("\u26a0\ufe0f Notification email error:", error);
+          if (error)
+            console.error("\u26a0\ufe0f Notification email error:", error);
         })
         .catch((err) => {
           console.error("\u26a0\ufe0f Failed to send notification email:", err);
